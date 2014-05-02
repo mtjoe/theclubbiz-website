@@ -1,4 +1,6 @@
 TheclubbizWebsite::Application.routes.draw do
+  resources :societies
+
   resources :users
 
   get "welcome/index"

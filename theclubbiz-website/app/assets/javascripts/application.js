@@ -17,3 +17,4 @@
 //= require bootstrap
 //= require onepage-scroll
 //= require jquery
+//= require slimscroll

@@ -13,6 +13,25 @@
 </head>
 <body>
 
+	<!-- Navigation Bar -->
+	<div id="navbar">
+		<div id="nav-brand">
+			<p>The Club Biz</p>
+		</div>
+		
+		<ul id="nav-menu">
+			<li><a href="javascript:goToBrowse()">Browse</a></li>
+			<li><a href="#">About Us</a></li>
+		</ul>
+		<form id="nav-search-container">
+			<input id="nav-search-field" type="text" name="search"/>
+			<input id="nav-search-btn" type="submit" value="s"/>
+		</form>
+		<div id="nav-log-add">
+			<a href="#">Login</a>
+		</div>
+	</div>
+
 <%= yield %>
 
 </body>

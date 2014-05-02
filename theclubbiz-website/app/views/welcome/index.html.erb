@@ -1,24 +1,24 @@
+<!-- *************************************************************************
 
-<div id="navbar">
-	<div id="nav-brand">
-		<p>The Club Biz</p>
-	</div>
-	
-	<ul id="nav-menu">
-		<li><a href="javascript:goToBrowse()">Browse</a></li>
-		<li><a href="#">About Us</a></li>
-	</ul>
-	<form id="nav-search">
-		<input id="nav-search-f" type="text" name="search"/>
-		<input id="nav-search-btn" type="submit" value="s"/>
-	</form>
-</div>
+Author: Marisa Tjoe
+
+welcome/index.html.erb
+ - Root Page
+ - First page
+
+ Acknowledgements:
+ - 
+
+
+************************************************************************** -->
 
 <div class="main">
-	<section class="page-one">
-		
 
-		 <div id="carousel-example-generic" class="section carousel slide" data-ride="carousel">
+	<!-- First Page -->
+	<section class="page-one">
+
+		<!-- Carousel - Contains featured events/societies, taken from Bootstrap -->
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
      		<ol class="carousel-indicators">
         		<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
         		<li data-target="#carousel-example-generic" data-slide-to="1"></li>
@@ -26,68 +26,167 @@
       		</ol>
       		<div class="carousel-inner">
         		<div class="item active">
-          			<img data-src="robotics_club.jpg" alt="First slide">
+          			<%= image_tag('/assets/society-images/robotics_club.jpg', alt:"First Slide") %>
         		</div>
         		<div class="item">
-          			<img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide">
+          			<%= image_tag('/assets/event-images/anime-umelb.jpg', alt:"Second Slide") %>
         		</div>
         		<div class="item">
-          			<img data-src="holder.js/900x500/auto/#555:#333/text:Third slide" alt="Third slide">
+          			<%= image_tag('/assets/society-images/robotics_club.jpg', alt:"Third Slide") %>
         		</div>
       		</div>
       		<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-        		<span class="glyphicon glyphicon-chevron-left"><img src="left-arrow.gif"></span>
+        		<%= image_tag 'left-arrow.gif' %>
       		</a>
       		<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-        		<span class="glyphicon glyphicon-chevron-right"><img src="right-arrow.gif"></span>
+      			<%= image_tag 'right-arrow.gif' %>
       		</a>
       	</div>
-    </section>
+      	<!-- END: Carousel -->
+
+        </section>
+    <!-- END: First Page -->
 	
-	<!-- SOCIETY/EVENTS CONTENTS -->
+	<!-- Page Two - Society/Events Contents -->
   	<section class="page-two">
-		<div class="second-page">
-			<div id="main-content">
-				<div id="sidebar">
+		<div id="main-content">
+
+			<!-- Sliding Sidebar -->
+			<div id="sidebar">
+				<ul style="list-style:none">
+					<li><p class="side-h1">Account</p></li>
 					<ul style="list-style:none">
-						<li><p class="side-h1">Account</p></li>
-						<ul style="list-style:none">
-							<li><a class="side-h2" href="#">My Societies</a></li>
-							<li><a class="side-h2" href="#">Adiministered</a></li>
-							<li><a class="side-h2" href="#">My Upcoming Events</a></li>
-						</ul></br>
-						<li><p class="side-h1">Browse Societies</p></li>
-						<ul style="list-style:none">
-							<li><a class="side-h2" href="#">All Societies</a></li>
-							<li><a class="side-h2" href="#">By Categories</a></li>
-							<li><a class="side-h2" href="#">By University</a></li>
-						</ul></br>
-						<li><p class="side-h1">Browse Events</p></li>
-						<ul style="list-style:none">
-							<li><a class="side-h2" href="#">Upcoming Events</a></li>
-							<li><a class="side-h2" href="#">Past Events</a></li>
-							<li><a class="side-h2" href="#">By Categories</a></li>
-							<li><a class="side-h2" href="#">By University</a></li>
-						</ul></br>
-					</ul>
-				</div>
+						<li><a class="side-h2" href="#">My Societies</a></li>
+						<li><a class="side-h2" href="#">Adiministered</a></li>
+						<li><a class="side-h2" href="#">My Upcoming Events</a></li>
+					</ul></br>
+					<li><p class="side-h1">Browse Societies</p></li>
+					<ul style="list-style:none">
+						<li><a class="side-h2" href="#">All Societies</a></li>
+						<li><a class="side-h2" href="#">By Categories</a></li>
+						<li><a class="side-h2" href="#">By University</a></li>
+					</ul></br>
+					<li><p class="side-h1">Browse Events</p></li>
+					<ul style="list-style:none">
+						<li><a class="side-h2" href="#">Upcoming Events</a></li>
+						<li><a class="side-h2" href="#">Past Events</a></li>
+						<li><a class="side-h2" href="#">By Categories</a></li>
+						<li><a class="side-h2" href="#">By University</a></li>
+					</ul></br>
+				</ul>
+			</div>
+			<div id="open-sidebar-btn">
+				<%= image_tag 'right.png' %>
+			</div>
+			<!-- END: Sliding Sidebar -->
 
-				<div id="open-sidebar">
-					<img src="right.png" class="open-sidebar-btn">
-				</div>
-
-
-
-				<div id="society-content">
-					<div id="society-hdr">Societies - ALL</div>
-					<div id="society-list">
-						<div class="society-entry"></div>
-						<div class="society-entry"></div>
-						<div class="society-entry"></div>
-						<div class="society-entry"></div>
+			<!-- Grid Contents - Contains grids of societies/events -->
+			<div id="grid-content">
+				<div id="grid-hdr">Societies - ALL</div>
+				<div id="grid-list-cont">
+					<div id="grid-list">
+						<div class="grid-entry">
+							<div class="grid-entry-img">
+								<%= image_tag '/assets/society-images/tedx-umelb.png' %>
+							</div>
+							<div class="grid-entry-label">
+								<div class="grid-entry-label-hdr">
+									<h2>TedX Unimelb</h2>
+									<p>University of Melbourne</p><br>
+								</div>
+								<div class="grid-entry-label-content">
+									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
+								</div>
+								<div class="grid-entry-label-btns">
+									
+								</div>
+							</div>
+						</div>
+						<div class="grid-entry">
+							<div class="grid-entry-img">
+								<%= image_tag '/assets/society-images/envi.jpg' %>
+							</div>
+							<div class="grid-entry-label">
+								<div class="grid-entry-label-hdr">
+									<h2>Environment Students Society</h2>
+									<p>University of Melbourne</p><br>
+								</div>
+								<div class="grid-entry-label-content">
+									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
+								</div>
+								<div class="grid-entry-label-btns">
+								</div>
+							</div>
+						</div>
+						<div class="grid-entry">
+							<div class="grid-entry-img">
+								<%= image_tag '/assets/society-images/bookclub-umelb.jpg' %>
+							</div>
+							<div class="grid-entry-label">
+								<div class="grid-entry-label-hdr">
+									<h2>Book Club Unimelb</h2>
+									<p>University of Melbourne</p><br>
+								</div>
+								<div class="grid-entry-label-content">
+									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
+								</div>
+								<div class="grid-entry-label-btns">
+								</div>
+							</div>
+						</div>
+						<div class="grid-entry">
+							<div class="grid-entry-img">
+								<%= image_tag '/assets/society-images/japaneseclub-umelb.png' %>
+							</div>
+							<div class="grid-entry-label">
+								<div class="grid-entry-label-hdr">
+									<h2>Japanese Club</h2>
+									<p>University of Melbourne</p><br>
+								</div>
+								<div class="grid-entry-label-content">
+									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
+								</div>
+								<div class="grid-entry-label-btns">
+								</div>
+							</div>
+						</div>
+						<div class="grid-entry">
+							<div class="grid-entry-img">
+								<%= image_tag '/assets/society-images/envi.jpg' %>
+							</div>
+							<div class="grid-entry-label">
+								<div class="grid-entry-label-hdr">
+									<h2>Environment Students Society</h2>
+									<p>University of Melbourne</p><br>
+								</div>
+								<div class="grid-entry-label-content">
+									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
+								</div>
+								<div class="grid-entry-label-btns">
+								</div>
+							</div>
+						</div>
+						<div class="grid-entry">
+							<div class="grid-entry-img">
+								<%= image_tag '/assets/society-images/basketball-umelb.jpg' %>
+							</div>
+							<div class="grid-entry-label">
+								<div class="grid-entry-label-hdr">
+									<h2>Basketball Club Unimelb</h2>
+									<p>University of Melbourne</p><br>
+								</div>
+								<div class="grid-entry-label-content">
+									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
+								</div>
+								<div class="grid-entry-label-btns">
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+			<!-- END: Grid Contents -->
 		</div>
 	</section>
+	<!-- END: Page Two -->
 </div>

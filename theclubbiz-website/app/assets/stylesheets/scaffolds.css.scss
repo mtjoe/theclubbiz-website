@@ -1,4 +1,5 @@
 body {
+  padding-top: 100px !important;
   background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -22,10 +23,6 @@ a {
   color: #000;
   &:visited {
     color: #666;
-  }
-  &:hover {
-    color: #fff;
-    background-color: #000;
   }
 }
 
@@ -65,5 +62,148 @@ div {
   ul li {
     font-size: 12px;
     list-style: square;
+  }
+}
+
+
+/////////////////////////
+// SELF-ADDED STYLING  //
+/////////////////////////
+
+$nav_height:100px;
+
+/**** Navbar General ****/
+
+#navbar {
+
+  background-color: black;
+  height: $nav_height;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  z-index: 1000;
+  float: left;
+
+  /**** Navbar Brand ****/
+
+  #nav-brand {
+    text-align: center;
+    height: 100%;
+    width: 20%;
+    float: left;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+
+    p {
+      line-height: $nav_height;
+      font-family: Lato;
+      font-weight: bold;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+  }
+
+  /**** Navbar Menu ****/
+
+  #nav-menu {
+    height: 100%;
+    top: 0;
+    float: left;
+    width: 30%;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+
+    li {
+      line-height: $nav_height;
+      display: inline;
+      height: 100%;
+      text-align: center;
+      width: 50%;
+      float: left;
+      margin: none;
+    }
+
+    li:hover {
+      background-color: #3B3737;
+    }
+
+    a {
+      font-family: Lato;
+      vertical-align: middle;
+      line-height: $nav_height;
+      color: white;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+
+  /**** Navbar Search ****/
+
+
+  #nav-search-container {
+    float: left;
+    width: 30%;
+    height: $nav_height;
+    line-height: $nav_height;
+    vertical-align: middle;
+    padding: 0;
+    text-align: center;
+    margin:0;
+    margin-left:5px;
+    margin-right:5px !important;
+    display: inline-block;
+
+    #nav-search-field {
+      height: 40px;
+      width: 80%;
+      font-size: 20px;
+      line-height: $nav_height;
+      vertical-align: middle;
+      border-radius: 4px;
+      border: none;
+      padding: 10px;
+    }
+
+    #nav-search-btn {
+      background-color: white;
+      margin-left: -10px;
+      border: none;
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      line-height: $nav_height;
+      vertical-align: middle !important;
+    }
+  }
+
+  #nav-log-add {
+    vertical-align: middle;
+    line-height: $nav_height;
+    display: inline-block;
+    width:13%;
+    text-align: center;
+    
+    a {
+      font-weight: bold;
+      border:4px solid grey;
+      padding: 3px;
+      padding-right: 7px;
+      padding-left: 7px;
+      color:grey;
+      border-radius: 8px;
+      text-transform: uppercase;
+      font-family: Lato;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
   }
 }
