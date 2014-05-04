@@ -1,4 +1,8 @@
 TheclubbizWebsite::Application.routes.draw do
+  resources :tickets
+
+  resources :events
+
   resources :societies
 
   resources :users
