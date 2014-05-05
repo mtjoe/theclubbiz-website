@@ -2,7 +2,7 @@ var shown = false;
 var inPageTwo = false;
 
 
-$(function(){
+$(document).ready(function(){
 	// Initialize One-Page scrolling
 	$('.main').onepage_scroll({
 		sectionContainer: "section",
@@ -49,6 +49,7 @@ $(function(){
 		shown = !shown;
     });
 });
+
 
 function goToBrowse(){
 	$('#nav-menu').hide(600);

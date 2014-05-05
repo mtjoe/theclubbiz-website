@@ -16,11 +16,13 @@
 	<!-- Navigation Bar -->
 	<div id="navbar">
 		<div id="nav-brand">
-			<p>The Club Biz</p>
+			<%= link_to 'The Club Biz', controller:'welcome', action:'index' %>
 		</div>
 		
 		<ul id="nav-menu">
-			<li><a href="javascript:goToBrowse()">Browse</a></li>
+			<li>
+				<%= link_to 'Browse', '/welcome/index/#2' %>
+			</li>
 			<li><a href="#">About Us</a></li>
 		</ul>
 		<form id="nav-search-container">

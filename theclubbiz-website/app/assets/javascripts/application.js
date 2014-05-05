@@ -18,3 +18,11 @@
 //= require onepage-scroll
 //= require jquery
 //= require slimscroll
+
+
+function goToBrowse(){
+	$('#nav-menu').hide(600);
+	$('#nav-search').animate({width:'60%'}, 1000);
+	$(".main").moveTo(2);
+	inPageTwo = !inPageTwo;
+}
