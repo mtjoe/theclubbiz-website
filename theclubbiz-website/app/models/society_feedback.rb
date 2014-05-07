@@ -1,2 +1,2 @@
-class SocietyFeedback < ActiveRecord::Base
+class SocietyFeedback < Feedback
 end

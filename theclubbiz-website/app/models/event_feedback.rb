@@ -1,2 +1,2 @@
-class EventFeedback < ActiveRecord::Base
+class EventFeedback < Feedback
 end

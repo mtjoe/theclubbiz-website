@@ -1,4 +1,4 @@
-class CreateSocietyFeedbacks < ActiveRecord::Migration
+class CreateSocietyFeedbacks < CreateFeedbacks
   def change
     create_table :society_feedbacks do |t|
 

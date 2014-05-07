@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504061429) do
+ActiveRecord::Schema.define(version: 20140507044809) do
+
+  create_table "event_feedbacks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -27,6 +32,11 @@ ActiveRecord::Schema.define(version: 20140504061429) do
     t.datetime "updated_at"
   end
 
+  create_table "feedbacks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "societies", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -38,6 +48,11 @@ ActiveRecord::Schema.define(version: 20140504061429) do
     t.integer  "event_ids"
     t.integer  "follower_ids"
     t.integer  "feedback_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "society_feedbacks", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
