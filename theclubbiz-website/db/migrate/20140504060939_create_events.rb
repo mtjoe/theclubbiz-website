@@ -1,4 +1,5 @@
 class CreateEvents < ActiveRecord::Migration
+  
   def change
     create_table :events do |t|
     	t.string :name
@@ -6,10 +7,8 @@ class CreateEvents < ActiveRecord::Migration
     	t.string :location
     	t.string :website
     	t.string :tags
-    	t.integer :society_ids
-    	t.integer :feedback_ids
-    	t.integer :ticket_ids
     	t.integer :max_tickets
+
       t.timestamps
     end
   end

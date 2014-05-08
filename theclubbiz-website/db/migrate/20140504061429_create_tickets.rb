@@ -1,8 +1,9 @@
 class CreateTickets < ActiveRecord::Migration
+  
   def change
     create_table :tickets do |t|
-    	t.integer :event_id
-    	t.integer :user_id
+    	t.belongs_to :events
+    	t.belongs_to :user
       t.timestamps
     end
   end
