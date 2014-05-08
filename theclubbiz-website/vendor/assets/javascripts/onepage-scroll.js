@@ -90,6 +90,7 @@
 				paginationList = "";
 		
 		$.fn.transformPage = function(settings, pos, index, next_el) {
+			
 			if (typeof settings.beforeMove == 'function') settings.beforeMove(index, next_el);
 			if (index == 2){
 				$('#nav-menu').hide(1000);

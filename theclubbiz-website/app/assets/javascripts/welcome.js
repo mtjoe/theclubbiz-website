@@ -1,26 +1,7 @@
 var shown = false;
 var inPageTwo = false;
 
-
-$(document).ready(function(){
-	// Initialize One-Page scrolling
-	$('.main').onepage_scroll({
-		sectionContainer: "section",
-		easing: "ease",
-		animationTime: 1000,
-		pagination: true,
-		updateURL: false,
-		loop: false,
-		keyboard: true,
-		responsiveFallback: false,
-		
-		beforeMove: function( event ){
-			if ($('#grid-list').is(":hover")){
-				event.preventDefault();
-			}
-		}
-    });
-
+var ready = function(){
     $('#grid-list').slimScroll({height: '100%'});
 
 	// Sliding sidebar
@@ -46,9 +27,23 @@ $(document).ready(function(){
 			width: shown ? '83%' : '58%',
 		}, 600);
 
+		
+
 		shown = !shown;
+
     });
-});
+
+    $('.main').onepage_scroll({
+		sectionContainer: "section",
+		easing: "ease",
+		animationTime: 1000,
+		pagination: true,
+		updateURL: false,
+		loop: false,
+		keyboard: true,
+		responsiveFallback: false
+    });
+};
 
 
 function goToBrowse(){
@@ -57,3 +52,6 @@ function goToBrowse(){
 	$(".main").moveTo(2);
 	inPageTwo = !inPageTwo;
 }
+
+$(document).ready(ready);
+$(document).on('page:change', ready);

@@ -165,7 +165,6 @@ $nav_height:100px;
       font-size: 20px;
       line-height: $nav_height;
       vertical-align: middle;
-      border-radius: 4px;
       border: none;
       padding: 10px;
     }
@@ -177,9 +176,9 @@ $nav_height:100px;
       font-size: 20px;
       width: 40px;
       height: 40px;
-      border-radius: 4px;
       line-height: $nav_height;
       vertical-align: middle !important;
+      
     }
   }
 
@@ -203,7 +202,7 @@ $nav_height:100px;
     }
 
     a:hover {
-      text-decoration: none;
+      text-decoration: none !important;
     }
   }
 }
