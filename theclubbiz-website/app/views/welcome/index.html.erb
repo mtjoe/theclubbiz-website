@@ -54,24 +54,24 @@ welcome/index.html.erb
 			<!-- Sliding Sidebar -->
 			<div id="sidebar">
 				<ul style="list-style:none">
-					<li><p class="side-h1">Account</p></li>
+					<li class="side-h1"><p>Account</p></li>
 					<ul style="list-style:none">
-						<li><a class="side-h2" href="#">My Societies</a></li>
-						<li><a class="side-h2" href="#">Adiministered</a></li>
-						<li><a class="side-h2" href="#">My Upcoming Events</a></li>
-					</ul></br>
-					<li><p class="side-h1">Browse Societies</p></li>
+						<li class="side-h2"><a href="#">My Societies</a></li>
+						<li class="side-h2"><a href="#">Adiministered</a></li>
+						<li class="side-h2"><a href="#">My Upcoming Events</a></li>
+					</ul>
+					<li class="side-h1"><p>Browse Societies</p></li>
 					<ul style="list-style:none">
-						<li><a class="side-h2" href="#">All Societies</a></li>
-						<li><a class="side-h2" href="#">By Categories</a></li>
-						<li><a class="side-h2" href="#">By University</a></li>
-					</ul></br>
-					<li><p class="side-h1">Browse Events</p></li>
+						<li class="side-h2 active"><a href="#">All Societies</a></li>
+						<li class="side-h2"><a href="#">By Categories</a></li>
+						<li class="side-h2"><a href="#">By University</a></li>
+					</ul>
+					<li class="side-h1"><p>Browse Events</p></li>
 					<ul style="list-style:none">
-						<li><a class="side-h2" href="#">Upcoming Events</a></li>
-						<li><a class="side-h2" href="#">Past Events</a></li>
-						<li><a class="side-h2" href="#">By Categories</a></li>
-						<li><a class="side-h2" href="#">By University</a></li>
+						<li class="side-h2"><a href="#">Upcoming Events</a></li>
+						<li class="side-h2"><a href="#">Past Events</a></li>
+						<li class="side-h2"><a href="#">By Categories</a></li>
+						<li class="side-h2"><a href="#">By University</a></li>
 					</ul></br>
 				</ul>
 			</div>
@@ -85,106 +85,31 @@ welcome/index.html.erb
 				<div id="grid-list-cont">
 					<div id="grid-list">
 						<div id="grid-hdr">Societies - ALL</div>
-						<div class="grid-entry">
-							<div class="grid-entry-img">
-								<%= image_tag '/assets/society-images/tedx-umelb.png' %>
-							</div>
-							<div class="grid-entry-label">
-								<div class="grid-entry-label-hdr">
-									<h2>TedX Unimelb</h2>
-									<p>University of Melbourne</p><br>
+
+						<% if @societies.empty? %>
+							<p>No society have been registered.</p>
+						<% else %>
+							<% @societies.each do |s| %>
+								<div class="grid-entry">
+									<div class="grid-entry-img">
+										<%= image_tag s.logo %>
+									</div>
+									<div class="grid-entry-label">
+										<div class="grid-entry-label-hdr">
+											<h2><%= s.name %></h2>
+											<p>University of Melbourne</p><br>
+										</div>
+										<div class="grid-entry-label-content">
+											<%= s.description %>
+										</div>
+										<div class="grid-entry-label-btns">
+											<a>Follow</a>
+											<%= link_to("Go To Page", {controller: 'societies', action: 'show', id: s.id}) %>
+										</div>
+									</div>
 								</div>
-								<div class="grid-entry-label-content">
-									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
-								</div>
-								<div class="grid-entry-label-btns">
-									<a>Follow</a>
-									<a>Go To Page</a>
-								</div>
-							</div>
-						</div>
-						<div class="grid-entry">
-							<div class="grid-entry-img">
-								<%= image_tag '/assets/society-images/envi.jpg' %>
-							</div>
-							<div class="grid-entry-label">
-								<div class="grid-entry-label-hdr">
-									<h2>Environment Students Society</h2>
-									<p>University of Melbourne</p><br>
-								</div>
-								<div class="grid-entry-label-content">
-									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
-								</div>
-								<div class="grid-entry-label-btns">
-								</div>
-							</div>
-						</div>
-						<div class="grid-entry">
-							<div class="grid-entry-img">
-								<%= image_tag '/assets/society-images/bookclub-umelb.jpg' %>
-							</div>
-							<div class="grid-entry-label">
-								<div class="grid-entry-label-hdr">
-									<h2>Book Club Unimelb</h2>
-									<p>University of Melbourne</p><br>
-								</div>
-								<div class="grid-entry-label-content">
-									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
-								</div>
-								<div class="grid-entry-label-btns">
-								</div>
-							</div>
-						</div>
-						<div class="grid-entry">
-							<div class="grid-entry-img">
-								<%= image_tag '/assets/society-images/japaneseclub-umelb.png' %>
-							</div>
-							<div class="grid-entry-label">
-								<div class="grid-entry-label-hdr">
-									<h2>Japanese Club</h2>
-									<p>University of Melbourne</p><br>
-								</div>
-								<div class="grid-entry-label-content">
-									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
-								</div>
-								<div class="grid-entry-label-btns">
-								</div>
-							</div>
-						</div>
-						<div class="grid-entry">
-							<div class="grid-entry-img">
-								<%= image_tag '/assets/society-images/envi.jpg' %>
-							</div>
-							<div class="grid-entry-label">
-								<div class="grid-entry-label-hdr">
-									<h2>Environment Students Society</h2>
-									<p>University of Melbourne</p><br>
-								</div>
-								<div class="grid-entry-label-content">
-									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
-								</div>
-								<div class="grid-entry-label-btns">
-									<a>Follow</a>
-									<a>Go To Page</a>
-								</div>
-							</div>
-						</div>
-						<div class="grid-entry">
-							<div class="grid-entry-img">
-								<%= image_tag '/assets/society-images/basketball-umelb.jpg' %>
-							</div>
-							<div class="grid-entry-label">
-								<div class="grid-entry-label-hdr">
-									<h2>Basketball Club Unimelb</h2>
-									<p>University of Melbourne</p><br>
-								</div>
-								<div class="grid-entry-label-content">
-									<p> jakdscna jksdnck jansdcjkna sdjkcnakjsd ncjkasdnc ljasndcjkns dcjknas dlcjna kjdsncak jsdncjaksndclakj dsnclkjasdn cljkasdn cljkasdn clkjasndckljasndcjksad ncjknsadcn</p>
-								</div>
-								<div class="grid-entry-label-btns">
-								</div>
-							</div>
-						</div>
+							<% end %>
+						<% end %>
 					</div>
 				</div>
 			</div>
@@ -193,3 +118,4 @@ welcome/index.html.erb
 	</section>
 	<!-- END: Page Two -->
 </div>
+

@@ -2,6 +2,17 @@ var shown = false;
 var inPageTwo = false;
 
 var ready = function(){
+	$('.main').onepage_scroll({
+		sectionContainer: "section",
+		easing: "ease",
+		animationTime: 1000,
+		pagination: true,
+		updateURL: false,
+		loop: false,
+		keyboard: true,
+		responsiveFallback: false
+    });
+
     $('#grid-list').slimScroll({height: '100%'});
 
 	// Sliding sidebar
@@ -27,22 +38,10 @@ var ready = function(){
 			width: shown ? '83%' : '58%',
 		}, 600);
 
-		
-
 		shown = !shown;
 
     });
-
-    $('.main').onepage_scroll({
-		sectionContainer: "section",
-		easing: "ease",
-		animationTime: 1000,
-		pagination: true,
-		updateURL: false,
-		loop: false,
-		keyboard: true,
-		responsiveFallback: false
-    });
+    
 };
 
 
@@ -53,5 +52,4 @@ function goToBrowse(){
 	inPageTwo = !inPageTwo;
 }
 
-$(document).ready(ready);
-$(document).on('page:change', ready);
+$(window).load(ready);

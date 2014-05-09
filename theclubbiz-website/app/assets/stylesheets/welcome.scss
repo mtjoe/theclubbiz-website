@@ -44,28 +44,50 @@ $nav_height:100px;
 	height:100%;
 
 	#sidebar {
-		padding-top: 100px;
-		display: none;
 		
+		display: none;
 		width: 25%;
 		height:100%;
-		border-right: 1px solid lightgrey;
+		background-color: #AAA9A9;
 		float: left;
-		padding: 10px;
+		
 		overflow: hidden;
 		text-wrap:supress;
 
-		.side-h1 {
-			padding: 10px;
-			font-family: Telex;
-			font-size: 25px;
-			color: grey;
+		ul, li {
+			padding:0;
+			margin:0;
 		}
 
-		.side-h2 {
+		li {
+			height:50px;
+			border-bottom: 1px solid #9E9C9C;
+		}
+
+		li a, li p {
+			line-height: 50px;
+			vertical-align: middle;
 			font-family: Telex;
+			
+		}
+
+		li:hover{
+			background-color: #9E9C9C;
+		}
+
+		.side-h1 p {
+			font-size: 25px;
+			font-weight: bold;
+			color: white;
+			padding-left: 20px;
+		}
+
+		.side-h2 a {
+			color: grey;
+			font-family: Telex;
+			color: white;
 			font-size: 15px;
-			color: lightgrey;
+			padding-left: 40px;
 		}
 	}
 

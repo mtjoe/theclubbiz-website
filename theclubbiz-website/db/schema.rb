@@ -11,36 +11,81 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507044809) do
+ActiveRecord::Schema.define(version: 20140507065559) do
 
   create_table "event_feedbacks", force: true do |t|
+    t.integer  "events_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_followers", force: true do |t|
+    t.integer  "users_id"
+    t.integer  "events_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
+    t.string   "name"
+    t.string   "time"
+    t.string   "location"
+    t.string   "website"
+    t.string   "tags"
+    t.integer  "max_tickets"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "feedbacks", force: true do |t|
     t.text     "text"
+    t.integer  "users_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "societies", force: true do |t|
-    t.string   "index"
+    t.string   "name"
+    t.text     "logo"
+    t.text     "description"
+    t.string   "office_location"
+    t.string   "email"
+    t.string   "tags"
+    t.integer  "phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "society_admins", force: true do |t|
+    t.integer  "users_id"
+    t.integer  "societies_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "society_events", force: true do |t|
+    t.integer  "events_id"
+    t.integer  "societies_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_feedbacks", force: true do |t|
+    t.integer  "societies_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "society_followers", force: true do |t|
+    t.integer  "users_id"
+    t.integer  "societies_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tickets", force: true do |t|
+    t.integer  "events_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,6 +93,11 @@ ActiveRecord::Schema.define(version: 20140507044809) do
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "username"
+    t.string   "password"
+    t.string   "university"
+    t.string   "email"
+    t.integer  "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

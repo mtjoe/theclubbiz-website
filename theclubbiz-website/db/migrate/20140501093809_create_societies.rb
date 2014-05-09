@@ -4,6 +4,7 @@ class CreateSocieties < ActiveRecord::Migration
   def change
     create_table :societies do |t|
     	t.string :name
+      t.text :logo
     	t.text :description
     	t.string :office_location
     	t.string :email
