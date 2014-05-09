@@ -9,9 +9,6 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :university
     	t.string :email
     	t.integer :phone_number
-    	
-    	
-
 
       	t.timestamps
     end

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507065559) do
+ActiveRecord::Schema.define(version: 20140509062942) do
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_categories", force: true do |t|
+    t.integer  "events_id"
+    t.integer  "categories_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "event_feedbacks", force: true do |t|
     t.integer  "events_id"
@@ -28,10 +41,13 @@ ActiveRecord::Schema.define(version: 20140507065559) do
 
   create_table "events", force: true do |t|
     t.string   "name"
-    t.string   "time"
-    t.string   "location"
+    t.datetime "time"
+    t.string   "location_address_line1"
+    t.string   "location_address_line2"
+    t.string   "location_state"
+    t.string   "location_city"
+    t.integer  "location_postcode"
     t.string   "website"
-    t.string   "tags"
     t.integer  "max_tickets"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -44,13 +60,30 @@ ActiveRecord::Schema.define(version: 20140507065559) do
     t.datetime "updated_at"
   end
 
+  create_table "galleries", force: true do |t|
+    t.text     "image1"
+    t.text     "image2"
+    t.text     "image3"
+    t.integer  "events_id"
+    t.integer  "users_id"
+    t.integer  "societies_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "societies", force: true do |t|
     t.string   "name"
     t.text     "logo"
+    t.string   "university"
     t.text     "description"
-    t.string   "office_location"
+    t.text     "short_description"
+    t.string   "website"
+    t.string   "office_address_line1"
+    t.string   "office_address_line2"
+    t.string   "office_state"
+    t.string   "office_city"
+    t.integer  "office_postcode"
     t.string   "email"
-    t.string   "tags"
     t.integer  "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -59,6 +92,13 @@ ActiveRecord::Schema.define(version: 20140507065559) do
   create_table "society_admins", force: true do |t|
     t.integer  "users_id"
     t.integer  "societies_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "society_categories", force: true do |t|
+    t.integer  "societies_id"
+    t.integer  "categories_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

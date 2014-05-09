@@ -5,10 +5,16 @@ class CreateSocieties < ActiveRecord::Migration
     create_table :societies do |t|
     	t.string :name
       t.text :logo
+      t.string :university
     	t.text :description
-    	t.string :office_location
+      t.text :short_description
+      t.string :website
+    	t.string :office_address_line1
+      t.string :office_address_line2
+      t.string :office_state
+      t.string :office_city
+      t.integer :office_postcode
     	t.string :email
-    	t.string :tags
     	t.integer :phone_number
 
       t.timestamps
