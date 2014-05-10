@@ -24,6 +24,8 @@ welcome/index.html.erb
         		<li data-target="#carousel-example-generic" data-slide-to="1"></li>
         		<li data-target="#carousel-example-generic" data-slide-to="2"></li>
       		</ol>
+
+      		
       		<div class="carousel-inner">
         		<div class="item active">
           			<%= image_tag('/assets/society-images/robotics_club.jpg', alt:"First Slide") %>
@@ -56,22 +58,22 @@ welcome/index.html.erb
 				<ul style="list-style:none">
 					<li class="side-h1"><p>Account</p></li>
 					<ul style="list-style:none">
-						<li class="side-h2"><a href="#">My Societies</a></li>
-						<li class="side-h2"><a href="#">Adiministered</a></li>
-						<li class="side-h2"><a href="#">My Upcoming Events</a></li>
+						<li class="side-h2"><%= link_to("Administered Societies", :state => "adminSoc") %></li>
+						<li class="side-h2"><%= link_to("Followed Societies", :state => "followedSoc") %></li>
+						<li class="side-h2"><%= link_to("Followed Events", :state => "followedEvent") %></li>
 					</ul>
 					<li class="side-h1"><p>Browse Societies</p></li>
 					<ul style="list-style:none">
-						<li class="side-h2 active"><a href="#">All Societies</a></li>
-						<li class="side-h2"><a href="#">By Categories</a></li>
-						<li class="side-h2"><a href="#">By University</a></li>
+						<li class="side-h2 active"><%= link_to("All Societies", :state => "allSoc") %></li>
+						<li class="side-h2"><%= link_to("By Category", :state => "socByCategory") %></li>
+						<li class="side-h2"><%= link_to("By University", :state => "socByUniversity") %></li>
 					</ul>
 					<li class="side-h1"><p>Browse Events</p></li>
 					<ul style="list-style:none">
-						<li class="side-h2"><a href="#">Upcoming Events</a></li>
-						<li class="side-h2"><a href="#">Past Events</a></li>
-						<li class="side-h2"><a href="#">By Categories</a></li>
-						<li class="side-h2"><a href="#">By University</a></li>
+						<li class="side-h2"><%= link_to("Upcoming Events", :state => "allUpcomingEvents") %></li>
+						<li class="side-h2"><%= link_to("Past Events", :state => "allPastEvents") %></li>
+						<li class="side-h2"><%= link_to("By Category", :state => "eventByCategory") %></li>
+						<li class="side-h2"><%= link_to("By University", :state => "eventByUniversity") %></li>
 					</ul></br>
 				</ul>
 			</div>
@@ -84,32 +86,65 @@ welcome/index.html.erb
 			<div id="grid-content">
 				<div id="grid-list-cont">
 					<div id="grid-list">
-						<div id="grid-hdr">Societies - ALL</div>
 
-						<% if @societies.empty? %>
-							<p>No society have been registered.</p>
-						<% else %>
-							<% @societies.each do |s| %>
-								<div class="grid-entry">
-									<div class="grid-entry-img">
-										<%= image_tag s.logo %>
+						<div id="grid-hdr"><%= @header %></div>
+						
+						<% if !@societies.nil? %>
+							<% if @societies.empty? %>
+								<p>No societies in this category.</p>
+							<% else %>
+								<% @societies.each do |s| %>
+									<div class="grid-entry">
+										<div class="grid-entry-img">
+											<%= image_tag s.logo %>
+										</div>
+										<div class="grid-entry-label">
+											<div class="grid-entry-label-hdr">
+												<h2><%= s.name %></h2>
+												<p>University of Melbourne</p><br>
+											</div>
+											<div class="grid-entry-label-content">
+												<%= s.short_description %>
+											</div>
+											<div class="grid-entry-label-btns">
+												<a><span class="glyphicon glyphicon-star"></span> Follow</a>
+												<%= link_to("Go To Page", {controller: 'societies', action: 'show', id: s.id}) %>
+											</div>
+										</div>
 									</div>
-									<div class="grid-entry-label">
-										<div class="grid-entry-label-hdr">
-											<h2><%= s.name %></h2>
-											<p>University of Melbourne</p><br>
-										</div>
-										<div class="grid-entry-label-content">
-											<%= s.description %>
-										</div>
-										<div class="grid-entry-label-btns">
-											<a>Follow</a>
-											<%= link_to("Go To Page", {controller: 'societies', action: 'show', id: s.id}) %>
-										</div>
-									</div>
-								</div>
+								<% end %>
 							<% end %>
 						<% end %>
+						
+						<% if !@events.nil? %>
+							<% if @events.empty? %>
+								<p>No events in this category.</p>
+							<% else %>
+								<% @events.each do |s| %>
+									<div class="grid-entry">
+										<div class="grid-entry-img">
+											<%= image_tag s.logo %>
+										</div>
+										<div class="grid-entry-label">
+											<div class="grid-entry-label-hdr">
+												<h2><%= s.name %></h2>
+												<p>University of Melbourne</p><br>
+											</div>
+											<div class="grid-entry-label-content">
+												<%= s.short_description %>
+											</div>
+											<div class="grid-entry-label-btns">
+												<a><span class="glyphicon glyphicon-star"></span> Follow</a>
+												<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							<% end %>
+						<% end %>
+
+
+
 					</div>
 				</div>
 			</div>

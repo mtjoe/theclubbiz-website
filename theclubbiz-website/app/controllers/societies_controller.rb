@@ -10,6 +10,7 @@ class SocietiesController < ApplicationController
   # GET /societies/1
   # GET /societies/1.json
   def show
+    @events = SocietyEvent.where(id: :id)
   end
 
   # GET /societies/new

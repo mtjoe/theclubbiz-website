@@ -1,0 +1,134 @@
+#grid-content {
+		
+	float: left;
+	width: 83%;
+	height:100%;
+	margin-left: 8%;
+
+	#grid-list-cont {
+		height: 100%;
+
+		#grid-list {
+			width: 100%;
+			position:relative;
+			overflow-y:scroll;
+
+			#grid-hdr {
+				margin-top: 30px;
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+				vertical-align: middle;
+				margin-bottom: 20px;
+				font-size: 30px;
+				font-family: Telex;
+				font-weight: bold;
+				text-transform: uppercase;
+			}
+
+			.grid-entry {
+				border:1px solid lightgrey;
+				height: 400px;
+				width:30%;
+				min-width: 320px;
+				float:left;
+				margin-right: 3%;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				overflow:hidden;
+				
+
+				.grid-entry-img {
+					text-align: center;
+					height: 300px;
+					width:100%;
+					line-height: 300px;
+					position:relative;
+					display:inline-block;
+
+					img{
+						vertical-align: middle;
+						max-width:100%; 
+						max-height:100%;	
+					}
+				}
+
+				.grid-entry-label {
+					
+					height:400px;
+					background-color: lightgrey;
+
+					/* Hover off */
+					transform: translateY(0px);
+					-ms-transform: translateY(0px);
+					-webkit-transform: translateY(0px);
+					-moz-transform: translateY(0px);
+					-webkit-transition-duration: 0.5s;
+					-moz-transition-duration: 0.5s;
+					-o-transition-duration: 0.5s;
+					transition-duration: 0.5s;
+					
+					
+					.grid-entry-label-hdr {
+						
+						font-family: Telex;
+						padding:20px;
+						height: 100px;
+						h2 {
+							font-family: Questrial;
+							font-weight: bold;
+							margin:0;
+							color:grey; 
+							font-size: 25px;
+						}
+						p{
+							color: white;
+						}	
+					}
+
+					.grid-entry-label-content {
+						text-wrap: normal;
+						word-wrap:normal;
+						padding:20px;
+						padding-top:0px;
+						height:230px;
+					}
+					
+					.grid-entry-label-btns {
+						height:50px;
+
+						a:first-child {
+							margin-left: 5%;
+						}
+						a {
+							text-align: center;
+							width:42.5%;
+							margin-right: 5%;
+							display:block;
+							float:left;
+							height:50px;
+							line-height: 50px;
+							vertical-align: middle;
+							background-color: grey;
+							color: white;
+							text-transform: uppercase;
+						}
+					}
+				}
+			}
+
+			.grid-entry:hover {
+				.grid-entry-label {
+					transform: translateY(-300px);
+					-ms-transform: translateY(-300px);
+					-webkit-transform: translateY(-300px);
+					-moz-transform: translateY(-300px);
+					-webkit-transition-duration: 0.5s;
+					-moz-transition-duration: 0.5s;
+					-o-transition-duration: 0.5s;
+					transition-duration: 0.5s;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,53 @@
+
+@mixin tabs-init($nTabs) {
+	$tab_height:100px;
+
+	.tabs {
+		position: absolute;
+		height: $tab_height;
+		width:100%;
+		top: calc(100% - 100px);
+
+
+		.tab {
+			height:100%;
+			width:calc(100%/$nTabs);
+			float: left;
+			
+			p {
+				line-height: $tab_height;
+				vertical-align: middle;
+				text-align: center;
+				color:white;
+				font-family: Lato;
+				font-size: 25px;
+				text-transform: uppercase;
+			}
+		}
+	}	
+
+	.tab-page {
+		position:absolute;
+		height:100%;
+		width:100%;
+		top: 100%;
+
+		.exit {
+			position:absolute;
+			top:20px;
+			left:calc(100% - 50px);
+
+			span {
+				font-size: 30px;
+				color:white;
+			}
+		}
+
+		.tab-page-content {
+			width:90%;
+			height:calc(93% - 150px);
+			margin-top: 2%;
+			margin-left: 5%; 
+		}
+	}
+}

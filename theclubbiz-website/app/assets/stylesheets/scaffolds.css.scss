@@ -162,7 +162,7 @@ $nav_height:100px;
       height: 40px;
       width: 80%;
       font-size: 20px;
-      line-height: $nav_height;
+      line-height: 40px;
       vertical-align: middle;
       border: none;
       padding: 10px;
@@ -177,7 +177,7 @@ $nav_height:100px;
       font-size: 20px;
       width: 40px;
       height: 40px;
-      line-height: $nav_height;
+      line-height: 40px;
       vertical-align: middle !important;
       
     }
@@ -190,24 +190,42 @@ $nav_height:100px;
     width:13%;
     text-align: center;
     
-    a {
-      font-weight: bold;
-      border:4px solid grey;
-      padding: 3px;
-      padding-right: 7px;
-      padding-left: 7px;
-      color:grey;
-      border-radius: 8px;
-      text-transform: uppercase;
-      font-family: Lato;
+    .log-add-btn {
+      background-color: grey;
+      border:1px solid grey;
     }
 
-    a:hover {
-      text-decoration: none !important;
+    .log-add-btn:hover {
+      
+      background-color: #717171;
+      border:1px solid #717171;
     }
   }
 }
 
-.modal-button {
-  width: 90% !important;
+.modal-body {
+  text-align: center;
+  margin-bottom: 0px;
+  padding-top:0px !important;
+  padding-bottom: 0px !important;
+
+  input {
+    width:90%;
+    float:none;
+    margin: 10px;
+    padding:10px;
+  }
+}
+.modal-footer {
+  text-align: center !important;
+  margin-top:0 !important;
+  padding-top: 0 !important;
+
+  .modal-btn {
+    width: 43.75%;
+    float:none;
+    margin-top:10px;
+    padding:10px;
+  }
+
 }

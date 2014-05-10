@@ -21,19 +21,24 @@
 		</div>
 		
 		<ul id="nav-menu">
-			<li>
-				<%= link_to 'Browse', '/welcome/index/#2' %>
-			</li>
-			<li><a href="#">About Us</a></li>
+			<li><%= link_to 'Browse', '/welcome/index/#2' %></li>
+			<li><%= link_to 'About Us', action: 'aboutUs' %></li>
 		</ul>
-		<form id="nav-search-container">
-			<input id="nav-search-field" type="text" name="search" value="asdasdf">
-			<input id="nav-search-btn" type="submit" value="s"/>
-		</form>
+		<div id="nav-search-container">
+			<%= form_tag controller: 'welcome', :method => 'get' do %>
+				<%= text_field_tag :search, params[:search], id: "nav-search-field" %>
+				<%= button_tag(type: "button", id: "nav-search-btn") do %>
+					<span class="glyphicon glyphicon-search"></span>
+				<% end %>
+			<% end %>
+		</div>
+		
 		<div id="nav-log-add">
-			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
+			<button class="btn btn-primary btn-lg log-add-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span></button>
 		</div>
 	</div>
+
+
 
 	<div class="modal fade" id="myModal">
 		<div class="modal-dialog">
@@ -43,11 +48,15 @@
 	        		<h4 class="modal-title">Login</h4>
 	      		</div>
 	      		<div class="modal-body">
-	        		
+	      			<%= form_for :login do |f| %>
+						<%= f.text_field :email, placeholder: "Email" %>
+						<%= f.password_field :password, placeholder: "Password" %>
 	      		</div>
 	      		<div class="modal-footer">
-	        		<button type="button" class="btn btn-default modal-btn">Log in</button>
-	        		<button type="button" class="btn btn-primary">Register</button>
+	      				<%= f.submit "Log In" , class: "btn btn-default modal-btn" %>
+	      			<% end %>
+	      			<%= button_tag "Register", controller: "user", action: "new", class: "btn btn-primary modal-btn" %>
+	        		
 	      		</div>
 	    	</div><!-- /.modal-content -->
 	  	</div><!-- /.modal-dialog -->

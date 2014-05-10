@@ -1,43 +1,108 @@
 
-<div class="society-desc">
-	<div class="society-logo"><%= image_tag @society.logo %></div>
+<div class="society-card">
+	<div class="left-desc">
+		<div class="society-logo">
+			<%= image_tag @society.logo %>
+		</div>
+		<a href="#"><span class="glyphicon glyphicon-star"></span> Follow</a>
+	</div>
 
+	<div class="society-desc">
+		<h1 class="title"><%= @society.name %><a href=<%= @society.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
+		<p class="subtitle"><%= @society.university %></p>
+		<p><%= @society.short_description %></p>
+
+		<p><b>Email: </b> <%= @society.email %></p>
+		<p><b>Phone Number: </b> <%= @society.phone_number %></p>
+
+		
+
+		<h4>Description</h4>
+		<p><%= @society.description %></p>
+		<h4>Office Address</h4>
+		<p><%= @society.office_address_line1 %><br>
+		<%= @society.office_address_line2 %><br>
+		<%= @society.office_city %><br>
+		<%= @society.office_state %> <%= @society.office_postcode %></p>
+		
+		
+	</div>
 </div>
+
+
 <div class="tabs">
-	<div class="society-tabs">
-		<div class="society-tab st1" style='background-color: #95a5a6;'>
-			<p>Events</p>
+	<div class="tab st1" style='background-color: #C4CDCD;'>
+		<p><span class="glyphicon glyphicon-calendar"></span> Events</p>
+	</div>
+	<div class="tab st2" style='background-color: #97A0A9;'>
+		<p><span class="glyphicon glyphicon-camera"></span> Gallery</p>
+	</div>
+	<div class="tab st3" style='background-color: #74D7C4;'>
+		<p><span class="glyphicon glyphicon-comment"></span> Discussions</p>
+	</div>
+	<div class="tab st4" style='background-color: #A6C0D1;'>
+		<p><span class="glyphicon glyphicon-user"></span> Members</p>
+	</div>
+	<div class="tab st5" style='background-color: #F8C471;'>
+		<p><span class="glyphicon glyphicon-globe"></span> Sponsors</p>
+	</div>
+</div>
+<div class="tab-pages">
+	<!-- EVENTS -->
+	<div class="tab-page st1" style='background-color: #C4CDCD;'>
+		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
+		<div class="tab-page-content">
+			<h1>Upcoming</h1>
+			<% if @events.empty? %>
+				<p>No events in this category.</p>
+			<% else %>
+				<% @events.each do |s| %>
+					<div class="grid-entry">
+						<div class="grid-entry-img">
+							<%= image_tag s.logo %>
+						</div>
+						<div class="grid-entry-label">
+							<div class="grid-entry-label-hdr">
+								<h2><%= s.name %></h2>
+								<p>University of Melbourne</p><br>
+							</div>
+							<div class="grid-entry-label-content">
+								<%= s.short_description %>
+							</div>
+							<div class="grid-entry-label-btns">
+								<a>Follow</a>
+								<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
 		</div>
-		<div class="society-tab st2" style='background-color: #2c3e50;'>
-			<p>Gallery</p>
-		</div>
-		<div class="society-tab st3" style='background-color: #18bc9c;'>
-			<p>Discussions</p>
-		</div>
-		<div class="society-tab st4" style='background-color: #3498db;'>
-			<p>Members</p>
-		</div>
-		<div class="society-tab st5" style='background-color: #f39c12;'>
-			<p>Sponsors</p>
+
+	</div>
+	<div class="tab-page st2" style='background-color: #97A0A9;'>
+		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
+
+		<div class="tab-page-content">
+			
 		</div>
 	</div>
-	<div class="tab-pages">
-		<!-- -->
-		<div class="tab-page st1" style='background-color: #95a5a6;'>
-			<div class="exit"><%= image_tag("icon-remove.png") %></div>
-
+	<div class="tab-page st3" style='background-color: #74D7C4;'>
+		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
+		<div class="tab-page-content">
+			
 		</div>
-		<div class="tab-page st2" style='background-color: #2c3e50;'>
-			<div class="exit"><%= image_tag("icon-remove.png") %></div>
+	</div>
+	<div class="tab-page st4" style='background-color: #A6C0D1;'>
+			<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
+			<div class="tab-page-content">
+			
 		</div>
-		<div class="tab-page st3" style='background-color: #18bc9c;'>
-			<div class="exit"><%= image_tag("icon-remove.png") %></div>
-		</div>
-		<div class="tab-page st4" style='background-color: #3498db;'>
-				<div class="exit"><%= image_tag("icon-remove.png") %></div>
-		</div>
-		<div class="tab-page st5" style='background-color: #f39c12;'>
-			<div class="exit"><%= image_tag("icon-remove.png") %></div>
+	</div>
+	<div class="tab-page st5" style='background-color: #F8C471;'>
+		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
+		<div class="tab-page-content">
+			
 		</div>
 	</div>
 </div>
