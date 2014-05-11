@@ -5,7 +5,6 @@ class CreateSocieties < ActiveRecord::Migration
     create_table :societies do |t|
     	t.string :name
       t.text :logo
-      t.string :university
     	t.text :description
       t.text :short_description
       t.string :website
