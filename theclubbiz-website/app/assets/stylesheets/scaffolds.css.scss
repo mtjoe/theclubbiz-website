@@ -218,15 +218,21 @@ $nav_height:100px;
   }
 }
 .modal-footer {
-  text-align: center !important;
+  text-align:center !important;
   margin-top:0 !important;
   padding-top: 0 !important;
 
   .modal-btn {
-    width: 43.75%;
+    width: 42.5%;
     float:none;
     margin-top:10px;
     padding:10px;
+  }
+
+  .modal-btn:first-child {
+    float:left;
+    margin-right: 2%;
+    margin-left:5%;
   }
 
 }

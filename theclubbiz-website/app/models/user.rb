@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 	has_many :SocietyFollower
   has_many :SocietyAdmin
   has_many :EventFollower
@@ -14,8 +18,7 @@ class User < ActiveRecord::Base
   validates_associated :Gallery
   validates_associated :UserUniversity
 	validates :first_name, presence: true, length: { maximum: 255 }
-	validates :last_name, presence: true, length: { maximum: 255 }
-  validates :email, presence: true, confirmation: true, uniqueness:true,  format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/} 
+	validates :last_name, presence: true, length: { maximum: 255 } 
   validates :password, presence: true, confirmation: true, length: { maximum: 255, minimum: 8 }
   validates :phone_number, numericality: { only_integer: true }, presence: true
   validates :username, presence: true, uniqueness: true, length: { maximum: 255 }
