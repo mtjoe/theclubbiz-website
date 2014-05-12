@@ -1,4 +1,5 @@
 class Society < ActiveRecord::Base
+  mount_uploader :logo, LogoUploader
 	has_many :SocietyFeedback
   	has_many :SocietyAdmin
   	has_many :SocietyEvent

@@ -11,10 +11,71 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :index %><br>
-    <%= f.text_field :index %>
+  <div class="name">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
+
+  <div class="logo">
+    <%= f.label :logo  %><br>
+    <%= f.file_field :logo %>
+  </div>
+
+  <div class="description">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="short_description">
+    <%= f.label :short_description %><br>
+    <%= f.text_area :short_description %>
+  </div>
+
+  <div class="website">
+    <%= f.label :website %><br>
+    <%= f.text_field :website %>
+  </div>
+
+  <div class="university">
+    <%= f.label :university %><br>
+    <%= f.text_field :university %>
+  </div>
+
+  <div class="office_address_line1">
+    <%= f.label :office_address_line1 %><br>
+    <%= f.text_field :office_address_line1 %>
+  </div>
+
+  <div class="office_address_line2">
+    <%= f.label :office_address_line2 %><br>
+    <%= f.text_field :office_address_line2 %>
+  </div>
+
+  <div class="office_state">
+    <%= f.label :office_state %><br>
+    <%= f.text_field :office_state %>
+  </div>
+
+  <div class="office_city">
+    <%= f.label :office_city %><br>
+    <%= f.text_field :office_city %>
+  </div>
+
+  <div class="office_postcode">
+    <%= f.label :office_postcode %><br>
+    <%= f.text_field :office_postcode %>
+  </div>
+
+  <div class="email">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="phone_number">
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

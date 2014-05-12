@@ -11,6 +11,21 @@
     </div>
   <% end %>
 
+   <div class="name">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="time">
+    <%= f.label :time %><br>
+    <%= f.datetime_select(:time, :start_year => Date.today.year, ampm: true) %>
+  </div>
+
+  <div class="name">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>  
+
   <div class="actions">
     <%= f.submit %>
   </div>
