@@ -191,14 +191,15 @@ $nav_height:100px;
     text-align: center;
     
     .log-add-btn {
-      background-color: grey;
-      border:1px solid grey;
+      background-color: black;
+      border:2px solid grey;
+      border-radius: 5px;
     }
 
     .log-add-btn:hover {
       
       background-color: #717171;
-      border:1px solid #717171;
+      border:2px solid #717171;
     }
   }
 }

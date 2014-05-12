@@ -7,7 +7,7 @@ var ready = function(){
 		easing: "ease",
 		animationTime: 1000,
 		pagination: true,
-		updateURL: false,
+		updateURL: true,
 		loop: false,
 		keyboard: true,
 		responsiveFallback: false

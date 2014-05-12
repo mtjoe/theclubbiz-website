@@ -14,7 +14,7 @@
 </head>
 <body>
 
-	<!-- Navigation Bar -->
+	<!-- NAVIGATION BAR -->
 	<div id="navbar">
 		<div id="nav-brand">
 			<%= link_to 'The Club Biz', controller:'welcome', action:'index' %>
@@ -37,9 +37,9 @@
 			<button class="btn btn-primary btn-lg log-add-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span></button>
 		</div>
 	</div>
+	<!-- END: NAVIGATION BAR -->
 
-
-
+	<!-- LOGIN MODAL-->
 	<div class="modal fade" id="myModal">
 		<div class="modal-dialog">
 	    	<div class="modal-content">
@@ -61,6 +61,7 @@
 	    	</div><!-- /.modal-content -->
 	  	</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+	<!-- END: LOGIN MODAL-->
 
 <%= yield %>
 

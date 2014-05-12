@@ -21,7 +21,7 @@
 		easing: "ease",
 		animationTime: 1000,
 		pagination: true,
-		updateURL: false,
+		updateURL: true,
 		keyboard: true,
 		beforeMove: null,
 		afterMove: null,

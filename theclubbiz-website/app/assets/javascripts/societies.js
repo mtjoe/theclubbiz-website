@@ -7,7 +7,7 @@ $(window).load(function() {
 		update_layout(tab_opened, a);
 	});
 
-	$('.society-desc').slimScroll({height: '98%'});
+	$('.society-desc').slimScroll({height: ($(window).height() - 200)});
 
 	$('.tab').click(function() {
 		
