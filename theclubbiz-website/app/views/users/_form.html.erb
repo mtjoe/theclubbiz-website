@@ -12,15 +12,14 @@
       </ul>
     </div>
   <% end %>
-  
   <p>
     <%= f.label :first_name %></br>
-    <%= f.text_field :first_name , :class => 'tf',:placeholder =>  "Enter your first name" %>
+    <%= f.text_field :first_name , :placeholder =>  "Enter your first name"  %>
   </p>
 
   <p>
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name, :placeholder =>  "Enter your last name" , :id => "last_name", :onclick => "selectTextField('last_name')", :onblur => "leaveField()"%>
+    <%= f.text_field :last_name, :placeholder =>  "Enter your last name"%>
   </p>
   
   <p>
@@ -42,6 +41,7 @@
     <%= f.label :phone_number %><br>
     <%= f.text_field :phone_number, :placeholder =>  "Enter your phone number" %>
   </p>
+
   <div class="actions">
     <%= f.submit %>
   </div>
