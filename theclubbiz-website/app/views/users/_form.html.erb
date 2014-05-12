@@ -1,14 +1,6 @@
+<div class="user-reg">
 <%= form_for(@user) do |f| %>
-  <p>
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </p>
- 
-  <p>
-    <%= f.label :last_name %><br>
-    <%= f.text_area :last_name %>
-  </p>
-  
+
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -20,8 +12,43 @@
       </ul>
     </div>
   <% end %>
+  
+  <p>
+    <%= f.label :first_name %></br>
+    <%= f.text_field :first_name , :class => 'tf',:placeholder =>  "Enter your first name" %>
+  </p>
 
+  <p>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name, :placeholder =>  "Enter your last name" , :id => "last_name", :onclick => "selectTextField('last_name')", :onblur => "leaveField()"%>
+  </p>
+  
+  <p>
+    <%= f.label :username %><br>
+    <%= f.text_field :username, :placeholder =>  "Enter your username" %>
+  </p>
+
+  <p>
+    <%= f.label :password %><br>
+    <%= f.password_field :password, :placeholder =>  "Enter your password" %>
+  </p>
+
+  <p>
+    <%= f.label :university %><br>
+    <%= f.text_field :university, :placeholder =>  "Enter your university" %>
+  </p>
+
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email, :placeholder =>  "Enter your email" %>
+  </p>
+
+  <p>
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number, :placeholder =>  "Enter your phone number" %>
+  </p>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>
