@@ -8,21 +8,26 @@ class WelcomeController < ApplicationController
   	when "followedEvent"
 
   	when "socByCategory"
-
+      @header = "Society By Categories"
+      @categories = Category.all
   	when "socByUniversity"
-
+      @header = "Society By University"
+      @universities = University.all
   	when "allUpcomingEvents"
   		@header = "Upcoming Events - ALL"
-	  	@events = Event.all
+	  	@upcomingEvents = Event.all
 
   	when "allPastEvents"
   		@header = "Past Events - ALL"
-	  	@events = Event.all
+	  	@pastEvents = Event.all
 
   	when "eventByCategory"
-  		
+      @header = "Event By Categories"
+  		@categories = Category.all
+
   	when "eventByUniversity"
-  		
+  		@header = "Event By University"
+      @universities = University.all
   	else
   		@header = "Societies - ALL"
   		@societies = Society.all
@@ -30,6 +35,10 @@ class WelcomeController < ApplicationController
   end
 
   def aboutUs
+
+  end
+
+  def search(query)
     
   end
 end

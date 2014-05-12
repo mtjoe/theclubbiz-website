@@ -108,6 +108,30 @@ $nav_height:100px;
 	}
 }
 
+.category-entry {
+	display:inline-block;
+	height:60px;
+	line-height: 60px;
+	vertical-align: middle;
+	text-align: center;
+	width:47%;
+	margin:0.5%;
+	float:left;
+	border:1px solid lightgrey;
+	font-size: 20px;
+}
+
+.category-entry:hover {
+	background-color: lightgrey;
+}
+
+.university-entry {
+	width:200px;
+	height:200px;
+	margin: 10px;
+	border:1px solid lightgrey;
+}
+
 	
 
 

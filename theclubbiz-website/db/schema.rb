@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509062942) do
+ActiveRecord::Schema.define(version: 20140511043630) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -74,10 +74,10 @@ ActiveRecord::Schema.define(version: 20140509062942) do
   create_table "societies", force: true do |t|
     t.string   "name"
     t.text     "logo"
-    t.string   "university"
     t.text     "description"
     t.text     "short_description"
     t.string   "website"
+    t.string   "university"
     t.string   "office_address_line1"
     t.string   "office_address_line2"
     t.string   "office_state"
@@ -123,9 +123,30 @@ ActiveRecord::Schema.define(version: 20140509062942) do
     t.datetime "updated_at"
   end
 
+  create_table "society_universities", force: true do |t|
+    t.integer  "societies_id"
+    t.integer  "universities_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tickets", force: true do |t|
     t.integer  "events_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "universities", force: true do |t|
+    t.string   "name"
+    t.text     "logo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_universities", force: true do |t|
+    t.integer  "users_id"
+    t.integer  "universities_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -135,7 +156,6 @@ ActiveRecord::Schema.define(version: 20140509062942) do
     t.string   "last_name"
     t.string   "username"
     t.string   "password"
-    t.string   "university"
     t.string   "email"
     t.integer  "phone_number"
     t.datetime "created_at"

@@ -75,3 +75,44 @@ http://tinyurl.com/tedxunimelbmailing2014",
 	phone_number: "0474811963"
 }])
 
+
+Category.create([{
+	name: "Book"
+}, {
+	name: "Business"
+},{
+	name: "General"
+},{
+	name: "Education"
+},{
+	name: "Philanthrophy"
+},{
+	name: "Entertainment"
+},{
+	name: "Food & Drinks"
+},{
+	name: "Sports"
+},{
+	name: "Course related"
+},{
+	name: "Language"
+},{
+	name: "Cultural"
+},{
+	name: "Political/Activists"
+},{
+	name: "Spiritual"
+}, {
+	name: "Science"
+}])
+
+University.create([{
+	name: "University of Melbourne",
+	logo: "/assets/university-logos/unimelb-logo.jpg"
+}, {
+	name: "Monash University",
+	logo: "/assets/university-logos/monash-logo.jpg"
+}])
+
+
+

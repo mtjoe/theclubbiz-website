@@ -89,6 +89,7 @@ welcome/index.html.erb
 
 						<div id="grid-hdr"><%= @header %></div>
 						
+
 						<% if !@societies.nil? %>
 							<% if @societies.empty? %>
 								<p>No societies in this category.</p>
@@ -116,11 +117,11 @@ welcome/index.html.erb
 							<% end %>
 						<% end %>
 						
-						<% if !@events.nil? %>
-							<% if @events.empty? %>
+						<% if !@pastEvents.nil? %>
+							<% if @pastEvents.empty? %>
 								<p>No events in this category.</p>
 							<% else %>
-								<% @events.each do |s| %>
+								<% @pastEvents.each do |s| %>
 									<div class="grid-entry">
 										<div class="grid-entry-img">
 											<%= image_tag s.logo %>
@@ -143,7 +144,46 @@ welcome/index.html.erb
 							<% end %>
 						<% end %>
 
+						<% if !@upcomingEvents.nil? %>
+							<% if @upcomingEvents.empty? %>
+								<p>No events in this category.</p>
+							<% else %>
+								<% @upcomingEvents.each do |s| %>
+									<div class="grid-entry">
+										<div class="grid-entry-img">
+											<%= image_tag s.logo %>
+										</div>
+										<div class="grid-entry-label">
+											<div class="grid-entry-label-hdr">
+												<h2><%= s.name %></h2>
+												<p>University of Melbourne</p><br>
+											</div>
+											<div class="grid-entry-label-content">
+												<%= s.short_description %>
+											</div>
+											<div class="grid-entry-label-btns">
+												<a><span class="glyphicon glyphicon-star"></span> Follow</a>
+												<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							<% end %>
+						<% end %>
 
+						<% if !@categories.nil? %>
+							<% @categories.each do |cat| %>
+								<%= link_to cat.name,{ action: "index" }, class: "category-entry" %>
+							<% end %>
+						<% end %>
+
+						<% if !@universities.nil? %>
+							<% @universities.each do |uni| %>
+								<%= link_to(uni.name, { action: "index" }, class: "university-entry") do %>
+									<% image_tag uni.logo %>
+								<% end %>
+							<% end %>
+						<% end %>
 
 					</div>
 				</div>
