@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140511043630) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
+    t.text     "logo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
