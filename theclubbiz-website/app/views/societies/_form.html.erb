@@ -55,7 +55,7 @@
 
   <div class="office_state">
     <%= f.label :office_state %><br>
-    <%= f.text_field :office_state %>
+    <%= f.select :office_state, options_for_select(['NSW', 'QLD', 'VIC', 'SA','TAS','WA']) %>
   </div>
 
   <div class="office_city">
