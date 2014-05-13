@@ -9,6 +9,9 @@ gem 'mysql2'
 #Use devise as the password validation
 gem 'devise'
 
+#Use carrierwave as image uploader
+gem 'carrierwave'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 

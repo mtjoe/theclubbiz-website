@@ -11,6 +11,52 @@
     </div>
   <% end %>
 
+   <div class="name">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="time">
+    <%= f.label :time %><br>
+    <%= f.datetime_select(:time, :start_year => Date.today.year, ampm: true) %>
+  </div>
+
+  <div class="location_address_line1">
+    <%= f.label :location_address_line1 %><br>
+    <%= f.text_field :location_address_line1 %>
+  </div>
+
+  <div class="location_address_line2">
+    <%= f.label :location_address_line2 %><br>
+    <%= f.text_field :location_address_line2 %>
+  </div>
+
+  <div class="location_state">
+    <%= f.label :location_state %><br>
+    <%= f.text_field :location_state %>
+  </div>
+
+  <div class="location_city">
+    <%= f.label :location_city %><br>
+    <%= f.text_field :location_city %>
+  </div>
+
+  <div class="location_postcode">
+    <%= f.label :location_postcode %><br>
+    <%= f.text_field :location_postcode %>
+  </div>
+
+  <div class="website">
+    <%= f.label :website %><br>
+    <%= f.text_field :website %>
+  </div>
+
+  <div class="max_tickets">
+    <%= f.label :max_tickets %><br>
+     <%= f.select :max_tickets, (0..10000) %>
+  </div>
+
+ 
   <div class="actions">
     <%= f.submit %>
   </div>

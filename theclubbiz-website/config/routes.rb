@@ -11,9 +11,7 @@ TheclubbizWebsite::Application.routes.draw do
   resources :societies
 
   resources :users
-
-
-
+  
   get "welcome/index"
   get "welcome/aboutUs"
   # The priority is based upon order of creation: first created -> highest priority.

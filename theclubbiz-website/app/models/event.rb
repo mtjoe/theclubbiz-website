@@ -18,6 +18,6 @@ class Event < ActiveRecord::Base
     validates :location_state, length: { maximum: 255 }
     validates :location_city, length: { maximum: 255 }
     validates :location_postcode, presence: true, numericality: { only_integer: true }, length: { maximum: 4 }
-    validates :website, length: { maximum: 255 }, inclusion: { in: %w(http https) }
+    validates :website, length: { maximum: 255 }
     validates :max_tickets, numericality: { only_integer: true }, presence: true
 end
