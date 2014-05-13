@@ -26,7 +26,6 @@ class SocietiesController < ApplicationController
   # POST /societies.json
   def create
     @society = Society.new(society_params)
-
     respond_to do |format|
       if @society.save
         format.html { redirect_to @society, notice: 'Society was successfully created.' }

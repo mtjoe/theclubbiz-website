@@ -9,6 +9,4 @@ class ApplicationController < ActionController::Base
  		devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name, :username, :phone_number]	
  	end	
 
-
-
 end

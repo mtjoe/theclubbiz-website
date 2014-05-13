@@ -16,7 +16,7 @@
 //= require bootstrap
 //= require onepage-scroll
 //= require jquery
-//= require tinymce/jquery.tinymce.min
+//= require tinymce-jquery
 //= require slimscroll
 
 

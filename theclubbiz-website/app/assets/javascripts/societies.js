@@ -2,7 +2,7 @@
 $(window).load(function() {
 	var tab_opened = false;
 	var a;
-
+	
 	$(window).resize(function(){
 		update_layout(tab_opened, a);
 	});

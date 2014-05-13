@@ -1,3 +1,4 @@
+<%= tinymce %>
 <%= form_for(@society) do |f| %>
   <% if @society.errors.any? %>
     <div id="error_explanation">
@@ -23,12 +24,13 @@
 
   <div class="description">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :rows => 10, :cols => 4, :class => "tinymce", :id => "desc" %>
+
   </div>
 
   <div class="short_description">
     <%= f.label :short_description %><br>
-    <%= f.text_area :short_description %>
+    <%= f.text_area :short_description, :rows => 10, :cols => 4, :class => "tinymce", :id => "srt_desc" %>
   </div>
 
   <div class="website">
