@@ -1,6 +1,9 @@
 TheclubbizWebsite::Application.routes.draw do
-  devise_for :users
-  devise_for :models
+  
+  devise_for :users do
+    get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
+  end
+
   resources :tickets
 
   resources :events
@@ -8,6 +11,8 @@ TheclubbizWebsite::Application.routes.draw do
   resources :societies
 
   resources :users
+
+
 
   get "welcome/index"
   get "welcome/aboutUs"
