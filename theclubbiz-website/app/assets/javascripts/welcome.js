@@ -51,6 +51,14 @@ function goToBrowse(){
 	$(".main").moveTo(2);
 	inPageTwo = !inPageTwo;
 }
+$('.photo').click(function(){
+	a = "." + $(this).attr('class').split(' ')[1];
+	if ($('.bPhoto').find(".active").attr('class').split(' ')[1] !==a){
+		$('.bPhoto').find(".active").toggle("active")
+		$('.bPhoto').find(a).toggle("active")			
+	}
+
+}
 
 
 $(window).load(ready);
