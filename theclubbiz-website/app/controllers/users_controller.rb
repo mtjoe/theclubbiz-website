@@ -62,12 +62,12 @@ class UsersController < ApplicationController
   end
 
   def followSociety
-    SocietyFollower.create(users_id: current_user.id, societies_id: params[:societyId])
+    SocietyFollower.create(user_id: current_user.id, society_id: params[:societyId])
     redirect_to :back
   end
 
   def unfollowSociety
-    follower = SocietyFollower.find_by(users_id: current_user.id, societies_id: params[:societyId])
+    follower = SocietyFollower.find_by(user_id: current_user.id, society_id: params[:societyId])
     follower.destroy
     redirect_to :back
   end
