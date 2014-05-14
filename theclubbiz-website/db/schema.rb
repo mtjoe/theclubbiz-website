@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512090113) do
+ActiveRecord::Schema.define(version: 20140514072500) do
+
+  create_table "announcements", force: true do |t|
+    t.integer  "university_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -63,6 +70,12 @@ ActiveRecord::Schema.define(version: 20140512090113) do
     t.integer  "event_id"
     t.integer  "user_id"
     t.integer  "society_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "networks", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -121,6 +134,13 @@ ActiveRecord::Schema.define(version: 20140512090113) do
     t.datetime "updated_at"
   end
 
+  create_table "society_networks", force: true do |t|
+    t.integer  "network_id"
+    t.integer  "society_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "society_universities", force: true do |t|
     t.integer  "society_id"
     t.integer  "university_id"
@@ -138,6 +158,13 @@ ActiveRecord::Schema.define(version: 20140512090113) do
   create_table "universities", force: true do |t|
     t.string   "name"
     t.text     "logo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "university_admins", force: true do |t|
+    t.integer  "university_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

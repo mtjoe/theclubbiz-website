@@ -40,18 +40,24 @@ var ready = function(){
 
 		shown = !shown;
     });
+
+    $(".photo").click(function() {
+    	var user = $(this).attr("class").split(" ")[1];
+    	
+    	if ($('.right-sect').find(".active").attr('class').split(' ')[1] !== user){
+	 		$('.right-sect').find(".active").toggleClass("active");
+	 		user = "." + user;
+	 		$('.right-sect').find(user).toggleClass("active");
+	 		$('.left-sect').find(".active").toggleClass("active");
+	 		$('.left-sect').find(user).toggleClass("active");			
+	 	}
+    });
+
+	//$("#photo-egama").click(function() {photoOnClick("egama")});
+	//$("#photo-erwinf").click(function() {photoOnClick("erwinf")}));
+	//$("#photo-mtjoe").click(function() {photoOnClick("mtjoe")}));
     
 };
-
-function photoOnClick(creatorName){
- 	if ($('.bPhoto').find(".active").attr('class').split(' ')[1] !==creatorName){
- 		$('.bPhoto').find(".active").toggle("active");
- 		creatorName = "." + creatorName;
- 		$('.bPhoto').find(creatorName).toggle("active");
- 		$('.description').find(".active").toggle("active");
- 		$('.description').find(creatorName).toggle("active");			
- 	}
-}
 
 function goToBrowse(){
 	$('#nav-menu').hide(600);
