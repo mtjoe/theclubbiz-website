@@ -35,7 +35,7 @@
 		
 		<div id="nav-log-add">
 			<% if user_signed_in? %>
-				<button class="btn btn-primary btn-lg log-add-btn"><span class="glyphicon glyphicon-plus"></span></button>
+				<button class="btn btn-primary btn-lg log-add-btn" data-toggle="modal" data-target="#createnewmodal"><span class="glyphicon glyphicon-plus"></span></button>
 				<%= link_to(destroy_user_session_path, :method => :delete, class: "btn btn-primary btn-lg log-add-btn") do %>
 					<span class="glyphicon glyphicon-log-out"></span>
 				<% end %> 
@@ -74,6 +74,34 @@
 	  	</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	<!-- END: LOGIN MODAL-->
+
+
+	<!-- CREATE NEW MODAL-->
+	<div class="modal fade" id="createnewmodal">
+		<div class="modal-dialog">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        		<h4 class="modal-title">What do you want to create?</h4>
+	      		</div>
+	      		<div class="modal-body">
+					<%= link_to({controller: "/events", action: "new"}, class: "modal-choice") do %>
+						<span class="glyphicon glyphicon-calendar"></span>
+						<p>EVENT</p>
+					<% end %>
+					<%= link_to({controller: "/societies", action: "new"}, class: "modal-choice") do %>
+						<span class="glyphicon glyphicon-flag"></span>
+						<p>SOCIETY</p>
+					<% end %>
+	      		</div>
+	      		<div class="modal-footer">
+
+	      		</div>
+	    	</div><!-- /.modal-content -->
+	  	</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- END: CREATE NEW MODAL-->
+
 	<!--
 	<p class="notice"><%= notice %></p>
      <p class="alert"><%= alert %></p>-->

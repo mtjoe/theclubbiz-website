@@ -39,7 +39,6 @@ var ready = function(){
 		}, 600);
 
 		shown = !shown;
-
     });
     
 };

@@ -56,12 +56,15 @@ welcome/index.html.erb
 			<!-- Sliding Sidebar -->
 			<div id="sidebar">
 				<ul style="list-style:none">
-					<li class="side-h1"><p>Account</p></li>
-					<ul style="list-style:none">
-						<li class="side-h2"><%= link_to("Administered Societies", :state => "adminSoc") %></li>
-						<li class="side-h2"><%= link_to("Followed Societies", :state => "followedSoc") %></li>
-						<li class="side-h2"><%= link_to("Followed Events", :state => "followedEvent") %></li>
-					</ul>
+					<% if user_signed_in? %>
+						<li class="side-h1"><p>Account</p></li>
+						<ul style="list-style:none">
+							<li class="side-h2"><%= link_to("Administered Societies", :state => "adminSoc") %></li>
+							<li class="side-h2"><%= link_to("Followed Societies", :state => "followedSoc") %></li>
+							<li class="side-h2"><%= link_to("Events of Followed Societies", :state => "eventsOfFollowedSoc") %></li>
+							<li class="side-h2"><%= link_to("Followed Events", :state => "followedEvent") %></li>
+						</ul>
+					<% end %>
 					<li class="side-h1"><p>Browse Societies</p></li>
 					<ul style="list-style:none">
 						<li class="side-h2 active"><%= link_to("All Societies", :state => "allSoc") %></li>
@@ -97,18 +100,30 @@ welcome/index.html.erb
 								<% @societies.each do |s| %>
 									<div class="grid-entry">
 										<div class="grid-entry-img">
-											<%= image_tag s.logo %>
+											<%= image_tag(s.logo) %>
 										</div>
 										<div class="grid-entry-label">
 											<div class="grid-entry-label-hdr">
-												<h2><%= s.name %></h2>
+												<h2><%= s.name %>
+													<% if !(SocietyFollower.find_by(users_id: current_user.id, societies_id: s.id)).nil? %>
+														<span class="glyphicon glyphicon-ok" style="color:#2B804F"></span>
+													<% end %>
+												</h2>
 												<p>University of Melbourne</p><br>
 											</div>
 											<div class="grid-entry-label-content">
 												<%= s.short_description %>
 											</div>
 											<div class="grid-entry-label-btns">
-												<a><span class="glyphicon glyphicon-star"></span> Follow</a>
+												<% if (SocietyFollower.find_by(users_id: current_user.id, societies_id: s.id)).nil? %>
+													<%= link_to({controller: "users", action: 'followSociety', :societyId => s.id}) do %>
+														<span class="glyphicon glyphicon-star">Follow</span>
+													<% end %>
+												<% else %>
+													<%= link_to({controller: "users", action: 'unfollowSociety', :societyId => s.id}) do %>
+														<span class="glyphicon glyphicon-star-empty">Unfollow</span>
+													<% end %>
+												<% end %>
 												<%= link_to("Go To Page", {controller: 'societies', action: 'show', id: s.id}) %>
 											</div>
 										</div>
@@ -135,7 +150,9 @@ welcome/index.html.erb
 												<%= s.short_description %>
 											</div>
 											<div class="grid-entry-label-btns">
-												<a><span class="glyphicon glyphicon-star"></span> Follow</a>
+												<%= link_to({controller: "users", action: 'followSociety'}, :societyId => s.id) do %>
+													<span class="glyphicon glyphicon-star">Follow</span>
+												<% end %>
 												<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
 											</div>
 										</div>
@@ -162,7 +179,10 @@ welcome/index.html.erb
 												<%= s.short_description %>
 											</div>
 											<div class="grid-entry-label-btns">
-												<a><span class="glyphicon glyphicon-star"></span> Follow</a>
+												<%= link_to({controller: "users", action: 'followSociety'}, :societyId => s.id) do %>
+													<span class="glyphicon glyphicon-star">Follow</span>
+												<% end %>
+
 												<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
 											</div>
 										</div>

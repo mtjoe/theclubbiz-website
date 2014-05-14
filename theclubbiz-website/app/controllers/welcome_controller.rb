@@ -5,7 +5,29 @@ class WelcomeController < ApplicationController
 
   	when "followedSoc"
 
+      @header = "Followed Societies"
+      @societies = []
+      societies = SocietyFollower.where(users_id: current_user.id)
+
+      societies.each do |s|
+        @societies << Society.find_by(id: s.societies_id)
+      end
+
   	when "followedEvent"
+      @header = "Followed Event"
+      events = EventFollower.where(users_id: current_user.id)
+
+      @upcomingEvents = []
+      @pastEvents= []
+
+      events.each do |e|
+        event = Events.find_by(id: e.events_id)
+        if Date.today > event.time
+          @upcomingEvents << event
+        else
+          @pastEvents << event
+        end
+      end
 
   	when "socByCategory"
       @header = "Society By Categories"

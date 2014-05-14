@@ -1,5 +1,5 @@
 class SocietiesController < ApplicationController
-  before_action :set_society, only: [:show, :edit, :update, :destroy]
+  before_action :set_society, only: [:show, :edit, :update, :destroy, :addFeedback]
 
   # GET /societies
   # GET /societies.json
@@ -59,6 +59,11 @@ class SocietiesController < ApplicationController
       format.html { redirect_to societies_url }
       format.json { head :no_content }
     end
+  end
+
+  def addFeedback
+    SocietyFeedback.create(text: params[:fb], societies_id: params[:societyId], users_id: current_user.id)
+    redirect :back
   end
 
   private

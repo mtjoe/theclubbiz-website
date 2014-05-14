@@ -18,13 +18,14 @@
 		
 
 		<h4>Description</h4>
-		<p><%= @society.description %></p>
+		<p><%= (@society.description).html_safe %></p>
 		<h4>Office Address</h4>
 		<p><%= @society.office_address_line1 %><br>
 		<%= @society.office_address_line2 %><br>
 		<%= @society.office_city %><br>
 		<%= @society.office_state %> <%= @society.office_postcode %></p>
 		
+
 		
 	</div>
 </div>
@@ -75,7 +76,15 @@
 								<%= s.short_description %>
 							</div>
 							<div class="grid-entry-label-btns">
-								<a>Follow</a>
+								<% if (SocietyFollower.find_by(users_id: current_user.id, societies_id: s.id)).nil? %>
+									<%= link_to({controller: "users", action: 'followSociety', :societyId => s.id}) do %>
+										<span class="glyphicon glyphicon-star">Follow</span>
+									<% end %>
+								<% else %>
+									<%= link_to({controller: "users", action: 'unfollowSociety', :societyId => s.id}) do %>
+										<span class="glyphicon glyphicon-star-empty">Unfollow</span>
+									<% end %>
+								<% end %>
 								<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
 							</div>
 						</div>
@@ -99,10 +108,16 @@
 	<div class="tab-page st3" style='background-color: #74D7C4;'>
 		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
 		<div class="tab-page-content">
-			
+			<h1>Any Comments?</h1>
+			<%= form_tag({controller: "societies", action: "addFeedback"}) do %>
+				<%= text_area_tag(:fb) %>
+				<%= hidden_field_tag(:id, @society.id) %>
+				<%= submit_tag("Post") %>
+			<% end %>
+			<h1>All Comments</h1>
 		</div>
 	</div>
-	<div class="tab-page st4" style='background-color: #A6C0D1;'>
+	<div class="tab-page st4" style='background-color: #A6C0D1;' style="color:grey;">
 			<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
 			<div class="tab-page-content">
 			

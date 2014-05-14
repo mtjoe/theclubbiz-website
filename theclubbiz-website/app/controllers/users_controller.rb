@@ -61,6 +61,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def followSociety
+    SocietyFollower.create(users_id: current_user.id, societies_id: params[:societyId])
+    redirect_to :back
+  end
+
+  def unfollowSociety
+    follower = SocietyFollower.find_by(users_id: current_user.id, societies_id: params[:societyId])
+    follower.destroy
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

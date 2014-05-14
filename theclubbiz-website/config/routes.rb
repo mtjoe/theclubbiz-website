@@ -1,5 +1,9 @@
 TheclubbizWebsite::Application.routes.draw do
+  post "societies/addFeedback"
+  get "users/followSociety"
+  get "users/unfollowSociety"
   
+
   devise_for :users do
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
   end
@@ -14,6 +18,7 @@ TheclubbizWebsite::Application.routes.draw do
   
   get "welcome/index"
   get "welcome/aboutUs"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
