@@ -20,28 +20,31 @@ ActiveRecord::Schema.define(version: 20140512090113) do
   end
 
   create_table "event_categories", force: true do |t|
-    t.integer  "events_id"
-    t.integer  "categories_id"
+    t.integer  "event_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "event_feedbacks", force: true do |t|
-    t.integer  "events_id"
+    t.integer  "event_id"
+    t.text     "text"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "event_followers", force: true do |t|
-    t.integer  "users_id"
-    t.integer  "events_id"
+    t.integer  "user_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
     t.string   "name"
-    t.datetime "time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string   "location_address_line1"
     t.string   "location_address_line2"
     t.string   "location_state"
@@ -53,20 +56,13 @@ ActiveRecord::Schema.define(version: 20140512090113) do
     t.datetime "updated_at"
   end
 
-  create_table "feedbacks", force: true do |t|
-    t.text     "text"
-    t.integer  "users_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "galleries", force: true do |t|
     t.text     "image1"
     t.text     "image2"
     t.text     "image3"
-    t.integer  "events_id"
-    t.integer  "users_id"
-    t.integer  "societies_id"
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.integer  "society_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -90,48 +86,50 @@ ActiveRecord::Schema.define(version: 20140512090113) do
   end
 
   create_table "society_admins", force: true do |t|
-    t.integer  "users_id"
-    t.integer  "societies_id"
+    t.integer  "user_id"
+    t.integer  "society_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_categories", force: true do |t|
-    t.integer  "societies_id"
-    t.integer  "categories_id"
+    t.integer  "society_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_events", force: true do |t|
-    t.integer  "events_id"
-    t.integer  "societies_id"
+    t.integer  "event_id"
+    t.integer  "society_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_feedbacks", force: true do |t|
-    t.integer  "societies_id"
+    t.integer  "society_id"
+    t.text     "text"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_followers", force: true do |t|
-    t.integer  "users_id"
-    t.integer  "societies_id"
+    t.integer  "user_id"
+    t.integer  "society_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_universities", force: true do |t|
-    t.integer  "societies_id"
-    t.integer  "universities_id"
+    t.integer  "society_id"
+    t.integer  "university_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tickets", force: true do |t|
-    t.integer  "events_id"
+    t.integer  "event_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -145,8 +143,8 @@ ActiveRecord::Schema.define(version: 20140512090113) do
   end
 
   create_table "user_universities", force: true do |t|
-    t.integer  "users_id"
-    t.integer  "universities_id"
+    t.integer  "user_id"
+    t.integer  "university_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

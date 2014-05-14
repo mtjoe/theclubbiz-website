@@ -43,6 +43,15 @@ var ready = function(){
     
 };
 
+function photoOnClick(creatorName){
+ 	if ($('.bPhoto').find(".active").attr('class').split(' ')[1] !==creatorName){
+ 		$('.bPhoto').find(".active").toggle("active");
+ 		creatorName = "." + creatorName;
+ 		$('.bPhoto').find(creatorName).toggle("active");
+ 		$('.description').find(".active").toggle("active");
+ 		$('.description').find(creatorName).toggle("active");			
+ 	}
+}
 
 function goToBrowse(){
 	$('#nav-menu').hide(600);
@@ -50,7 +59,6 @@ function goToBrowse(){
 	$(".main").moveTo(2);
 	inPageTwo = !inPageTwo;
 }
-
 
 
 $(window).load(ready);
