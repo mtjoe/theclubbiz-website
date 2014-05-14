@@ -7,14 +7,16 @@ class User < ActiveRecord::Base
   has_many :SocietyAdmin
   has_many :EventFollower
   has_many :Ticket
-  has_many :Feedback
+  has_many :EventFeedback
+  has_many :SocietyFeedback
   has_many :UserUniversity
   has_one  :Gallery
   validates_associated :SocietyFollower
   validates_associated :SocietyAdmin
   validates_associated :EventFollower
   validates_associated :Ticket
-  validates_associated :Feedback
+  validates_associated :EventFeedback
+  validates_associated :SocietyFeedback
   validates_associated :Gallery
   validates_associated :UserUniversity
 	validates :first_name, presence: true, length: { maximum: 255 }
