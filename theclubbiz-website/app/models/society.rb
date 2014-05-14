@@ -8,6 +8,7 @@ class Society < ActiveRecord::Base
   	has_one  :Gallery
     has_many :SocietyCategory
     has_many :SocietyUniversity
+    has_many :SocietyNetwork
   	validates_associated :SocietyFeedback
   	validates_associated :SocietyAdmin
   	validates_associated :SocietyEvent
@@ -15,6 +16,7 @@ class Society < ActiveRecord::Base
   	validates_associated :Gallery
     validates_associated :SocietyCategory
     validates_associated :SocietyUniversity
+    validates_associated :SocietyNetwork
     validates :name, presence: true, length: { maximum: 255 }
     validates :logo, presence: true
     validates :website, length: { maximum: 255 }
