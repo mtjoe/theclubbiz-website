@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :SocietyFeedback
   has_many :UserUniversity
   has_one  :Gallery
+  has_many :UniversityAdmin
   validates_associated :SocietyFollower
   validates_associated :SocietyAdmin
   validates_associated :EventFollower
@@ -19,6 +20,7 @@ class User < ActiveRecord::Base
   validates_associated :SocietyFeedback
   validates_associated :Gallery
   validates_associated :UserUniversity
+  validates_associated :UniversityAdmin
 	validates :first_name, presence: true, length: { maximum: 255 }
 	validates :last_name, presence: true, length: { maximum: 255 } 
   validates :password, presence: true, confirmation: true, length: { maximum: 255, minimum: 8 }
