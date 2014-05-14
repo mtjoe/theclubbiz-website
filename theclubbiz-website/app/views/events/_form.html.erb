@@ -16,9 +16,14 @@
     <%= f.text_field :name %>
   </div>
 
-  <div class="time">
-    <%= f.label :time %><br>
-    <%= f.datetime_select(:time, :start_year => Date.today.year, ampm: true) %>
+  <div class="start-time">
+    <%= f.label :start_time %><br>
+    <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
+  </div>
+
+  <div class="end-time">
+    <%= f.label :end_time %><br>
+    <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
   </div>
 
   <div class="location_address_line1">

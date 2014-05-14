@@ -4,13 +4,21 @@
 		<div class="society-logo">
 			<%= image_tag @society.logo %>
 		</div>
-		<a href="#"><span class="glyphicon glyphicon-star"></span> Follow</a>
+		<% if (SocietyFollower.find_by(user_id: current_user.id, society_id:@society.id)).nil? %>
+			<%= link_to({controller: "users", action: 'followSociety', :societyId => @society.id}) do %>
+				<span class="glyphicon glyphicon-star">Follow</span>
+			<% end %>
+		<% else %>
+			<%= link_to({controller: "users", action: 'unfollowSociety', :societyId => @society.id}) do %>
+				<span class="glyphicon glyphicon-star-empty">Unfollow</span>
+			<% end %>
+		<% end %>
 	</div>
 
 	<div class="society-desc">
 		<h1 class="title"><%= @society.name %><a href=<%= @society.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
 		<p class="subtitle"><%= @society.university %></p>
-		<p><%= @society.short_description %></p>
+		<p><%= (@society.short_description).html_safe %></p>
 
 		<p><b>Email: </b> <%= @society.email %></p>
 		<p><b>Phone Number: </b> <%= @society.phone_number %></p>
@@ -76,15 +84,7 @@
 								<%= s.short_description %>
 							</div>
 							<div class="grid-entry-label-btns">
-								<% if (SocietyFollower.find_by(users_id: current_user.id, societies_id: s.id)).nil? %>
-									<%= link_to({controller: "users", action: 'followSociety', :societyId => s.id}) do %>
-										<span class="glyphicon glyphicon-star">Follow</span>
-									<% end %>
-								<% else %>
-									<%= link_to({controller: "users", action: 'unfollowSociety', :societyId => s.id}) do %>
-										<span class="glyphicon glyphicon-star-empty">Unfollow</span>
-									<% end %>
-								<% end %>
+								<%= link_to("Follow") %>
 								<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
 							</div>
 						</div>

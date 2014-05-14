@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap
+//= require bootstrap
 //= require onepage-scroll
 //= require jquery
 //= require tinymce-jquery

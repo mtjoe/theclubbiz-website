@@ -105,17 +105,17 @@ welcome/index.html.erb
 										<div class="grid-entry-label">
 											<div class="grid-entry-label-hdr">
 												<h2><%= s.name %>
-													<% if !(SocietyFollower.find_by(users_id: current_user.id, societies_id: s.id)).nil? %>
+													<% if !(SocietyFollower.find_by(user_id: current_user.id, society_id: s.id)).nil? %>
 														<span class="glyphicon glyphicon-ok" style="color:#2B804F"></span>
 													<% end %>
 												</h2>
 												<p>University of Melbourne</p><br>
 											</div>
 											<div class="grid-entry-label-content">
-												<%= s.short_description %>
+												<%= (s.short_description).html_safe %>
 											</div>
 											<div class="grid-entry-label-btns">
-												<% if (SocietyFollower.find_by(users_id: current_user.id, societies_id: s.id)).nil? %>
+												<% if (SocietyFollower.find_by(user_id: current_user.id, society_id: s.id)).nil? %>
 													<%= link_to({controller: "users", action: 'followSociety', :societyId => s.id}) do %>
 														<span class="glyphicon glyphicon-star">Follow</span>
 													<% end %>
