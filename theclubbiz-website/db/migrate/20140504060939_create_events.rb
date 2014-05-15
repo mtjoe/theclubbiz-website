@@ -12,6 +12,7 @@ class CreateEvents < ActiveRecord::Migration
       t.integer :location_postcode
     	t.string :website
     	t.integer :max_tickets
+      t.integer :ticket_price
 
       t.timestamps
     end

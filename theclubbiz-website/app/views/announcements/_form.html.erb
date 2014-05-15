@@ -22,7 +22,17 @@
   </div>
   <%= f.hidden_field(:user_id, :value => current_user.id) %>
   <% if !(UniversityAdmin.where(user_id = current_user.id).empty?) %>
-    <%= f.collection_select :university_id, UniversityAdmin.where(user_id = current_user.id),:id,:name, include_blank: true %>
+    <% @universityAdmin = UniversityAdmin.where(user_id: current_user.id)%>
+    <% ary = [] %>
+    <% @universityAdmin.each do |ua| %>
+      <% ary << ua.university_id %>
+    <% end %>
+    <%= f.collection_select :university_id, University.find(ary),:id, :name %>
+  <% end %>
+  <% if !(SocietyAdmin.where(user_id = current_user.id).empty?) %>
+    <%= f.fields_for :SocietyAnnouncement do |builder|  %>
+      <%= builder.collection_select :society_id, SocietyAdmin.where(user_id = current_user.id) %>
+    <% end %>
   <% end %>
 
 

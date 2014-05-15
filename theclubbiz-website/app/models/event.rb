@@ -21,4 +21,5 @@ class Event < ActiveRecord::Base
     validates :location_postcode, presence: true, numericality: { only_integer: true }, length: { maximum: 4 }
     validates :website, length: { maximum: 255 }
     validates :max_tickets, numericality: { only_integer: true }, presence: true
+    validates :ticket_price, numericality: { only_integer: true }, presence: true
 end

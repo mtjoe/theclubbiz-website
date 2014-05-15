@@ -90,5 +90,14 @@ University.create([{
 	logo: "/assets/university-logos/monash-logo.jpg"
 }])
 
+UniversityAdmin.create([{
+	university_id: 1,
+	user_id: 1
+}])
+SocietyAdmin.create([{
+	user_id: 1,
+	society_id: 1
+}])
+
 
 

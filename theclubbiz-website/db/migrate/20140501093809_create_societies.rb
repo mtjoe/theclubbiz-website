@@ -8,7 +8,6 @@ class CreateSocieties < ActiveRecord::Migration
     	t.text :description
       t.text :short_description
       t.string :website
-      t.string :university
     	t.string :office_address_line1
       t.string :office_address_line2
       t.string :office_state
