@@ -4,8 +4,9 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
     	t.string :first_name
     	t.string :last_name
-        t.string :username
-        t.text :photo,   default = "/assets/default-user.png"
+      t.string :username
+      t.text :about
+      t.text :photo,   default = "/assets/default-user.png"
     	t.integer :phone_number
 
       	t.timestamps

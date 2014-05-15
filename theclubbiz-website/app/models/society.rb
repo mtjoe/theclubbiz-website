@@ -5,18 +5,18 @@ class Society < ActiveRecord::Base
   	has_many :SocietyAdmin
   	has_many :SocietyEvent
   	has_many :SocietyFollower
-  	has_one  :Gallery
     has_many :SocietyCategory
     has_many :SocietyUniversity
     has_many :SocietyNetwork
+    has_many :SocietyAnnouncement
   	validates_associated :SocietyFeedback
   	validates_associated :SocietyAdmin
   	validates_associated :SocietyEvent
   	validates_associated :SocietyFollower
-  	validates_associated :Gallery
     validates_associated :SocietyCategory
     validates_associated :SocietyUniversity
     validates_associated :SocietyNetwork
+    validates_associated :SocietyAnnouncement
     validates :name, presence: true, length: { maximum: 255 }
     validates :logo, presence: true
     validates :website, length: { maximum: 255 }

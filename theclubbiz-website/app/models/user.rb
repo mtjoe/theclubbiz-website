@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_one  :Gallery
   has_many :UniversityAdmin
   has_many :Networks
+  has_one :Announcement
   validates_associated :SocietyFollower
   validates_associated :SocietyAdmin
   validates_associated :EventFollower
@@ -23,6 +24,7 @@ class User < ActiveRecord::Base
   validates_associated :UserUniversity
   validates_associated :UniversityAdmin
   validates_associated :Networks
+  validates_associated :Announcement
 	validates :first_name, presence: true, length: { maximum: 255 }
 	validates :last_name, presence: true, length: { maximum: 255 } 
   validates :password, presence: true, confirmation: true, length: { maximum: 255, minimum: 8 }

@@ -6,7 +6,6 @@ class CreateGalleries < ActiveRecord::Migration
       t.text :image3
       t.belongs_to :event
       t.belongs_to :user
-      t.belongs_to :society
       t.timestamps
     end
   end

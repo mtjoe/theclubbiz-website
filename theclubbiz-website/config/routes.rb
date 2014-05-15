@@ -1,4 +1,6 @@
 TheclubbizWebsite::Application.routes.draw do
+  resources :announcements
+
   resources :networks
 
   post "societies/addFeedback"
