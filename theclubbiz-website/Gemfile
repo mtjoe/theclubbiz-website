@@ -6,13 +6,16 @@ gem 'rails', '4.0.4'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
-#Use devise as the password validation
+# Jquery tags input  
+gem 'tagsinput-rails'
+
+# Use devise as the password validation
 gem 'devise'
 
-#Use carrierwave as image uploader
+# Use carrierwave as image uploader
 gem 'carrierwave'
 
-#Use rich editor (tiny-mce) as the description input
+# Use rich editor (tiny-mce) as the description input
 gem 'tinymce-rails'
 
 # Use SCSS for stylesheets

@@ -11,11 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514072500) do
+ActiveRecord::Schema.define(version: 20140515070929) do
 
   create_table "announcements", force: true do |t|
-    t.integer  "university_id"
     t.integer  "user_id"
+    t.integer  "university_id"
+    t.string   "subject"
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,31 +29,28 @@ ActiveRecord::Schema.define(version: 20140514072500) do
   end
 
   create_table "event_categories", force: true do |t|
-    t.integer  "event_id"
-    t.integer  "category_id"
+    t.integer  "events_id"
+    t.integer  "categories_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "event_feedbacks", force: true do |t|
-    t.integer  "event_id"
-    t.text     "text"
-    t.integer  "user_id"
+    t.integer  "events_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "event_followers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
+    t.integer  "users_id"
+    t.integer  "events_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
     t.string   "name"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.datetime "time"
     t.string   "location_address_line1"
     t.string   "location_address_line2"
     t.string   "location_state"
@@ -63,19 +62,48 @@ ActiveRecord::Schema.define(version: 20140514072500) do
     t.datetime "updated_at"
   end
 
-  create_table "galleries", force: true do |t|
-    t.text     "image1"
-    t.text     "image2"
-    t.text     "image3"
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.integer  "society_id"
+  create_table "feedbacks", force: true do |t|
+    t.text     "text"
+    t.integer  "users_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "galleries", force: true do |t|
+    t.text     "image1"
+    t.text     "image2"
+    t.text     "image3"
+    t.integer  "events_id"
+    t.integer  "users_id"
+    t.integer  "societies_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "models", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
+  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
+
   create_table "networks", force: true do |t|
     t.string   "name"
+    t.text     "description"
+    t.text     "image"
+    t.text     "/assets/default-picture.png"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -99,37 +127,42 @@ ActiveRecord::Schema.define(version: 20140514072500) do
   end
 
   create_table "society_admins", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "users_id"
+    t.integer  "societies_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "society_announcements", force: true do |t|
+    t.integer  "announcement_id"
     t.integer  "society_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_categories", force: true do |t|
-    t.integer  "society_id"
-    t.integer  "category_id"
+    t.integer  "societies_id"
+    t.integer  "categories_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_events", force: true do |t|
-    t.integer  "event_id"
-    t.integer  "society_id"
+    t.integer  "events_id"
+    t.integer  "societies_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_feedbacks", force: true do |t|
-    t.integer  "society_id"
-    t.text     "text"
-    t.integer  "user_id"
+    t.integer  "societies_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "society_followers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "society_id"
+    t.integer  "users_id"
+    t.integer  "societies_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -142,14 +175,14 @@ ActiveRecord::Schema.define(version: 20140514072500) do
   end
 
   create_table "society_universities", force: true do |t|
-    t.integer  "society_id"
-    t.integer  "university_id"
+    t.integer  "societies_id"
+    t.integer  "universities_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tickets", force: true do |t|
-    t.integer  "event_id"
+    t.integer  "events_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -170,8 +203,8 @@ ActiveRecord::Schema.define(version: 20140514072500) do
   end
 
   create_table "user_universities", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "university_id"
+    t.integer  "users_id"
+    t.integer  "universities_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

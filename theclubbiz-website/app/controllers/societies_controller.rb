@@ -25,7 +25,12 @@ class SocietiesController < ApplicationController
   # POST /societies
   # POST /societies.json
   def create
+    user = User.find_by(email: params[:admin])
+    if user.nil?
+      format.html { redirect_to @society, notice: 'Admin is not exist.' }
+    end
     @society = Society.new(society_params)
+    SocietyAdmin.create(users_id: user.id, societies_id: @society.id)
     respond_to do |format|
       if @society.save
         format.html { redirect_to @society, notice: 'Society was successfully created.' }

@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require onepage-scroll
 //= require jquery
+//= require jquery.tagsinput
 //= require tinymce-jquery
 //= require slimscroll
 
