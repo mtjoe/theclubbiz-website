@@ -16,14 +16,19 @@
     <%= f.text_field :subject %>
   </div>
 
-
   <div class="text">
     <%= f.label :text %><br>
     <%= f.text_area :text, :rows => 10, :cols => 4, :class => "tinymce", :id => "desc" %>
-
   </div>
+  <%= f.hidden_field(:user_id, :value => current_user.id) %>
+  <% if !(UniversityAdmin.where(user_id = current_user.id).empty?) %>
+    <%= f.collection_select :university_id, UniversityAdmin.where(user_id = current_user.id),:id,:name, include_blank: true %>
+  <% end %>
+
 
   <div class="actions">
     <%= f.submit %>
   </div>
+  
+  
 <% end %>

@@ -11,11 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514072500) do
+ActiveRecord::Schema.define(version: 20140515070929) do
 
   create_table "announcements", force: true do |t|
-    t.integer  "university_id"
     t.integer  "user_id"
+    t.integer  "university_id"
+    t.string   "subject"
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,17 +67,21 @@ ActiveRecord::Schema.define(version: 20140514072500) do
 
   create_table "galleries", force: true do |t|
     t.text     "image1"
+    t.text     "/assets/default-picture.png"
     t.text     "image2"
     t.text     "image3"
     t.integer  "event_id"
     t.integer  "user_id"
-    t.integer  "society_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "networks", force: true do |t|
     t.string   "name"
+    t.text     "description"
+    t.text     "image"
+    t.text     "/assets/default-picture.png"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,6 +89,7 @@ ActiveRecord::Schema.define(version: 20140514072500) do
   create_table "societies", force: true do |t|
     t.string   "name"
     t.text     "logo"
+    t.text     "/assets/default-picture.png"
     t.text     "description"
     t.text     "short_description"
     t.string   "website"
@@ -100,6 +107,13 @@ ActiveRecord::Schema.define(version: 20140514072500) do
 
   create_table "society_admins", force: true do |t|
     t.integer  "user_id"
+    t.integer  "society_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "society_announcements", force: true do |t|
+    t.integer  "announcement_id"
     t.integer  "society_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -151,6 +165,7 @@ ActiveRecord::Schema.define(version: 20140514072500) do
   create_table "tickets", force: true do |t|
     t.integer  "event_id"
     t.integer  "user_id"
+    t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -180,15 +195,18 @@ ActiveRecord::Schema.define(version: 20140514072500) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "username"
+    t.text     "about"
+    t.text     "photo"
+    t.text     "/assets/default-user.png"
     t.integer  "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                    default: "", null: false
+    t.string   "encrypted_password",       default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",            default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
