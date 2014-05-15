@@ -62,7 +62,7 @@ class SocietiesController < ApplicationController
   end
 
   def addFeedback
-    SocietyFeedback.create(text: params[:fb], user_id: current_user.id)
+    SocietyFeedback.create(text: params[:fb], society_id: params[:id],  user_id: current_user.id)
     redirect_to :back
   end
 

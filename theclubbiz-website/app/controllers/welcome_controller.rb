@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   def index
+
   	case params[:state]
   	when "adminSoc"
 
@@ -30,11 +31,31 @@ class WelcomeController < ApplicationController
       end
 
   	when "socByCategory"
-      @header = "Society By Categories"
-      @categories = Category.all
+      if params[:catId].nil?
+        @header = "Society By Categories"
+        @categories = Category.all
+      else
+        @header = "Society By Category: #{(Category.find_by(id: params[:catId])).name}"
+        @societies = []
+        soc_cat = SocietyCategory.where(category_id: params[:catId])
+        soc_cat.each do |sc|
+          @societies << Society.find_by(id: sc.society_id)
+        end
+      end
   	when "socByUniversity"
-      @header = "Society By University"
-      @universities = University.all
+
+      if params[:uniId].nil?
+        @header = "Society By University"
+        @universities = University.all
+      else
+        @header = "Society By University: #{(University.find_by(id: params[:uniId])).name}"
+        @societies = []
+        soc_uni = SocietyUniversity.where(university_id: params[:uniId])
+        soc_uni.each do |su|
+          @societies << Society.find_by(id: su.society_id)
+        end
+      end
+
   	when "allUpcomingEvents"
   		@header = "Upcoming Events - ALL"
 	  	@upcomingEvents = Event.all
@@ -44,12 +65,32 @@ class WelcomeController < ApplicationController
 	  	@pastEvents = Event.all
 
   	when "eventByCategory"
-      @header = "Event By Categories"
-  		@categories = Category.all
+      if params[:catId].nil?
+        @header = "Events By Categories"
+        @categories = Category.all
+      else
+        @header = "Events By Category: #{(Category.find_by(id: params[:catId])).name}"
+        @upcomingEvents = []
+        eve_cat = EventCategory.where(category_id: params[:catId])
+        eve_cat.each do |ec|
+          @upcomingEvents << Event.find_by(id: ec.event_id)
+        end
+      end
 
   	when "eventByUniversity"
-  		@header = "Event By University"
-      @universities = University.all
+  		if params[:uniId].nil?
+        @header = "Events By University"
+        @universities = University.all
+      else
+        @header = "Events By University: #{(University.find_by(id: params[:uniId])).name}"
+        @events = []
+        soc_uni = SocietyUniversity.where(university_id: params[:uniId])
+        soc_uni.each do |su|
+          (SocietyEvent.where(society_id: su.society_id)).each do |se|
+            @events << Event.find_by(id: su.event_id)
+          end
+        end
+      end
   	else
   		@header = "Societies - ALL"
   		@societies = Society.all

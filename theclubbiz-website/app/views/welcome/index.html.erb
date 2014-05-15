@@ -193,13 +193,13 @@ welcome/index.html.erb
 
 						<% if !@categories.nil? %>
 							<% @categories.each do |cat| %>
-								<%= link_to cat.name,{ action: "index" }, class: "category-entry" %>
+								<%= link_to cat.name,{ :state => params[:state], :catId => cat.id }, class: "category-entry" %>
 							<% end %>
 						<% end %>
 
 						<% if !@universities.nil? %>
 							<% @universities.each do |uni| %>
-								<%= link_to(uni.name, { action: "index" }, class: "university-entry") do %>
+								<%= link_to({ :state => params[:state], :uniId => uni.id }, class: "university-entry") do %>
 									<% image_tag uni.logo %>
 								<% end %>
 							<% end %>

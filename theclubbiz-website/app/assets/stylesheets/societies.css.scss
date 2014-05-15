@@ -126,6 +126,62 @@ body {
 			height:calc(93% - 150px);
 			margin-top: 2%;
 			margin-left: 5%; 
+
+			.image-entry {
+				height: 330px;
+				width:300px;
+				border: 1px solid lightgrey;
+				line-height: 300px;
+				vertical-align: middle;
+				text-align: center;
+
+				img {
+					max-height: 100%;
+					max-width:100%;
+				}
+
+				.image-caption {
+					height:30px;
+					background-color: lightgrey;
+					border:1px solid lightgrey;
+					line-height: 30px;
+					vertical-align: middle;
+				}
+			}
+
+			.feedback-form {
+				margin-left: 10%;
+				margin-right: 10%;
+
+				textarea {
+					width:100%;
+					border:1px solid lightgrey;
+					border-radius: 5px;
+				}
+
+				input {
+					float: right;
+				}
+			}
+
+			.feedback-container {
+				margin-left: 10%;
+				margin-right: 10%;
+
+				.feedback-entry {
+					border: 1px solid grey;
+					width: 100%;
+					padding: 2%;
+					background-color: lightgrey;
+
+					p {
+						padding-left: 10%;
+						padding-right: 10%;
+					}
+				}
+			}
+
+
 		}
 	}
 

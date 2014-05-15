@@ -8,6 +8,7 @@
 			<%= link_to({controller: "users", action: 'followSociety', :societyId => @society.id}) do %>
 				<span class="glyphicon glyphicon-star">Follow</span>
 			<% end %>
+
 		<% else %>
 			<%= link_to({controller: "users", action: 'unfollowSociety', :societyId => @society.id}) do %>
 				<span class="glyphicon glyphicon-star-empty">Unfollow</span>
@@ -32,9 +33,6 @@
 		<%= @society.office_address_line2 %><br>
 		<%= @society.office_city %><br>
 		<%= @society.office_state %> <%= @society.office_postcode %></p>
-		
-
-		
 	</div>
 </div>
 
@@ -47,13 +45,13 @@
 		<p><span class="glyphicon glyphicon-camera"></span> Gallery</p>
 	</div>
 	<div class="tab st3" style='background-color: #74D7C4;'>
-		<p><span class="glyphicon glyphicon-comment"></span> Discussion</p>
+		<p><span class="glyphicon glyphicon-comment"></span> Feedbacks</p>
 	</div>
 	<div class="tab st4" style='background-color: #A6C0D1;'>
-		<p><span class="glyphicon glyphicon-user"></span> Members</p>
+		<p><span class="glyphicon glyphicon-user"></span> Followers</p>
 	</div>
 	<div class="tab st5" style='background-color: #F8C471;'>
-		<p><span class="glyphicon glyphicon-globe"></span> Sponsors</p>
+		<p><span class="glyphicon glyphicon-globe"></span> Networks</p>
 	</div>
 </div>
 <!-- END: TABS -->
@@ -100,34 +98,78 @@
 		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
 		<div class="tab-page-content">
 			
+			<div class="image-entry">
+				<%= image_tag @society.logo %>
+				<p class="image-caption">Logo</p>
+			</div>
+			<% (SocietyEvent.where(society_id: @society.id)).each do |se| %>
+				<% (Gallery.where(event_id: se.event_id)).each do |gallery| %>
+					<% if !((gallery.image1).nil?) %>
+						<div class="image-entry">
+							<%= image_tag gallery.image1 %>
+							<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
+						</div>
+						<% if !((gallery.image2).nil?) %>
+							<div class="image-entry">
+								<%= image_tag gallery.image2 %>
+								<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
+							</div>
+							<% if !((gallery.image3).nil?) %>
+								<div class="image-entry">
+									<%= image_tag gallery.image3 %>
+									<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
+								</div>
+							<% end %>
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 	<!-- END: GALLERY -->
 
-	<!-- DISCUSSION -->
+	<!-- FEDDBACKS -->
 	<div class="tab-page st3" style='background-color: #74D7C4;'>
 		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
 		<div class="tab-page-content">
 			<h1>Any Comments?</h1>
-			<%= form_tag({controller: "societies", action: "addFeedback"}) do %>
+			<%= form_tag({controller: "societies", action: "addFeedback"}, class:"feedback-form") do %>
 				<%= text_area_tag(:fb) %>
 				<%= hidden_field_tag(:id, @society.id) %>
-				<%= submit_tag("Post") %>
+				<%= submit_tag("Post", class: "btn btn-default btn-lg") %>
 			<% end %>
 			<h1>All Comments</h1>
+			<div class="feedback-container">
+				<% (SocietyFeedback.where(society_id: @society.id)).each do |sf| %>
+					<div class="feedback-entry">
+						<h4><%= (User.find_by(id: sf.user_id)).first_name %> <%= (User.find_by(id: sf.user_id)).last_name %></h4>
+						<p><%= sf.text %></p>
+					</div>
+						
+				<% end %>
+			</div>
 		</div>
 	</div>
+	<!-- END: FEDDBACKS -->
+
+	<!-- FOLLOWERS -->
 	<div class="tab-page st4" style='background-color: #A6C0D1;' style="color:grey;">
-			<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
-			<div class="tab-page-content">
-			
+		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
+		<div class="tab-page-content">
+			<% (SocietyFollower.where(society_id: @society.id)).each do |sf| %>
+				<h3><%= (User.find_by(id: sf.user_id)).first_name %> <%= (User.find_by(id: sf.user_id)).last_name %></h3>
+			<% end %>
 		</div>
 	</div>
+	<!-- END: FOLLOWERS -->
+
+	<!-- NETWORKS --> 
 	<div class="tab-page st5" style='background-color: #F8C471;'>
 		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
 		<div class="tab-page-content">
 			
 		</div>
 	</div>
+	<!-- END: NETWORKS -->
 </div>
 <!-- END: TAB CONTENTS -->

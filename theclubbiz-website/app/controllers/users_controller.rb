@@ -63,6 +63,7 @@ class UsersController < ApplicationController
 
   def followSociety
     SocietyFollower.create(user_id: current_user.id, society_id: params[:societyId])
+    (UserMailer.followEventEmail(current_user)).deliver
     redirect_to :back
   end
 
