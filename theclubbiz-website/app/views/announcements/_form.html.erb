@@ -1,3 +1,4 @@
+<%= tinymce%>
 <%= form_for(@announcement) do |f| %>
   <% if @announcement.errors.any? %>
     <div id="error_explanation">
@@ -10,6 +11,17 @@
       </ul>
     </div>
   <% end %>
+  <div class="subject">
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </div>
+
+
+  <div class="text">
+    <%= f.label :text %><br>
+    <%= f.text_area :text, :rows => 10, :cols => 4, :class => "tinymce", :id => "desc" %>
+
+  </div>
 
   <div class="actions">
     <%= f.submit %>
