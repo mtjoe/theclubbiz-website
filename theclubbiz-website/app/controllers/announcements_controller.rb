@@ -69,6 +69,6 @@ class AnnouncementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def announcement_params
-      params[:announcement]
+      params[:announcement, :text, :subject]
     end
 end
