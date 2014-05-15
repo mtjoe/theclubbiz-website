@@ -12,6 +12,12 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="photo">
+    <%= f.label :photo  %><br>
+    <%= f.file_field :photo %>
+  </div>
+
   <p>
     <%= f.label :first_name %></br>
     <%= f.text_field :first_name , :placeholder =>  "Enter your first name"  %>

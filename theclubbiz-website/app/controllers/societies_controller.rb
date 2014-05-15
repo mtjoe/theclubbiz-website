@@ -33,8 +33,9 @@ class SocietiesController < ApplicationController
       for i in 0 ... admin_array.size
         admin_chosen = User.find_by(email: admin_array[i])
         if admin_chosen.nil?
+          flash[:notice] = admin_array[i] + " is not a user"
           redirect_to :back
-          flash[:notice] = "admin is not a user"
+          return
         else 
           SocietyAdmin.create(users_id: admin_chosen.id, societies_id: @society.id)  
         end

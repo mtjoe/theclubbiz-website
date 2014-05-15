@@ -1,5 +1,8 @@
 <%= tinymce %>
 <%= form_for(@society) do |f| %>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
   <% if @society.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@society.errors.count, "error") %> prohibited this society from being saved:</h2>
