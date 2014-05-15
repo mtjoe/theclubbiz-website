@@ -88,6 +88,9 @@ $nav_height:100px;
     margin-right: 2.5%;
 
     a {
+      display:block;
+      height: 100%;
+      width: 100%;
       line-height: $nav_height;
       font-family: Lato;
       font-weight: bold;
@@ -125,6 +128,9 @@ $nav_height:100px;
     }
 
     a {
+      display:block;
+      height: 100%;
+      width: 100%;
       font-family: Lato;
       vertical-align: middle;
       line-height: $nav_height;

@@ -1,4 +1,84 @@
-<p id="notice"><%= notice %></p>
+<div class="usr-col usr-desc">
+	<div class="usr-img-wrapper">
+		<img src="">
+	</div>
+	<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+	<p></p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+</div>
+
+<div class="usr-col usr-societies">
+	<h1>Followed Societies</h1>
+	<% @societies = [] %>
+	<% (SocietyFollower.where(user_id: @user.id)).each do |sf| %>
+		<% @societies << Society.find_by(id: sf.society_id) %>
+	<% end %>
+	<% if @societies.empty? %>
+		<p>No entry in this category.</p>
+	<% else %>
+		<% @societies.each do |soc| %>
+			<div class="entry">
+				<div class="img-wrapper">
+					<%= image_tag soc.logo %>	
+				</div>
+				
+				
+				<div class="entry-title">
+					<%= link_to soc.name, {controller: "societies", action: "show", id: soc.id} %></a>
+				</div>
+
+				<% if (SocietyFollower.find_by(user_id: current_user.id, society_id:soc.id)).nil? %>
+					<div class="entry-follow-wrapper follow">
+						<%= link_to({controller: "users", action: 'followSociety', :societyId => soc.id}) do %>
+							<span class="glyphicon glyphicon-star"></span>
+						<% end %>
+					</div>
+
+				<% else %>
+					<div class="entry-follow-wrapper unfollow">
+						<%= link_to({controller: "users", action: 'unfollowSociety', :societyId => soc.id}) do %>
+							<span class="glyphicon glyphicon-star-empty"></span>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+
+<div class="usr-col usr-events">
+	<h1>Followed Events</h1>
+	<% @events = [] %>
+	<% (EventFollower.where(user_id: @user.id)).each do |ef| %>
+		<% @events << Event.find_by(id: ef.event_id) %>
+	<% end %>
+	<% if @events.empty? %>
+		<p>No entry in this category.</p>
+	<% else %>
+		<% @events.each do |eve| %>
+			<div class="entry">
+				<div class="img-wrapper">
+					<%= image_tag eve.logo %>	
+				</div>
+				<div class="entry-title">
+					<%= link_to eve.name, {controller: "events", action: "show", id: eve.id} %></a>
+				</div>
+
+				<% if (EventFollower.find_by(user_id: current_user.id, event_id:eve.id)).nil? %>
+					<div class="entry-follow-wrapper follow">
+						<%= link_to({controller: "users", action: 'followEvent', :eventId => eve.id}) do %>
+							<span class="glyphicon glyphicon-star"></span>
+						<% end %>
+					</div>
+
+				<% else %>
+					<div class="entry-follow-wrapper unfollow">
+						<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => eve.id}) do %>
+							<span class="glyphicon glyphicon-star-empty"></span>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

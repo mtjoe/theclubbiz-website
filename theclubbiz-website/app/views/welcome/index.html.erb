@@ -57,6 +57,7 @@ welcome/index.html.erb
 			<div id="sidebar">
 				<ul style="list-style:none">
 					<% if user_signed_in? %>
+						<li class="side-h2"><%= link_to("Announcements", :state => "announcements") %></li>
 						<li class="side-h1"><p>Account</p></li>
 						<ul style="list-style:none">
 							<li class="side-h2"><%= link_to("Administered Societies", :state => "adminSoc") %></li>
