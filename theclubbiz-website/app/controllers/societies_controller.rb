@@ -25,12 +25,25 @@ class SocietiesController < ApplicationController
   # POST /societies
   # POST /societies.json
   def create
-    user = User.find_by(email: params[:admin])
-    if user.nil?
-      format.html { redirect_to @society, notice: 'Admin is not exist.' }
+    admin = params[:admin]
+    
+    if !admin.nil?
+      admin_array = admin.split(", ")
+      i = 0
+      for i in 0 ... admin_array.size
+        admin_chosen = User.find_by(email: admin_array[i])
+        if admin_chosen.nil?
+          redirect_to :back
+          flash[:notice] = "admin is not a user"
+        else 
+          SocietyAdmin.create(users_id: admin_chosen.id, societies_id: @society.id)  
+        end
+      end
+    else 
+      redirect_to :back
     end
     @society = Society.new(society_params)
-    SocietyAdmin.create(users_id: user.id, societies_id: @society.id)
+    
     respond_to do |format|
       if @society.save
         format.html { redirect_to @society, notice: 'Society was successfully created.' }
