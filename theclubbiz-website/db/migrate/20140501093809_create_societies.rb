@@ -1,10 +1,10 @@
-class CreateSocieties < ActiveRecord::Migration
+  class CreateSocieties < ActiveRecord::Migration
   
 
   def change
     create_table :societies do |t|
     	t.string :name
-      t.text :logo, default = "/assets/default-picture.png"
+      t.string :logo, default = "/assets/default-picture.png"
     	t.text :description
       t.text :short_description
       t.string :website

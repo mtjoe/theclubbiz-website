@@ -30,4 +30,5 @@ class User < ActiveRecord::Base
   validates :password, presence: true, confirmation: true, length: { maximum: 255, minimum: 8 }
   validates :phone_number, numericality: { only_integer: true }, presence: true
   validates :username, presence: true, uniqueness: true, length: { maximum: 255 }
+  validates :photo,  length: { maximum: 255 }
 end

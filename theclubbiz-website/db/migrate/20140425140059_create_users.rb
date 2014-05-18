@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :last_name
       t.string :username
       t.text :about
-      t.text :photo,   default = "/assets/default-user.png"
+      t.string :photo,   default = "/assets/default-user.png"
     	t.integer :phone_number
 
       	t.timestamps

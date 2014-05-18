@@ -4,4 +4,5 @@ class Network < ActiveRecord::Base
 	validates_associated :SocietyNetwork
 	validates :name, presence: true, length: { maximum: 255 }
 	validates :description, presence: true
+	validates :image,  length: { maximum: 255 }
 end
