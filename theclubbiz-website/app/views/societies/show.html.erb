@@ -4,9 +4,11 @@
 		<div class="society-logo">
 			<%= image_tag @society.logo %>
 		</div>
-		<% if (SocietyFollower.find_by(user_id: current_user.id, society_id:@society.id)).nil? %>
-			<%= link_to({controller: "users", action: 'followSociety', :societyId => @society.id}) do %>
-				<span class="glyphicon glyphicon-star">Follow</span>
+		<% if !current_user.nil? %>
+			<% if (SocietyFollower.find_by(user_id: current_user.id, society_id:@society.id)).nil? %>
+				<%= link_to({controller: "users", action: 'followSociety', :societyId => @society.id}) do %>
+					<span class="glyphicon glyphicon-star">Follow</span>
+				<% end %>
 			<% end %>
 
 		<% else %>
@@ -18,7 +20,7 @@
 
 	<div class="society-desc">
 		<h1 class="title"><%= @society.name %><a href=<%= @society.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
-		<p class="subtitle"><%= @society.university %></p>
+		<p class="subtitle"><%= University.find_by(id: SocietyUniversity.find_by(society_id: @society.id).university_id).name %></p>
 		<p><%= (@society.short_description).html_safe %></p>
 
 		<p><b>Email: </b> <%= @society.email %></p>
