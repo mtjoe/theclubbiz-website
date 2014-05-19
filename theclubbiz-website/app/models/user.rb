@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  mount_uploader :photos, PhotoUploader
+  mount_uploader :photo, PhotoUploader
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
 	has_many :SocietyFollower
   has_many :SocietyAdmin
   has_many :EventFollower
@@ -32,5 +33,4 @@ class User < ActiveRecord::Base
   validates :password, presence: true, confirmation: true, length: { maximum: 255, minimum: 8 }
   validates :phone_number, numericality: { only_integer: true }, presence: true
   validates :username, presence: true, uniqueness: true, length: { maximum: 255 }
-  validates :photo,  length: { maximum: 255 }
 end

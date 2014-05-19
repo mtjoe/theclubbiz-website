@@ -1,12 +1,13 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:method => :put,:multipart =>true}) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:multipart =>true}) do |f| %>
   <%= devise_error_messages! %>
 
   <div>
-    <%= f.label :photos  %><br>
-    <%= f.file_field :photos %>
-    <%= f.hidden_field :photos_cache %>
+    <%= f.label :photo do  %>
+      <%= f.file_field :photo %>
+      <%= f.hidden_field :photo_cache %>
+    <% end %>
 
   <div/>
 
