@@ -61,15 +61,16 @@ ActiveRecord::Schema.define(version: 20140515094820) do
     t.integer  "location_postcode"
     t.string   "website"
     t.integer  "max_tickets"
+    t.integer  "ticket_price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "galleries", force: true do |t|
-    t.text     "image1"
-    t.text     "/assets/default-picture.png"
-    t.text     "image2"
-    t.text     "image3"
+    t.string   "image1"
+    t.string   "/assets/default-picture.png"
+    t.string   "image2"
+    t.string   "image3"
     t.integer  "event_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -79,8 +80,8 @@ ActiveRecord::Schema.define(version: 20140515094820) do
   create_table "networks", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.text     "image"
-    t.text     "/assets/default-picture.png"
+    t.string   "image"
+    t.string   "/assets/default-picture.png"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -88,12 +89,10 @@ ActiveRecord::Schema.define(version: 20140515094820) do
 
   create_table "societies", force: true do |t|
     t.string   "name"
-    t.text     "logo"
-    t.text     "/assets/default-picture.png"
+    t.string   "logo"
     t.text     "description"
     t.text     "short_description"
     t.string   "website"
-    t.string   "university"
     t.string   "office_address_line1"
     t.string   "office_address_line2"
     t.string   "office_state"
@@ -165,14 +164,13 @@ ActiveRecord::Schema.define(version: 20140515094820) do
   create_table "tickets", force: true do |t|
     t.integer  "event_id"
     t.integer  "user_id"
-    t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "universities", force: true do |t|
     t.string   "name"
-    t.text     "logo"
+    t.string   "logo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -196,17 +194,16 @@ ActiveRecord::Schema.define(version: 20140515094820) do
     t.string   "last_name"
     t.string   "username"
     t.text     "about"
-    t.text     "photo"
-    t.text     "/assets/default-user.png"
+    t.string   "photo"
     t.integer  "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                    default: "", null: false
-    t.string   "encrypted_password",       default: "", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",            default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"

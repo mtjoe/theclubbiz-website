@@ -18,7 +18,7 @@ class Society < ActiveRecord::Base
     validates_associated :SocietyNetwork
     validates_associated :SocietyAnnouncement
     validates :name, presence: true, length: { maximum: 255 }
-    validates :logo, presence: true,  length: { maximum: 255 }
+    validates :logo, length: { maximum: 255 }
     validates :website, length: { maximum: 255 }
     validates :description, presence: true
     validates :short_description, presence: true

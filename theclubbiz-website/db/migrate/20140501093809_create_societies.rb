@@ -4,7 +4,7 @@
   def change
     create_table :societies do |t|
     	t.string :name
-      t.string :logo, default = "/assets/default-picture.png"
+      t.string :logo 
     	t.text :description
       t.text :short_description
       t.string :website
