@@ -10,7 +10,6 @@
 Society.create([{
 	name: "TedX Unimelb", 
 	logo: "/assets/society-images/tedx-umelb.png",
-	university: "University of Melbourne",
 	description: "Mission",
 	short_description: "Bringing ideas worth spreading to Melbourne Uni! TEDxUniMelb is an independently organised series of TEDx events run by passionate Melbourne Uni students.",
 	website: "http://www.jancok.com",
@@ -24,7 +23,6 @@ Society.create([{
 }, {
 	name: "Environment Students Society", 
 	logo: "/assets/society-images/envi.jpg",
-	university: "adfgdvsdffq",
 	description: "ENVIRONMENTS FTW!!!",
 	short_description: "asnvefwjwefjiewfbdv shfwjhefwjefw",
 	website: "http://www.jancok.com",
@@ -38,7 +36,6 @@ Society.create([{
 }, {
 	name: "Book Club Unimelb", 
 	logo: "/assets/society-images/bookclub-umelb.jpg",
-	university: "adfgdvsdffq",
 	description: "Nerdies and pizzas.",
 	short_description: "asnvefwjwefjiewfbdv shfwjhefwjefw",
 	website: "http://www.jancok.com", 
