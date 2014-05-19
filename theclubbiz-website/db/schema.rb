@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20140515094820) do
 
   create_table "galleries", force: true do |t|
     t.string   "image1"
-    t.string   "/assets/default-picture.png"
     t.string   "image2"
     t.string   "image3"
     t.integer  "event_id"
@@ -81,7 +80,6 @@ ActiveRecord::Schema.define(version: 20140515094820) do
     t.string   "name"
     t.text     "description"
     t.string   "image"
-    t.string   "/assets/default-picture.png"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -89,7 +87,7 @@ ActiveRecord::Schema.define(version: 20140515094820) do
 
   create_table "societies", force: true do |t|
     t.string   "name"
-    t.string   "logo"
+    t.string   "logo",                 default: "/assets/default-picture.png"
     t.text     "description"
     t.text     "short_description"
     t.string   "website"

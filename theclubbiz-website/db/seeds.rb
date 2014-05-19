@@ -20,6 +20,32 @@ Society.create!([{
     office_postcode: "3053",
     email: "mtjoe@gmail.com",
     phone_number:"0425655553"
+}, {
+	name: "Environment Students Society",
+	logo: "/assets/society-images/bookclub-umelb.jpg",
+	description: "ENVIRONMENTS FTW!!!",
+	short_description: "asnvefwjwefjiewfbdv shfwjhefwjefw",
+	website: "http://www.jancok.com",
+	office_address_line1: "asdsdfasdfasdf",
+    office_address_line2: "asdasdfsdfd",
+    office_state: "asdwegqwg",
+    office_city: "asddgweefv",
+    office_postcode: "2346",
+	email: "envi@gmail.com",
+	phone_number: "0474811963"
+}, {
+	name: "Book Club Unimelb",
+	logo: "/assets/society-images/bookclub-umelb.jpg",
+	description: "Nerdies and pizzas.",
+	short_description: "asnvefwjwefjiewfbdv shfwjhefwjefw",
+	website: "http://www.jancok.com", 
+	office_address_line1: "asdsdfasdfasdf",
+    office_address_line2: "asdasdfsdfd",
+    office_state: "asdwegqwg",
+    office_city: "asddgweefv",
+    office_postcode: "2346",
+	email: "bc@gmail.com",
+	phone_number: "0474811963"
 }])
 
 
