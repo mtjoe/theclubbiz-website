@@ -73,8 +73,7 @@ $nav_height:100px;
   position: fixed;
   left: 0;
   top: 0;
-  overflow: hidden;
-  z-index: 1000;
+  z-index: 1000 !important;
   float: left;
 
   /**** Navbar Brand ****/
@@ -184,9 +183,9 @@ $nav_height:100px;
     vertical-align: middle;
     line-height: $nav_height;
     display: inline-block;
-    width:13%;
+    width:10%;
     text-align: center;
-    
+
     .log-add-btn {
       background-color: black;
       border:2px solid grey;
