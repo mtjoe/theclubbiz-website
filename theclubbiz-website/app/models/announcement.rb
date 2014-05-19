@@ -5,5 +5,4 @@ class Announcement < ActiveRecord::Base
 	validates_associated :SocietyAnnouncement
 	validates :subject, presence: true,  length: { maximum: 255 }
 	validates :text, presence: true
-	accepts_nested_attributes_for :SocietyAnnouncement 
 end
