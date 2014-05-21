@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
 
   # Many-to-many associations
   has_many :EventFollower
+  Has_many :Invitation
   has_many :SocietyEvent
   has_many :Follower, :through => :EventFollower, :source => 'User'
   has_many :Society, :through =>  :SocietyEvent
@@ -17,6 +18,7 @@ class Event < ActiveRecord::Base
 	validates_associated :SocietyEvent
 	validates_associated :Gallery
   validates_associated :Category
+  validates_associated :Invitation
   validates :name, presence: true, length: { maximum: 255 }
   validates :start_time, presence: true
   validates :end_time, presence: true
