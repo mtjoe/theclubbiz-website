@@ -9,9 +9,9 @@ $(window).load(function() {
 
 	$('.admin textarea').tagsInput({
     // my parameters here
-	    "width": "75%",
-    	"height": "70px",
-    	"defaultText":'add email here'
+		"width": "75%",
+		"height": "70px",
+		"defaultText":'add email here'
 	});
 
 	$('.society-desc').slimScroll({height: ($(window).height() - 200)});

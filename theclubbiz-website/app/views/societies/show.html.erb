@@ -20,7 +20,7 @@
 
 	<div class="society-desc">
 		<h1 class="title"><%= @society.name %><a href=<%= @society.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
-		<p class="subtitle"><%= University.find_by(id: SocietyUniversity.find_by(society_id: @society.id).university_id).name %></p>
+		<p class="subtitle"><%= University.find_by(id: @society.university_id) %></p>
 		<p><%= (@society.short_description).html_safe %></p>
 
 		<p><b>Email: </b> <%= @society.email %></p>
@@ -40,6 +40,9 @@
 
 <!-- TABS -->
 <div class="tabs">
+	<div class="tab st0" style='background-color: lightgrey;'>
+		<p><span class="glyphicon glyphicon-bullhorn"></span> Announce</p>
+	</div>
 	<div class="tab st1" style='background-color: #C4CDCD;'>
 		<p><span class="glyphicon glyphicon-calendar"></span> Events</p>
 	</div>
@@ -61,6 +64,28 @@
 
 <!-- TAB CONTENTS -->
 <div class="tab-pages">
+
+	<!-- Announcements -->
+	<div class="tab-page st0" style='background-color: lightgrey;'>
+		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
+		<div class="tab-page-content">
+			<h1>Announcements</h1>
+			<% if !@announcements.nil? %>
+				<% if @announcements.empty? %>
+					<p>This society does not have any announcements</p>
+				<% else %>
+					
+					<% @announcements.each do |a| %>
+						<div class="announce-entry-wrapper">
+							<h4><b><%= (User.find_by(id: a.user_id)).first_name %></b> wrote:</h4>
+							<%= a.text.html_safe %>
+						</div>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+	<!-- END: Announcements -->
 
 	<!-- EVENTS -->
 	<div class="tab-page st1" style='background-color: #C4CDCD;'>

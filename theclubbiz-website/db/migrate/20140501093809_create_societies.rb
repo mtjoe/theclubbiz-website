@@ -1,6 +1,4 @@
-  class CreateSocieties < ActiveRecord::Migration
-  
-
+class CreateSocieties < ActiveRecord::Migration
   def change
     create_table :societies do |t|
     	t.string :name
@@ -14,7 +12,9 @@
       t.string :office_city
       t.integer :office_postcode
     	t.string :email
-    	t.integer :phone_number
+    	t.string :phone_number
+      t.belongs_to :university
+      t.belongs_to :category
 
       t.timestamps
     end

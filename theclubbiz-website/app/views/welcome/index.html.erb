@@ -12,7 +12,9 @@ welcome/index.html.erb
 
 ************************************************************************** -->
 
-<div class="main">
+<script type="text/javascript" href="/assets/onepage-scroll.js"></script>
+
+<div class="main-page">
 
 	<!-- First Page -->
 	<section class="page-one">
@@ -58,7 +60,7 @@ welcome/index.html.erb
 				<ul style="list-style:none">
 					<% if user_signed_in? %>
 						<li class="side-h2"><%= link_to("Announcements", :state => "announcements") %></li>
-						<li class="side-h1"><p>Account</p></li>
+						<li class="side-h1"><%= link_to("My Account", {controller: 'users', action:'show', :id => current_user.id}) %></li>
 						<ul style="list-style:none">
 							<li class="side-h2"><%= link_to("Administered Societies", :state => "adminSoc") %></li>
 							<li class="side-h2"><%= link_to("Followed Societies", :state => "followedSoc") %></li>
@@ -92,8 +94,31 @@ welcome/index.html.erb
 					<div id="grid-list">
 
 						<div id="grid-hdr"><%= @header %></div>
-						
 
+						<!-- LISTING ANNOUNCEMENTS-->
+						<% if !@announcements.nil? %>
+							<% if @announcements.empty? %>
+								<p>You have no announcements</p>
+							<% else %>
+								
+								<% @announcements.each do |a| %>
+									<div class="announce-entry-wrapper">
+										<% if (a.allSoc) == "" %>
+											<% target = "All Societies" %>
+										<% elsif (a.university_id) == "" %>
+											<% target = "Admins of #{University.find_by(id: a.university_id)}" %>
+										<% else %>
+											<% target = "Followers of #{Society.find_by(id: a.society_id).name}" %>
+										<% end %>
+										<h4><b><%= (User.find_by(id: a.user_id)).first_name %></b> wrote for <b><%= target %></b></h4>
+										<%= a.text.html_safe %>
+									</div>
+								<% end %>
+							<% end %>
+						<% end %>
+						<!-- END: LISTING ANNOUNCEMENTS-->
+						
+						<!-- LISTING SOCIETIES-->
 						<% if !@societies.nil? %>
 							<% if @societies.empty? %>
 								<p>No societies in this category.</p>
@@ -136,7 +161,9 @@ welcome/index.html.erb
 								<% end %>
 							<% end %>
 						<% end %>
+						<!-- END: LISTING SOCIETIES-->
 						
+						<!-- LISTING PAST EVENTS-->
 						<% if !@pastEvents.nil? %>
 							<% if @pastEvents.empty? %>
 								<p>No events in this category.</p>
@@ -165,7 +192,9 @@ welcome/index.html.erb
 								<% end %>
 							<% end %>
 						<% end %>
+						<!-- END: LISTING PAST EVENTS-->
 
+						<!-- LISTING UPCOMING EVENTS-->
 						<% if !@upcomingEvents.nil? %>
 							<% if @upcomingEvents.empty? %>
 								<p>No events in this category.</p>
@@ -195,13 +224,17 @@ welcome/index.html.erb
 								<% end %>
 							<% end %>
 						<% end %>
+						<!-- END: LISTING UPCOMING EVENTS-->
 
+						<!-- LISTING CATEGORIES -->
 						<% if !@categories.nil? %>
 							<% @categories.each do |cat| %>
 								<%= link_to cat.name,{ :state => params[:state], :catId => cat.id }, class: "category-entry" %>
 							<% end %>
 						<% end %>
+						<!-- END: LISTING CATEGORIES -->
 
+						<!-- LISTING UNIVERSITIES -->
 						<% if !@universities.nil? %>
 							<% @universities.each do |uni| %>
 								<%= link_to({ :state => params[:state], :uniId => uni.id }, class: "university-entry") do %>
@@ -209,6 +242,7 @@ welcome/index.html.erb
 								<% end %>
 							<% end %>
 						<% end %>
+						<!-- END: LISTING UNIVERSITIES -->
 
 					</div>
 				</div>

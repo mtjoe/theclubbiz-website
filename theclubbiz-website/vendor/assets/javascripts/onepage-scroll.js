@@ -15,6 +15,8 @@
  * ========================================================== */
 
 !function($){
+
+	if (window.location.pathname == "/welcome/index" || window.location.pathname == "/"){
 	
 	var defaults = {
 		sectionContainer: "section",
@@ -348,7 +350,7 @@
 
 		return false;
 	};
-	
+	}
 	
 }(window.jQuery);
 

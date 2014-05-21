@@ -2,10 +2,31 @@ class WelcomeController < ApplicationController
   def index
 
   	case params[:state]
+    when "announcements"
+      @header = "Announcements"
+      @announcements = []
+      
+      # To All Societies
+      (@announcements << Announcement.where(allSoc: true)).flatten!
+      university_ids = []
+
+      # From Society Admins
+      socFollower = SocietyFollower.where(user_id: current_user.id)
+      socFollower.each do |sf|
+        sf_announce = Announcement.where(society_id: sf.society_id)
+        (@announcements << sf_announce).flatten!
+      end
+
+      # From University Admins
+      university_ids.uniq
+      university_ids.each do |ui|
+        ui_announce = Announcement.find_by(university_id: ua)
+        (@announcements << ui_announce).flatten!
+      end
+      
   	when "adminSoc"
 
   	when "followedSoc"
-
       @header = "Followed Societies"
       @societies = []
       societies = SocietyFollower.where(user_id: current_user.id)

@@ -91,7 +91,12 @@
 		height: 250px;
 		margin-left: calc( (100% - 250px) / 2);
 		margin-top: 50px;
-		border: 1px solid lightgrey;
+		text-align: center;
+
+		img {
+			max-height: 100%;
+			max-width: 100%;
+		}
 	}
 }
 

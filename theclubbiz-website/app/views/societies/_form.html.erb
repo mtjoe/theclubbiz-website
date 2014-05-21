@@ -1,8 +1,6 @@
 <%= tinymce %>
 <%= form_for(@society) do |f| %>
-  <% if flash[:notice] %>
-    <%= flash[:notice] %>
-  <% end %>
+
   <% if @society.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@society.errors.count, "error") %> prohibited this society from being saved:</h2>
@@ -25,10 +23,9 @@
     <%= f.file_field :logo %>
   </div>
 
-  <div class="admin">
-    <p>Admin</p>
-    <%= text_area_tag :admin %>
-  </div>
+  <%= f.fields_for :questions do |builder| %>
+    <%= render "question_fields", :f => builder %>
+  <% end %>
 
   <div class="description">
     <%= f.label :description %><br>
@@ -47,8 +44,13 @@
   </div>
 
   <div class="university">
-    <%= f.label :university %><br>
-    <%= f.text_field :university %>
+    <p>University</p>
+    <%= f.collection_select(:university_id, University.find(:all), :id, :name, :prompt => "Please select") %>
+  </div>
+
+  <div class="category">
+    <p>Category</p>
+    <%= f.collection_select(:category_id, Category.find(:all), :id, :name, :prompt => "Please select") %>
   </div>
 
   <div class="office_address_line1">

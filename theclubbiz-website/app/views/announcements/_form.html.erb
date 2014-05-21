@@ -11,29 +11,53 @@
       </ul>
     </div>
   <% end %>
+
+  <!-- Check if University admin and Society admin -->
+  <% !(UniversityAdmin.where(user_id = current_user.id).empty?) ? isUniAdmin = true : isUniAdmin = false %>
+  <% !(SocietyAdmin.where(user_id = current_user.id).empty?) ? isSocAdmin = true : isSocAdmin = false %>
+
+  <!-- If both uniAdmin and socAdmin, ask to select -->
+  <% if isUniAdmin && isSocAdmin %>
+    <p>Who do you want to announce for?</p>
+    <input type="radio" name="announce_for" value="university" checked> University<br>
+    <input type="radio" name="announce_for" value="society"> Society<br><br>
+  <% end %>
+
+  <div class="uni_admin">
+    <% if isUniAdmin %>
+      <p>Please select the University you want to announce to.</p>
+      <% @universityAdmin = UniversityAdmin.where(user_id: current_user.id)%>
+      <% ary = [] %>
+      <% @universityAdmin.each do |ua| %>
+        <% ary << ua.university_id %>
+      <% end %>
+      <%= f.collection_select(:university_id, University.find(ary),:id, :name, :prompt => "Please select") %>
+    <% end %>
+  </div>
+  <div class="soc_admin">
+    <% if isSocAdmin %>
+      <p>Please select the Society you want to announce to.</p>
+      <% @societyAdmin = SocietyAdmin.where(user_id: current_user.id)%>
+      <% ary = [] %>
+      <% @societyAdmin.each do |sa| %>
+        <% ary << sa.society_id %>
+      <% end %>
+      <%= f.collection_select(:society_id, Society.find(ary),:id, :name, :prompt => "Please select") %>
+    <% end %>
+  </div>
+
+
   <div class="subject">
-    <%= f.label :subject %><br>
-    <%= f.text_field :subject %>
+    <%= f.text_field :subject, placeholder: 'Subject' %>
   </div>
 
   <div class="text">
-    <%= f.label :text %><br>
-    <%= f.text_area :text, :rows => 10, :cols => 4, :class => "tinymce", :id => "desc" %>
+    <%= f.text_area :text, :rows => 10, :cols => 4, :class => "tinymce", :id => "desc", placeholder: "Please enter your announcement here" %>
   </div>
+
   <%= f.hidden_field(:user_id, :value => current_user.id) %>
-  <% if !(UniversityAdmin.where(user_id = current_user.id).empty?) %>
-    <% @universityAdmin = UniversityAdmin.where(user_id: current_user.id)%>
-    <% ary = [] %>
-    <% @universityAdmin.each do |ua| %>
-      <% ary << ua.university_id %>
-    <% end %>
-    <%= f.collection_select :university_id, University.find(ary),:id, :name %>
-  <% end %>
-  <% if !(SocietyAdmin.where(user_id = current_user.id).empty?) %>
-    <%= f.fields_for :SocietyAnnouncement do |builder|  %>
-      <%= builder.collection_select :society_id, SocietyAdmin.where(user_id = current_user.id) %>
-    <% end %>
-  <% end %>
+  <%= f.hidden_field(:allSoc, :value => false) %>
+
 
 
   <div class="actions">

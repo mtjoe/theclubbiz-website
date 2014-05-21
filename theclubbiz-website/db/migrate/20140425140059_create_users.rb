@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.text :about
     	t.integer :phone_number
 
-      	t.timestamps
+      t.timestamps
     end
   end
 end

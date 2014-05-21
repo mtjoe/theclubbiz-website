@@ -19,11 +19,8 @@
 //= require jquery.tagsinput
 //= require tinymce-jquery
 //= require slimscroll
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+//= require autocomplete-rails
 
-
-function goToBrowse(){
-	$('#nav-menu').hide(600);
-	$('#nav-search').animate({width:'60%'}, 1000);
-	$(".main").moveTo(2);
-	inPageTwo = !inPageTwo;
-}

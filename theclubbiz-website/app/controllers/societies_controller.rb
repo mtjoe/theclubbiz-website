@@ -11,6 +11,9 @@ class SocietiesController < ApplicationController
   # GET /societies/1.json
   def show
     @events = SocietyEvent.where(id: :id)
+      
+    # announcements from Society Admins
+    @announcements = Announcement.where(society_id: @society.id)
   end
 
   # GET /societies/new
@@ -25,33 +28,38 @@ class SocietiesController < ApplicationController
   # POST /societies
   # POST /societies.json
   def create
-    admin = params[:admin]
+
+    @society = Society.new(society_params)
     
+    # Validate admins
+    admin = params[:admin]
+    valid_admins = []
+    valid_admins << current_user
     if !admin.nil?
-      admin_array = admin.split(", ")
+      admin_array = admin.split(",")
       i = 0
       for i in 0 ... admin_array.size
         admin_chosen = User.find_by(email: admin_array[i])
         if admin_chosen.nil?
-          flash[:notice] = admin_array[i] + " is not a user"
-          redirect_to :back
-          return
-        else 
-          SocietyAdmin.create(users_id: admin_chosen.id, societies_id: @society.id)  
+          @society.errors[:base] << "The email #{admin_array[i]} is not in the database"
+        else
+          valid_admins << admin_chosen
         end
       end
-    else 
-      redirect_to :back
     end
-    @society = Society.new(society_params)
-    
+    valid_admins.uniq!
+
     respond_to do |format|
-      if @society.save
-        format.html { redirect_to @society, notice: 'Society was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @society }
-      else
+      if !(@society.errors).empty? || !(@society.save)
         format.html { render action: 'new' }
         format.json { render json: @society.errors, status: :unprocessable_entity }
+      else
+        valid_admins.each do |va|
+          @society.admin << va
+        end
+
+        format.html { redirect_to @society, notice: 'Society was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @society }
       end
     end
   end

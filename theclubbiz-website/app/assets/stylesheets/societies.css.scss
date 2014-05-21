@@ -126,6 +126,22 @@ body {
 			margin-top: 2%;
 			margin-left: 5%; 
 
+			.announce-entry-wrapper {
+				border: 1px solid white;
+				padding: 10px 20px;
+				margin: 0px 30px;
+				border-top: none;
+
+				p {
+					padding-left: 20px;
+				}
+			}
+
+			.announce-entry-wrapper:nth-of-type(1) {
+				border-top: 1px solid white;
+			}
+
+
 			.image-entry {
 				height: 330px;
 				width:300px;
@@ -183,6 +199,4 @@ body {
 
 		}
 	}
-
-	
 }

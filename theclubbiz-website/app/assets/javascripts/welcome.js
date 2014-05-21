@@ -2,7 +2,7 @@ var shown = false;
 var inPageTwo = false;
 
 var ready = function(){
-	$('.main').onepage_scroll({
+	$('.main-page').onepage_scroll({
 		sectionContainer: "section",
 		easing: "ease",
 		animationTime: 1000,
@@ -40,23 +40,6 @@ var ready = function(){
 
 		shown = !shown;
     });
-
-    $(".photo").click(function() {
-    	var user = $(this).attr("class").split(" ")[1];
-    	
-    	if ($('.right-sect').find(".active").attr('class').split(' ')[1] !== user){
-	 		$('.right-sect').find(".active").toggleClass("active");
-	 		user = "." + user;
-	 		$('.right-sect').find(user).toggleClass("active");
-	 		$('.left-sect').find(".active").toggleClass("active");
-	 		$('.left-sect').find(user).toggleClass("active");			
-	 	}
-    });
-
-	//$("#photo-egama").click(function() {photoOnClick("egama")});
-	//$("#photo-erwinf").click(function() {photoOnClick("erwinf")}));
-	//$("#photo-mtjoe").click(function() {photoOnClick("mtjoe")}));
-    
 };
 
 function goToBrowse(){

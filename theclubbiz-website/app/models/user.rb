@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   mount_uploader :photo, PhotoUploader
@@ -6,17 +7,25 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Many-to-many associations
 	has_many :SocietyFollower
   has_many :SocietyAdmin
   has_many :EventFollower
-  has_many :Ticket
   has_many :EventFeedback
   has_many :SocietyFeedback
   has_many :UserUniversity
-  has_one  :Gallery
   has_many :UniversityAdmin
+
+
+  # Many-to-one associations
   has_many :Networks
+  has_many :Ticket
+
+  # One-to-one associations
   has_one :Announcement
+  has_one :Gallery
+
+  # Validations
   validates_associated :SocietyFollower
   validates_associated :SocietyAdmin
   validates_associated :EventFollower

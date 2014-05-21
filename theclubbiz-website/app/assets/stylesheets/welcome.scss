@@ -49,7 +49,7 @@ $nav_height:100px;
 		height:100%;
 		background-color: #AAA9A9;
 		float: left;
-		overflow: hidden;
+		overflow: scroll;
 		text-wrap:supress;
 
 		ul, li {
@@ -73,7 +73,7 @@ $nav_height:100px;
 			background-color: #9E9C9C;
 		}
 
-		.side-h1 p {
+		.side-h1 p, .side-h1 a {
 			font-size: 25px;
 			font-weight: bold;
 			color: white;
@@ -171,4 +171,18 @@ $nav_height:100px;
 		}
 	}
 }
-	
+
+.announce-entry-wrapper {
+	border: 1px solid lightgrey;
+	padding: 10px 20px;
+	margin: 0px 30px;
+	border-top: none;
+
+	p {
+		padding-left: 20px;
+	}
+}
+
+.announce-entry-wrapper:nth-of-type(2) {
+	border-top: 1px solid lightgrey;
+}

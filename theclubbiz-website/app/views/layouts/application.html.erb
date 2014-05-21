@@ -113,6 +113,13 @@
 	<p class="notice"><%= notice %></p>
      <p class="alert"><%= alert %></p>-->
 <%= yield %>
-
+<script type="text/javascript">
+function goToBrowse(){
+	$('#nav-menu').hide(600);
+	$('#nav-search').animate({width:'60%'}, 1000);
+	$(".main").moveTo(2);
+	inPageTwo = !inPageTwo;
+}
+</script>
 </body>
 </html>

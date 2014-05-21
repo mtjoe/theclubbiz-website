@@ -13,6 +13,10 @@ TheclubbizWebsite::Application.routes.draw do
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
   end
 
+  resources :users do
+    get :autocomplete_users_email, :on => :collection
+  end
+
   resources :tickets
 
   resources :events

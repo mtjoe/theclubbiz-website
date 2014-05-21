@@ -1,9 +1,11 @@
 class University < ActiveRecord::Base
-	has_many :UserUniversity
-	has_many :SocietyUniversity
 	has_many :UniversityAdmin
-	validates_associated :UserUniversity
-	validates_associated :SocietyUniversity
+	has_many :admin, :through => :UniversityAdmin, :class_name => 'User'
+
+	has_many :User
+	has_many :Society
+	validates_associated :User
+	validates_associated :Society
 	validates_associated :UniversityAdmin
 	validates :name, presence: true, length: { maximum: 255 }
 	validates :logo,  length: { maximum: 255 }
