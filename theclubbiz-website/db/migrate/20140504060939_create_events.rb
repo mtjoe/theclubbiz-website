@@ -13,6 +13,7 @@ class CreateEvents < ActiveRecord::Migration
     	t.string :website
     	t.integer :max_tickets
       t.integer :ticket_price
+      t.belongs_to :category
 
       t.timestamps
     end

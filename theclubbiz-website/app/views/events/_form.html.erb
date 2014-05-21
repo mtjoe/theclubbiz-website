@@ -12,9 +12,17 @@
   <% end %>
 
    <div class="name">
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :placeholder => "Event's Name" %>
   </div>
-
+  <br>
+  <div class="society">
+    <%= collection_select(:society_id, SocietyAdmin.find(:user_id => current_user.id), :id, :name, :prompt => "Society") %>
+  </div>
+  <br>
+  <div class="category">
+    <%= f.collection_select(:category_id, Category.find(:all), :id, :name, :prompt => "Category") %>
+  </div>
+  <br>
   <div class="start-time">
     <%= f.label :start_time %><br>
     <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
@@ -24,48 +32,37 @@
     <%= f.label :end_time %><br>
     <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
   </div>
-
+  <br>
   <div class="location_address_line1">
-    <%= f.label :location_address_line1 %><br>
-    <%= f.text_field :location_address_line1 %>
+    <%= f.text_field :location_address_line1, :placeholder => "Location line 1" %>
   </div>
-
+  <br>
   <div class="location_address_line2">
-    <%= f.label :location_address_line2 %><br>
-    <%= f.text_field :location_address_line2 %>
+    <%= f.text_field :location_address_line2, :placeholder => "Location line 2" %>
   </div>
-
+  <br>
   <div class="location_state">
-    <%= f.label :location_state %><br>
     <%= f.text_field :location_state %>
   </div>
-
+  <br>
   <div class="location_city">
-    <%= f.label :location_city %><br>
-    <%= f.text_field :location_city %>
+    <%= f.text_field :location_city, :placeholder => "City" %>
   </div>
-
+  <br>
   <div class="location_postcode">
-    <%= f.label :location_postcode %><br>
-    <%= f.text_field :location_postcode %>
+    <%= f.text_field :location_postcode, :placeholder => "Postcode" %>
   </div>
-
+  <br>
   <div class="website">
-    <%= f.label :website %><br>
-    <%= f.text_field :website %>
+    <%= f.text_field :website, :placeholder => "Website" %>
   </div>
-
+  <br>
   <div class="max_tickets">
     <%= f.label :max_tickets %><br>
      <%= f.select :max_tickets, (0..10000) %>
   </div>
 
-  <div class="max_tickets">
-    <%= f.label :max_tickets %><br>
-     <%= f.select :max_tickets, (0..10000) %>
-  </div>
-
- 
+ <br>
   <div class="actions">
     <%= f.submit %>
   </div>

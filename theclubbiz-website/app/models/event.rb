@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   # Many-to-one associations
   has_many :EventFeedback
   has_many :Ticket
-  has_many :Category
+  belongs_to :Category
 
   # One-to-one associations
 	has_one  :Gallery
@@ -19,7 +19,7 @@ class Event < ActiveRecord::Base
 	validates_associated :EventFollower
 	validates_associated :SocietyEvent
 	validates_associated :Gallery
-  validates_associated :category
+  validates_associated :Category
   validates :name, presence: true, length: { maximum: 255 }
   validates :start_time, presence: true
   validates :end_time, presence: true
