@@ -39,7 +39,7 @@
 
   <div class="end-time">
     <%= f.label :end_time %><br>
-    <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
+    <%= f.datetime_select(:end_time, :start_year => Date.today.year, ampm: true) %>
   </div>
   <br>
   <div class="location_address_line1">
@@ -51,7 +51,8 @@
   </div>
   <br>
   <div class="location_state">
-    <%= f.text_field :location_state %>
+    <%= f.label :location_state %><br>
+    <%= f.select :location_state, options_for_select(['NSW', 'QLD', 'VIC', 'SA','TAS','WA']) %>
   </div>
   <br>
   <div class="location_city">
@@ -69,6 +70,11 @@
   <div class="max_tickets">
     <%= f.label :max_tickets %><br>
      <%= f.select :max_tickets, (0..10000) %>
+  </div>
+  <br>
+  <div class="ticket_price">
+    <%= f.label :ticket_price %>
+    <%= f.text_field :ticket_price %>
   </div>
 
  <br>

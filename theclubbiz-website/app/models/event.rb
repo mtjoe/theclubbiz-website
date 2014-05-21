@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
-
+  mount_uploader :image1, Image1Uploader
+  mount_uploader :image2, Image2Uploader
+  mount_uploader :image3, Image3Uploader
   # Many-to-many associations
   has_many :EventFollower
   has_many :Invitation
@@ -16,7 +18,6 @@ class Event < ActiveRecord::Base
 	validates_associated :EventFeedback
 	validates_associated :EventFollower
 	validates_associated :SocietyEvent
-	validates_associated :Gallery
   validates_associated :Category
   validates_associated :Invitation
   validates :name, presence: true, length: { maximum: 255 }
