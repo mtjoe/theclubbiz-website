@@ -37,7 +37,6 @@ class SocietiesController < ApplicationController
     valid_admins << current_user
     if !admin.nil?
       admin_array = admin.split(",")
-      i = 0
       for i in 0 ... admin_array.size
         admin_chosen = User.find_by(email: admin_array[i])
         if admin_chosen.nil?
@@ -55,7 +54,7 @@ class SocietiesController < ApplicationController
         format.json { render json: @society.errors, status: :unprocessable_entity }
       else
         valid_admins.each do |va|
-          @society.admin << va
+          SocietyAdmin.create(society_id: @society.id, user_id: va.id)
         end
 
         format.html { redirect_to @society, notice: 'Society was successfully created.' }

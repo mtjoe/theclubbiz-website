@@ -16,7 +16,7 @@
 
 !function($){
 
-	if (window.location.pathname == "/welcome/index" || window.location.pathname == "/"){
+	if (window.location.pathname == "/welcome/index" || window.location.pathname == "/" || window.location.pathname == "/welcome/index/"){
 	
 	var defaults = {
 		sectionContainer: "section",

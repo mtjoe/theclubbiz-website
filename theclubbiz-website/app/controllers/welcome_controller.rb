@@ -25,7 +25,11 @@ class WelcomeController < ApplicationController
       end
       
   	when "adminSoc"
-
+      @header = "Administered Societies"
+      @societies = []
+      (SocietyAdmin.where(user_id: current_user.id)).each do |sa|
+        @societies << Society.find_by(id: sa.society_id)
+      end
   	when "followedSoc"
       @header = "Followed Societies"
       @societies = []

@@ -7,8 +7,8 @@ class Society < ActiveRecord::Base
 	has_many :SocietyFollower
   has_many :SocietyNetwork
 
-  has_many :admin, :through => :SocietyAdmin, :source => 'User'
-  has_many :follower, :through => :SocietyFollower, :source => 'User'
+  has_many :admin, :through => :SocietyAdmin, :source => 'user'
+  has_many :follower, :through => :SocietyFollower, :source => 'user'
   has_many :event, :through => :SocietyEvent
   has_many :network, :through => :SocietyNetwork
 

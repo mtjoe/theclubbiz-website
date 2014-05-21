@@ -23,9 +23,10 @@
     <%= f.file_field :logo %>
   </div>
 
-  <%= f.fields_for :questions do |builder| %>
-    <%= render "question_fields", :f => builder %>
-  <% end %>
+  <div class="admin">
+    <p>Admin</p>
+    <%= text_area_tag :admin %>
+  </div>
 
   <div class="description">
     <%= f.label :description %><br>
