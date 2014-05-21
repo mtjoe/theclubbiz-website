@@ -1,7 +1,7 @@
 class University < ActiveRecord::Base
 	has_many :UniversityAdmin
 	has_many :admin, :through => :UniversityAdmin, :class_name => 'User'
-
+    
 	has_many :User
 	has_many :Society
 	validates_associated :User

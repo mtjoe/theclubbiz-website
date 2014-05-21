@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
 
   # Many-to-many associations
+  has_many :EventFollower
+  has_many :SocietyEvent
   has_many :Follower, :through => :EventFollower, :source => 'User'
   has_many :Society, through :SocietyEvent
 

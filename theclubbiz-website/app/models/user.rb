@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   has_many :EventFollower
   has_many :EventFeedback
   has_many :SocietyFeedback
-  has_many :UserUniversity
   has_many :UniversityAdmin
 
 
@@ -34,7 +33,6 @@ class User < ActiveRecord::Base
   validates_associated :SocietyFeedback
   validates_associated :Gallery
   validates_associated :UserUniversity
-  validates_associated :UniversityAdmin
   validates_associated :Networks
   validates_associated :Announcement
 	validates :first_name, presence: true, length: { maximum: 255 }
