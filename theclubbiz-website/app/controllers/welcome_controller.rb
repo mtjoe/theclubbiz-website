@@ -83,11 +83,25 @@ class WelcomeController < ApplicationController
 
   	when "allUpcomingEvents"
   		@header = "Upcoming Events - ALL"
-	  	@upcomingEvents = Event.all
+      @upcomingEvents = []
+	  	allEvents = Event.all
+
+      allEvents.each do |event|
+        if event.start_time >  Time.now
+          @upcomingEvents << event
+        end
+      end
 
   	when "allPastEvents"
   		@header = "Past Events - ALL"
-	  	@pastEvents = Event.all
+      @pastEvents = []
+      allEvents = Event.all
+
+      allEvents.each do |event|
+        if event.start_time <=  Time.now
+          @pastEvents << event
+        end
+      end
 
   	when "eventByCategory"
       if params[:catId].nil?

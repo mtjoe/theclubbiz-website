@@ -103,14 +103,21 @@ welcome/index.html.erb
 								
 								<% @announcements.each do |a| %>
 									<div class="announce-entry-wrapper">
-										<% if (a.allSoc) == "" %>
+										<% if (a.allSoc) != "" %>
 											<% target = "All Societies" %>
-										<% elsif (a.university_id) == "" %>
+										<% elsif (a.university_id) != "" %>
 											<% target = "Admins of #{University.find_by(id: a.university_id)}" %>
 										<% else %>
 											<% target = "Followers of #{Society.find_by(id: a.society_id).name}" %>
 										<% end %>
-										<h4><b><%= (User.find_by(id: a.user_id)).first_name %></b> wrote for <b><%= target %></b></h4>
+
+										<% user = (User.find_by(id: a.user_id)) %>
+										<% if user.nil? %>
+											<% announcee = "System" %>
+										<% else %>
+											<% announcee = "#{user.first_name} #{user.last_name}" %>
+										<% end %>
+										<h4><b><%= announcee %></b> wrote for <b><%= target %></b></h4>
 										<%= a.text.html_safe %>
 									</div>
 								<% end %>

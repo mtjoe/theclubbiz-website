@@ -57,6 +57,9 @@ class SocietiesController < ApplicationController
           SocietyAdmin.create(society_id: @society.id, user_id: va.id)
         end
 
+        # Create announcement
+        Announcement.create(allSoc: true, subject: "New Society", text: "Warmest welcome to our newest society member: #{@society.name}!")
+
         format.html { redirect_to @society, notice: 'Society was successfully created.' }
         format.json { render action: 'show', status: :created, location: @society }
       end
