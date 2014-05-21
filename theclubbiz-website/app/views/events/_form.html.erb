@@ -23,6 +23,15 @@
     <%= f.collection_select(:category_id, Category.find(:all), :id, :name, :prompt => "Category") %>
   </div>
   <br>
+  <div class="image">
+    <p>Image</p>
+    <%= f.file_field :image1 %>
+    <br>
+    <%= f.file_field :image2 %>
+    <br>
+    <%= f.file_field :image3 %>
+  </div>
+  <br>
   <div class="start-time">
     <%= f.label :start_time %><br>
     <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
