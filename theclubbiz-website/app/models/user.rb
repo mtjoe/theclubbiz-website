@@ -32,7 +32,6 @@ class User < ActiveRecord::Base
   validates_associated :EventFeedback
   validates_associated :SocietyFeedback
   validates_associated :Gallery
-  validates_associated :UserUniversity
   validates_associated :Networks
   validates_associated :Announcement
 	validates :first_name, presence: true, length: { maximum: 255 }

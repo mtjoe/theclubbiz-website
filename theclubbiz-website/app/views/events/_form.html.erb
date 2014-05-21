@@ -16,7 +16,7 @@
   </div>
   <br>
   <div class="society">
-    <%= collection_select(:society_id, SocietyAdmin.find(:user_id => current_user.id), :id, :name, :prompt => "Society") %>
+    <%= collection_select(:society, :id, Society.all, :id, :name, :prompt => "Society") %>
   </div>
   <br>
   <div class="category">
