@@ -4,6 +4,7 @@ class Society < ActiveRecord::Base
   # Many-to-many relationships
 	has_many :SocietyAdmin
 	has_many :SocietyEvent
+  has_many :Invitation
 	has_many :SocietyFollower
   has_many :SocietyNetwork
 
@@ -23,8 +24,8 @@ class Society < ActiveRecord::Base
 	validates_associated :SocietyEvent
 	validates_associated :SocietyFollower
   validates_associated :SocietyNetwork
+  validates_associated :Invitation
   validates :name, presence: true, length: { maximum: 255 }
-  validates :logo, length: { maximum: 255 }
   validates :website, length: { maximum: 255 }
   validates :description, presence: true
   validates :short_description, presence: true

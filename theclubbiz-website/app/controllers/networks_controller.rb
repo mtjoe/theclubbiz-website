@@ -26,11 +26,32 @@ class NetworksController < ApplicationController
   def create
     @network = Network.new(network_params)
 
+    # Validate admins
+    societies = params[:admin]
+    valid_societies = []
+    if !societies.nil?
+      soceties_array = societies.split(",")
+      for i in 0 ... societies_array.size
+        societies_chosen = Society.find_by(email: societies_array[i])
+        if societies_chosen.nil?
+          @network.errors[:base] << "The email #{socities_array[i]} is not in the database"
+        else
+          valid_societies << societies_chosen
+        end
+      end
+    end
+    valid_societies.uniq!
+
+
     respond_to do |format|
       if @network.save
         format.html { redirect_to @network, notice: 'Network was successfully created.' }
         format.json { render action: 'show', status: :created, location: @network }
       else
+        valid_societies.each do |vs|
+          SocietyNetwork.create(network_id: @network.id, society_id: vs.id)
+        end
+
         format.html { render action: 'new' }
         format.json { render json: @network.errors, status: :unprocessable_entity }
       end
@@ -69,6 +90,6 @@ class NetworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def network_params
-      params.require(:network).permit(:name, :description, :user_id, :image, :allSoc, :society_id)
+      params.require(:network).permit(:name, :description, :user_id, :image)
     end
 end

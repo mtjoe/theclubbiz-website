@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
 
   # One-to-one associations
   has_one :Announcement
-  has_one :Gallery
 
   # Validations
   validates_associated :SocietyFollower
@@ -31,7 +30,6 @@ class User < ActiveRecord::Base
   validates_associated :Ticket
   validates_associated :EventFeedback
   validates_associated :SocietyFeedback
-  validates_associated :Gallery
   validates_associated :Networks
   validates_associated :Announcement
 	validates :first_name, presence: true, length: { maximum: 255 }

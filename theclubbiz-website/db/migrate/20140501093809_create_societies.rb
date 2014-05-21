@@ -2,7 +2,7 @@ class CreateSocieties < ActiveRecord::Migration
   def change
     create_table :societies do |t|
     	t.string :name
-      t.string :logo 
+      t.text :logo 
     	t.text :description
       t.text :short_description
       t.string :website

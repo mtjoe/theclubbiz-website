@@ -49,14 +49,21 @@ class SocietiesController < ApplicationController
     valid_admins.uniq!
 
     respond_to do |format|
-      if !(@society.errors).empty? || !(@society.save)
+      if !(@society.errors).empty? || 
+
         format.html { render action: 'new' }
         format.json { render json: @society.errors, status: :unprocessable_entity }
       else
-        valid_admins.each do |va|
-          SocietyAdmin.create(society_id: @society.id, user_id: va.id)
+        if (@society.save)
+          valid_admins.each do |va|
+            SocietyAdmin.create(society_id: @society.id, user_id: va.id)
+          end
+          format.html { redirect_to @society, notice: 'Society was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @society }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @society.errors, status: :unprocessable_entity }
         end
-
         # Create announcement
         Announcement.create(allSoc: true, subject: "New Society", text: "Warmest welcome to our newest society member: #{@society.name}!")
 
