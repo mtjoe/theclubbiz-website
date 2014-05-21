@@ -12,34 +12,33 @@
   <div/>
 
   <div>
-    <%= f.label :first_name %></br>
     <%= f.text_field :first_name , :placeholder =>  "Enter your first name"  %>
   </div>
-
+  <br/>
   <div>
-    <%= f.label :last_name %><br>
     <%= f.text_field :last_name, :placeholder =>  "Enter your last name"%>
   </div>
-  
+  <br/>
   <div>
-    <%= f.label :username %><br>
     <%= f.text_field :username, :placeholder =>  "Enter your username" %>
   </div>
-
+<br/>
   <div>
-    <%= f.label :phone_number %><br>
     <%= f.text_field :phone_number, :placeholder =>  "Enter your phone number" %>
   </div>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true, :placeholder => "Enter your email"  %></div>
-
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off", :placeholder => "Enter your password" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Re-Enter your password"  %></div>
-
+<br/>
+  <div>
+    <%= f.email_field :email, autofocus: true, :placeholder => "Enter your email"  %>
+  </div>
+<br/>
+  <div>
+    <%= f.password_field :password, autocomplete: "off", :placeholder => "Enter your password" %>
+  </div>
+<br/>
+  <div>
+    <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "Re-Enter your password"  %>
+  </div>
+<br/>
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
