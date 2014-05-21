@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   has_many :EventFollower
   has_many :SocietyEvent
   has_many :Follower, :through => :EventFollower, :source => 'User'
-  has_many :Society, through :SocietyEvent
+  has_many :Society, :through =>  :SocietyEvent
 
   # Many-to-one associations
   has_many :EventFeedback
