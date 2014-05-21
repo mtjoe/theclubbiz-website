@@ -42,6 +42,7 @@
 				  		<li><%= link_to("Create Society", {controller: "/societies", action: "new"}) %></li>
 				  		<li><%= link_to("Create Event", {controller: "/events", action: "new"}) %></li>
 				  		<li><%= link_to("Create Announcement", {controller: "/announcements", action: "new"}) %></li>
+				  		<li><%= link_to("Create Network", {controller: "/networks", action: "new"}) %></li>
 				    	<li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
 					</ul>
 				</div>
@@ -100,11 +101,6 @@
 						<span class="glyphicon glyphicon-flag"></span>
 						<p>SOCIETY</p>
 					<% end %>
-					<%= link_to({controller: "/networks", action: "new"}, class: "modal-choice") do %>
-						<span class="glyphicon glyphicon-flag"></span>
-						<p>NETWORK</p>
-					<% end %>
-
 	      		</div>
 	      		<div class="modal-footer">
 

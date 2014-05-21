@@ -26,15 +26,15 @@ class NetworksController < ApplicationController
   def create
     @network = Network.new(network_params)
 
-    # Validate admins
-    societies = params[:admin]
+    # Validate societies
+    societies = params[:societies]
     valid_societies = []
     if !societies.nil?
-      soceties_array = societies.split(",")
+      societies_array = societies.split(",")
       for i in 0 ... societies_array.size
         societies_chosen = Society.find_by(email: societies_array[i])
         if societies_chosen.nil?
-          @network.errors[:base] << "The email #{socities_array[i]} is not in the database"
+          @network.errors[:base] << "The email #{societies_array[i]} is not in the database"
         else
           valid_societies << societies_chosen
         end
@@ -44,16 +44,21 @@ class NetworksController < ApplicationController
 
 
     respond_to do |format|
-      if @network.save
-        format.html { redirect_to @network, notice: 'Network was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @network }
-      else
-        valid_societies.each do |vs|
-          SocietyNetwork.create(network_id: @network.id, society_id: vs.id)
-        end
-
+      if !(@network.errors).empty?
         format.html { render action: 'new' }
         format.json { render json: @network.errors, status: :unprocessable_entity }
+      else
+        if @network.save
+          valid_societies.each do |vs|
+            SocietyNetwork.create(network_id: @network.id, society_id: vs.id)
+          end
+
+          format.html { redirect_to @network, notice: 'Network was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @network }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @network.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
