@@ -102,6 +102,7 @@
 				$('#nav-search-container').animate({width:'30%'}, 1000);
 			}
 
+			var time = settings.animationTime;
 			
 			$(this).css({
 				"transform": "translate3d(0, " + pos + "%, 0)",

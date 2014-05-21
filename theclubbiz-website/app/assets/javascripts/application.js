@@ -12,15 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//= require bootstrap
 //= require onepage-scroll
-//= require jquery
-//= require jquery.tagsinput
+//= require bootstrap
+
 //= require tinymce-jquery
 //= require slimscroll
-//= require jquery
-//= require jquery_ujs
 //= require jquery-ui
 //= require autocomplete-rails
+//= require jquery.tagsinput
+//= require_tree .
 

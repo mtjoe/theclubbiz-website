@@ -1,7 +1,31 @@
 var shown = false;
 var inPageTwo = false;
 
-var ready = function(){
+
+function goToBrowse(){
+	$('#nav-menu').hide(600);
+	$('#nav-search').animate({width:'60%'}, 1000);
+	$(".main").moveTo(2, withAnim);
+	inPageTwo = !inPageTwo;
+	return true;
+}
+
+function getUrlParameter(param) {
+	var url = window.location.search.substring(1);
+	var urlVar = url.split('&');
+	var value = null;
+	for (i=0; i< urlVar.length; i++) {
+		var paramKey = urlVar[i].split('=');
+		if (paramKey[0] == param) {
+			value = paramKey[1];
+			break;
+		}
+	}
+	return value;
+}
+
+
+$(window).load(function() {
 	$('.main-page').onepage_scroll({
 		sectionContainer: "section",
 		easing: "ease",
@@ -40,14 +64,4 @@ var ready = function(){
 
 		shown = !shown;
     });
-};
-
-function goToBrowse(){
-	$('#nav-menu').hide(600);
-	$('#nav-search').animate({width:'60%'}, 1000);
-	$(".main").moveTo(2);
-	inPageTwo = !inPageTwo;
-}
-
-
-$(window).load(ready);
+});

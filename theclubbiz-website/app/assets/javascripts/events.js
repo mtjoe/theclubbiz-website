@@ -7,7 +7,14 @@ $(window).load(function() {
 		update_layout(tab_opened, a);
 	});
 
-	$('.society-desc').slimScroll({height: ($(window).height() - 200)});
+	$('.admin textarea').tagsInput({
+    // my parameters here
+		"width": "75%",
+		"height": "70px",
+		"defaultText":'add email here'
+	});
+
+	$('.event-desc').slimScroll({height: ($(window).height() - 200)});
 
 	$('.tab').click(function() {
 		
