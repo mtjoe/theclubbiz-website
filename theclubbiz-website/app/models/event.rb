@@ -10,9 +10,6 @@ class Event < ActiveRecord::Base
   has_many :EventFeedback
   has_many :Ticket
   belongs_to :Category
-
-  # One-to-one associations
-	has_one  :Gallery
   
 	validates_associated :Ticket
 	validates_associated :EventFeedback

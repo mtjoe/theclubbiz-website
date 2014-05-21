@@ -3,7 +3,7 @@ class CreateNetworks < ActiveRecord::Migration
     create_table :networks do |t|
       t.string :name
       t.text :description
-      t.string :image
+      t.text :image
       t.belongs_to :user
       t.timestamps
     end

@@ -8,5 +8,4 @@ class University < ActiveRecord::Base
 	validates_associated :Society
 	validates_associated :UniversityAdmin
 	validates :name, presence: true, length: { maximum: 255 }
-	validates :logo,  length: { maximum: 255 }
 end

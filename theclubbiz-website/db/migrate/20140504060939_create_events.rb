@@ -14,6 +14,9 @@ class CreateEvents < ActiveRecord::Migration
     	t.integer :max_tickets
       t.integer :ticket_price
       t.belongs_to :category
+      t.text :image1
+      t.text :image2
+      t.text :image3
 
       t.timestamps
     end
