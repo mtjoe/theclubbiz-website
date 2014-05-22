@@ -11,7 +11,7 @@
 	<h1>Followed Societies</h1>
 	<% @societies = [] %>
 	<% (SocietyFollower.where(user_id: @user.id)).each do |sf| %>
-		<% @societies << Society.find_by(id: sf.societrails inclue y_id) %>
+		<% @societies << Society.find_by(id: sf.society_id) %>
 	<% end %>
 	<% if @societies.empty? %>
 		<p>No entry in this category.</p>

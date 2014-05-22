@@ -7,22 +7,24 @@ class WelcomeController < ApplicationController
       @announcements = []
       
       # To All Societies
-      (@announcements << Announcement.where(allSoc: true)).flatten!
+      @announcements << Announcement.where(allSoc: true)
       university_ids = []
 
       # From Society Admins
       socFollower = SocietyFollower.where(user_id: current_user.id)
       socFollower.each do |sf|
         sf_announce = Announcement.where(society_id: sf.society_id)
-        (@announcements << sf_announce).flatten!
+        @announcements << sf_announce
       end
 
       # From University Admins
       university_ids.uniq
       university_ids.each do |ui|
         ui_announce = Announcement.find_by(university_id: ua)
-        (@announcements << ui_announce).flatten!
+        @announcements << ui_announce
       end
+
+      @announcements.flatten!
       
   	when "adminSoc"
       @header = "Administered Societies"

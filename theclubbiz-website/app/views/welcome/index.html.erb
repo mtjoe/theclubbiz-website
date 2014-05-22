@@ -92,7 +92,6 @@ welcome/index.html.erb
 			<div id="grid-content">
 				<div id="grid-list-cont">
 					<div id="grid-list">
-
 						<div id="grid-hdr"><%= @header %></div>
 
 						<!-- LISTING ANNOUNCEMENTS-->
@@ -100,7 +99,6 @@ welcome/index.html.erb
 							<% if @announcements.empty? %>
 								<p>You have no announcements</p>
 							<% else %>
-								
 								<% @announcements.each do |a| %>
 									<div class="announce-entry-wrapper">
 										<% if (a.allSoc) != "" %>
@@ -175,24 +173,25 @@ welcome/index.html.erb
 							<% if @pastEvents.empty? %>
 								<p>No events in this category.</p>
 							<% else %>
-								<% @pastEvents.each do |s| %>
+								<% @pastEvents.each do |event| %>
 									<div class="grid-entry">
 										<div class="grid-entry-img">
-											<%= image_tag s.logo %>
+											<%= image_tag event.image1 %>
 										</div>
 										<div class="grid-entry-label">
 											<div class="grid-entry-label-hdr">
-												<h2><%= s.name %></h2>
+												<h2><%= event.name %></h2>
 												<p>University of Melbourne</p><br>
 											</div>
 											<div class="grid-entry-label-content">
-												<%= s.short_description %>
+												<p><%= event.start_time %></p>
+
 											</div>
 											<div class="grid-entry-label-btns">
-												<%= link_to({controller: "users", action: 'followSociety'}, :societyId => s.id) do %>
+												<%= link_to({controller: "users", action: 'followSociety'}, :societyId => event.id) do %>
 													<span class="glyphicon glyphicon-star">Follow</span>
 												<% end %>
-												<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
+												<%= link_to("Go To Page", {controller: 'events', action: 'show', id: event.id}) %>
 											</div>
 										</div>
 									</div>
@@ -209,7 +208,7 @@ welcome/index.html.erb
 								<% @upcomingEvents.each do |s| %>
 									<div class="grid-entry">
 										<div class="grid-entry-img">
-											<%= image_tag s.logo %>
+											<%= image_tag s.image1 %>
 										</div>
 										<div class="grid-entry-label">
 											<div class="grid-entry-label-hdr">
@@ -217,7 +216,7 @@ welcome/index.html.erb
 												<p>University of Melbourne</p><br>
 											</div>
 											<div class="grid-entry-label-content">
-												<%= s.short_description %>
+												<p><%= s.start_time %></p>
 											</div>
 											<div class="grid-entry-label-btns">
 												<%= link_to({controller: "users", action: 'followSociety'}, :societyId => s.id) do %>

@@ -1,32 +1,37 @@
-
+<style type="text/css">
+	html, body {
+		overflow: hidden;
+		height: 100%;
+	}
+</style>
 <div class="society-card">
 	<div class="left-desc">
 		<div class="society-logo">
 			<%= image_tag @society.logo %>
 		</div>
-		<% if !current_user.nil? %>
-			<% if (SocietyFollower.find_by(user_id: current_user.id, society_id:@society.id)).nil? %>
-				<%= link_to({controller: "users", action: 'followSociety', :societyId => @society.id}) do %>
-					<span class="glyphicon glyphicon-star">Follow</span>
+		<div class="follow-btn-wrapper">
+			<% if !current_user.nil? %>
+				<% if (SocietyFollower.find_by(user_id: current_user.id, society_id:@society.id)).nil? %>
+					<%= link_to({controller: "users", action: 'followSociety', :societyId => @society.id}) do %>
+						<span class="glyphicon glyphicon-star">Follow</span>
+					<% end %>
+				<% else %>
+					<%= link_to({controller: "users", action: 'unfollowSociety', :societyId => @society.id}) do %>
+						<span class="glyphicon glyphicon-star-empty">Unfollow</span>
+					<% end %>
 				<% end %>
 			<% end %>
-
-		<% else %>
-			<%= link_to({controller: "users", action: 'unfollowSociety', :societyId => @society.id}) do %>
-				<span class="glyphicon glyphicon-star-empty">Unfollow</span>
-			<% end %>
-		<% end %>
+		</div>
 	</div>
 
 	<div class="society-desc">
 		<h1 class="title"><%= @society.name %><a href=<%= @society.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
 		<p class="subtitle"><%= University.find_by(id: @society.university_id) %></p>
+		<%= link_to "Edit Content", {action: 'edit'} %>
 		<p><%= (@society.short_description).html_safe %></p>
 
 		<p><b>Email: </b> <%= @society.email %></p>
 		<p><b>Phone Number: </b> <%= @society.phone_number %></p>
-
-		
 
 		<h4>Description</h4>
 		<p><%= (@society.description).html_safe %></p>

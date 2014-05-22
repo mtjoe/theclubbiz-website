@@ -7,6 +7,12 @@ $(window).load(function() {
 		update_layout(tab_opened, a);
 	});
 
+	/*$('.admin textarea').tagsInput({
+		"width": "75%",
+		"height": "70px",
+		"defaultText":'add email here'
+	});*/
+
 	$('.society-desc').slimScroll({height: ($(window).height() - 200)});
 
 	$('.tab').click(function() {
@@ -15,7 +21,7 @@ $(window).load(function() {
 			tab_opened = true;
 			a = "." + $(this).attr('class').split(' ')[1];
 			$('.tabs').animate({top:"100px"}, 500);
-			$('.tab-pages').find(a).animate({top:"200px"}, 500,
+			$('.tab-pages').find(a).animate({top:"200px"}, 300,
 				function(){
 					$('.tab-pages').find(a).animate({top:"150px"}, 300);
 					$('.tabs').animate({

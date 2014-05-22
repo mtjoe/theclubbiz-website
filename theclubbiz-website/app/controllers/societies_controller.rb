@@ -49,7 +49,7 @@ class SocietiesController < ApplicationController
     valid_admins.uniq!
 
     respond_to do |format|
-      if !(@society.errors).empty? || 
+      if !(@society.errors).empty?
 
         format.html { render action: 'new' }
         format.json { render json: @society.errors, status: :unprocessable_entity }
@@ -57,6 +57,7 @@ class SocietiesController < ApplicationController
         if (@society.save)
           valid_admins.each do |va|
             SocietyAdmin.create(society_id: @society.id, user_id: va.id)
+            SocietyFollower.create(society_id: @society.id, user_id: va.id)
           end
           format.html { redirect_to @society, notice: 'Society was successfully created.' }
           format.json { render action: 'show', status: :created, location: @society }

@@ -1,65 +1,67 @@
+<div class="onpage">
+	<div class="event-card">
+		<div class="left-desc">
+			<div class="event-logo">
+				<%= image_tag @event.logo %>
+			</div>
+			<% if !current_user.nil? %>
+				<% if (EventFollower.find_by(user_id: current_user.id, event_id:@event.id)).nil? %>
+					<%= link_to({controller: "users", action: 'followEvent', :eventId => @event.id}) do %>
+						<span class="glyphicon glyphicon-star">Follow</span>
+					<% end %>
+				<% end %>
 
-<div class="event-card">
-	<div class="left-desc">
-		<div class="event-logo">
-			<%= image_tag @event.logo %>
-		</div>
-		<% if !current_user.nil? %>
-			<% if (EventFollower.find_by(user_id: current_user.id, event_id:@event.id)).nil? %>
-				<%= link_to({controller: "users", action: 'followEvent', :eventId => @event.id}) do %>
-					<span class="glyphicon glyphicon-star">Follow</span>
+			<% else %>
+				<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => @event.id}) do %>
+					<span class="glyphicon glyphicon-star-empty">Unfollow</span>
 				<% end %>
 			<% end %>
+		</div>
 
-		<% else %>
-			<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => @event.id}) do %>
-				<span class="glyphicon glyphicon-star-empty">Unfollow</span>
-			<% end %>
-		<% end %>
+		<div class="event-desc">
+			<h1 class="title"><%= @event.name %><a href=<%= @event.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
+			<p class="subtitle"><%= University.find_by(id: @event.university_id) %></p>
+			<%= link_to "Edit Content", {action: 'edit'} %>
+			<p><%= (@event.short_description).html_safe %></p>
+
+			<p><b>Email: </b> <%= @event.email %></p>
+			<p><b>Phone Number: </b> <%= @event.phone_number %></p>
+
+			
+
+			<h4>Description</h4>
+			<p><%= (@event.description).html_safe %></p>
+			<h4>Office Address</h4>
+			<p><%= @event.office_address_line1 %><br>
+			<%= @event.office_address_line2 %><br>
+			<%= @event.office_city %><br>
+			<%= @event.office_state %> <%= @event.office_postcode %></p>
+		</div>
 	</div>
 
-	<div class="event-desc">
-		<h1 class="title"><%= @event.name %><a href=<%= @event.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
-		<p class="subtitle"><%= University.find_by(id: @event.university_id) %></p>
-		<p><%= (@event.short_description).html_safe %></p>
-
-		<p><b>Email: </b> <%= @event.email %></p>
-		<p><b>Phone Number: </b> <%= @event.phone_number %></p>
-
-		
-
-		<h4>Description</h4>
-		<p><%= (@event.description).html_safe %></p>
-		<h4>Office Address</h4>
-		<p><%= @event.office_address_line1 %><br>
-		<%= @event.office_address_line2 %><br>
-		<%= @event.office_city %><br>
-		<%= @event.office_state %> <%= @event.office_postcode %></p>
+	<!-- TABS -->
+	<div class="tabs">
+		<div class="tab st0" style='background-color: lightgrey;'>
+			<p><span class="glyphicon glyphicon-bullhorn"></span> Announce</p>
+		</div>
+		<div class="tab st1" style='background-color: #C4CDCD;'>
+			<p><span class="glyphicon glyphicon-calendar"></span> Events</p>
+		</div>
+		<div class="tab st2" style='background-color: #97A0A9;'>
+			<p><span class="glyphicon glyphicon-camera"></span> Gallery</p>
+		</div>
+		<div class="tab st3" style='background-color: #74D7C4;'>
+			<p><span class="glyphicon glyphicon-comment"></span> Feedbacks</p>
+		</div>
+		<div class="tab st4" style='background-color: #A6C0D1;'>
+			<p><span class="glyphicon glyphicon-user"></span> Followers</p>
+		</div>
+		<div class="tab st5" style='background-color: #F8C471;'>
+			<p><span class="glyphicon glyphicon-globe"></span> Networks</p>
+		</div>
 	</div>
+	<!-- END: TABS -->
 </div>
-
-<!-- TABS -->
-<div class="tabs">
-	<div class="tab st0" style='background-color: lightgrey;'>
-		<p><span class="glyphicon glyphicon-bullhorn"></span> Announce</p>
-	</div>
-	<div class="tab st1" style='background-color: #C4CDCD;'>
-		<p><span class="glyphicon glyphicon-calendar"></span> Events</p>
-	</div>
-	<div class="tab st2" style='background-color: #97A0A9;'>
-		<p><span class="glyphicon glyphicon-camera"></span> Gallery</p>
-	</div>
-	<div class="tab st3" style='background-color: #74D7C4;'>
-		<p><span class="glyphicon glyphicon-comment"></span> Feedbacks</p>
-	</div>
-	<div class="tab st4" style='background-color: #A6C0D1;'>
-		<p><span class="glyphicon glyphicon-user"></span> Followers</p>
-	</div>
-	<div class="tab st5" style='background-color: #F8C471;'>
-		<p><span class="glyphicon glyphicon-globe"></span> Networks</p>
-	</div>
-</div>
-<!-- END: TABS -->
 
 
 <!-- TAB CONTENTS -->
