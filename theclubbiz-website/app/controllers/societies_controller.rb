@@ -49,8 +49,7 @@ class SocietiesController < ApplicationController
     valid_admins.uniq!
 
     respond_to do |format|
-      if !(@society.errors).empty? || 
-
+      if !(@society.errors).empty?
         format.html { render action: 'new' }
         format.json { render json: @society.errors, status: :unprocessable_entity }
       else
