@@ -23,6 +23,16 @@ class SocietiesController < ApplicationController
 
   # GET /societies/1/edit
   def edit
+    ary =[]
+    socAdmin = SocietyAdmin.where(society_id: @society.id)
+    socAdmin.each do |sa| 
+      ary << sa.user_id 
+    end 
+    @admin = User.find(ary)
+    @admin_emails = []
+    @admin.each do |a|
+      @admin_emails << a.email
+    end
   end
 
   # POST /societies

@@ -1,7 +1,7 @@
 <script type="text/javascript">
-  $(window).load(function(){
+  $(document).ready(function(){
     <% @admin_emails.each do |ae| %>
-      $('.admin textarea').add(<% raw ae %>);
+      $('#admin').addTag("<%= ae %>");
     <% end %>
   });
 </script>
