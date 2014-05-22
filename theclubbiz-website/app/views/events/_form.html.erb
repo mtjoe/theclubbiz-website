@@ -1,3 +1,4 @@
+<%= tinymce %>
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -27,6 +28,17 @@
     <%= f.file_field :image2 %>
     <br>
     <%= f.file_field :image3 %>
+  </div>
+  <br>
+  <div class="description">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, :rows => 10, :cols => 4, :class => "tinymce", :id => "desc", :placeholder => "Description" %>
+
+  </div>
+  <br>
+  <div class="short_description">
+    <%= f.label :short_description %><br>
+    <%= f.text_area :short_description, :rows => 10, :cols => 70 %>
   </div>
   <br>
   <div class="start-time">
