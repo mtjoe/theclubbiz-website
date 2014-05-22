@@ -72,3 +72,21 @@ function update_layout(tab_opened, a) {
 	}
 }
 
+function checkRadio() {
+	var val = $("input[name=shared_opt]:checked").val();
+	if (val == "yes") {
+		$(".society_admin").hide();
+		$(".network").show();
+	} else {
+		$(".network").hide();
+		$(".society_admin").show();
+	}
+}
+
+$(window).load(function() {
+	checkRadio();
+	$("input[name=shared_opt]:radio").change(function(){
+		checkRadio();
+	});
+});
+

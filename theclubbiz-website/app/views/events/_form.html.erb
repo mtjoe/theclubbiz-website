@@ -15,10 +15,7 @@
     <%= f.text_field :name, :placeholder => "Event's Name" %>
   </div>
   <br>
-  <div class="society">
-    <%= collection_select(:society, :id, Society.all, :id, :name, :prompt => "Society") %>
-  </div>
-  <br>
+  
   <div class="category">
     <%= f.collection_select(:category_id, Category.find(:all), :id, :name, :prompt => "Category") %>
   </div>
@@ -76,7 +73,35 @@
     <%= f.label :ticket_price %><br>
     <%= f.text_field :ticket_price %>
   </div>
+ <br>
+ <!-- Check if University admin and Society admin -->
+ <p>Do you want to share this event?</p>
+  <input type="radio" name="shared_opt" value="yes" checked>Yes<br>
+  <input type="radio" name="shared_opt" value="no" >No<br><br>
+  
+  <div class="society_admin">
+    <% @socAdmin = SocietyAdmin.where(user_id: current_user.id) %>
+    <% arr = [] %>
+    <% @socAdmin.each do |sa| %>
+      <% arr << sa.society_id %>
+    <% end %>
+    <%= collection_select(:societies, :society_id , Society.find(arr), :id, :name, :prompt => "Society") %>
+  </div>
 
+  <div class="network">
+    <% @socAdmin = SocietyAdmin.where(user_id: current_user.id) %>
+    <% arr = [] %>
+    <% @socAdmin.each do |sa| %>
+      <% @socNetwork = SocietyNetwork.where(society_id: sa.society_id) %>
+      <% @socNetwork.each do |sn| %>
+        <% arr << sn %>
+      <% end %>
+    <% end %>
+    <%= collection_select(:networks, :network_id, Network.find(arr), :id, :name, :prompt => "Network") %>
+
+  </div>
+  <br>
+  
  <br>
   <div class="actions">
     <%= f.submit %>

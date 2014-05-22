@@ -26,14 +26,39 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    network_id = params[:networks][:network_id]
+    society_id = params[:societies][:society_id]
+    if (network_id == "" && society_id == "") 
+      @event.errors[:base] << "please enter host(s) for this event"
+    elsif (network_id == "" && society_id != "") 
+      isSociety = true
+    elsif (network_id != "" && society_id == "") 
+      isSociety = false
+    else 
+      @event.errors[:base] << "ERROR"
+    end
 
     respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @event }
-      else
+      if !(@event.errors).empty?
         format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
+      else
+        if @event.save
+          if isSociety
+            SocietyEvent.create(society_id: Society.find_by(id: society_id), event_id: @event.id)
+          else
+            network = SocietyNetwork.where(id: network_id)
+            network.each do |n|
+              SocietyEvent.create(society_id: Society.find_by(id: n.society_id), event_id: @event.id)
+            end   
+          end      
+
+          format.html { redirect_to @event, notice: 'Event was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @event }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -71,7 +96,7 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:name, :start_time, :end_time, :location_address_line1,
-        :location_address_line2, :location_state, :location_city, :location_postcode, 
+        :location_address_line2, :category_id, :location_state, :location_city, :location_postcode, 
         :website, :max_tickets, :image1, :image2, :image3, :ticket_price)
       #params[:name]
     end
