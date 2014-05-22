@@ -1,26 +1,29 @@
 @import 'grid';
 
 $tab_height:100px;
-$nTabs:5;
+$nTabs:3;
+
 body {
 
 	.event-card {
 		position:absolute;
-		height: calc(100% - 100px);
+		height: calc(100% - 200px);
+		width: 100%;
 		line-height: calc(100% - 200px);
 		vertical-align: middle;
 		
 		.left-desc{
-			width: 400px;
+			width: 35%;
 			margin-left:150px;
 			margin-right: 100px;
-			margin-top: 50px;
+			margin-top: 4%;
 			float:left;
+			height: 80%;
 
 			.event-logo {
 				border: 1px solid lightgrey;
-				height: 400px;
-				width: 400px;
+				height: 80%;
+				width: 100%;
 				line-height: 400px;
 				vertical-align: middle;
 				text-align: center;
@@ -31,20 +34,23 @@ body {
 				}
 			}
 
-			a {
-				text-transform: uppercase;
-				font-size: 20px;
-				display: block;
-				width:400px;
-				height:70px;
-				line-height: 70px;
-				vertical-align: middle;
-				text-align: center;
+			.follow-btn-wrapper {
+				display:table;
+				width:100%;
+				height:20%;
 				border:1px solid lightgrey;
 				background-color: lightgrey;
+
+				a {
+					text-transform: uppercase;
+					font-size: 30px;
+					display: table-cell;
+					line-height: 100%;
+					vertical-align: middle;
+					text-align: center;
+				}
 			}
 		}
-		
 		.event-desc {
 			
 			padding-right: 150px;
@@ -79,7 +85,7 @@ body {
 		}
 	}
 
-	.tabs {
+	.event-tabs {
 		position: absolute;
 		height: $tab_height;
 		width:100%;
@@ -103,7 +109,7 @@ body {
 		}
 	}	
 
-	.tab-page {
+	.event-tab-page {
 		position:absolute;
 		height:100%;
 		width:100%;
@@ -125,6 +131,8 @@ body {
 			height:calc(93% - 150px);
 			margin-top: 2%;
 			margin-left: 5%; 
+
+
 
 			.announce-entry-wrapper {
 				border: 1px solid white;
@@ -149,6 +157,7 @@ body {
 				line-height: 300px;
 				vertical-align: middle;
 				text-align: center;
+				float:left;
 
 				img {
 					max-height: 100%;
@@ -170,7 +179,7 @@ body {
 
 				textarea {
 					width:100%;
-					border:1px solid lightgrey;
+					border:1px solid white;
 					border-radius: 5px;
 				}
 
@@ -184,10 +193,9 @@ body {
 				margin-right: 10%;
 
 				.feedback-entry {
-					border: 1px solid grey;
+					border: 1px solid white;
 					width: 100%;
 					padding: 2%;
-					background-color: lightgrey;
 
 					p {
 						padding-left: 10%;
@@ -195,8 +203,32 @@ body {
 					}
 				}
 			}
+		}
+	}
+}
 
+.follower-usr-entry {
+	border: 1px solid white;
+	width: 33%;
+	height: 80px;
+	line-height: 80px;
+	vertical-align: middle;
+	float:left;
 
+	.follower-usr-img-wrapper {
+		height: 60px;
+		margin-top: 10px;
+		width: 60px;
+		border: 1px solid white;
+		float:left;
+		margin-left: 10%;
+		margin-right: 10%;
+		padding:0px;
+
+		img {
+			max-height: 100%;
+			max-width: 100%;
+			margin-top: 0px;
 		}
 	}
 }

@@ -58,7 +58,7 @@
 		<% @events.each do |eve| %>
 			<div class="entry">
 				<div class="img-wrapper">
-					<%= image_tag eve.logo %>	
+					<%= image_tag eve.image1 %>	
 				</div>
 				<div class="entry-title">
 					<%= link_to eve.name, {controller: "events", action: "show", id: eve.id} %></a>

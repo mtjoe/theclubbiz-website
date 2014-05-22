@@ -87,6 +87,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def addFeedback
+    EventFeedback.create(text: params[:fb], event_id: params[:id],  user_id: current_user.id)
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

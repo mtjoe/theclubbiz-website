@@ -4,6 +4,7 @@ TheclubbizWebsite::Application.routes.draw do
   resources :networks
 
   post "societies/addFeedback"
+  post "events/addFeedback"
   get "users/followSociety"
   get "users/unfollowSociety"
   get "users/followEvent"

@@ -28,7 +28,6 @@ class SocietiesController < ApplicationController
   # POST /societies
   # POST /societies.json
   def create
-
     @society = Society.new(society_params)
     
     # Validate admins

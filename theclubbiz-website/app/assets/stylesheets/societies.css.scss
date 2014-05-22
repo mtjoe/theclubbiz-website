@@ -155,6 +155,8 @@ body {
 				line-height: 300px;
 				vertical-align: middle;
 				text-align: center;
+				float:left;
+				margin:10px;
 
 				img {
 					max-height: 100%;
@@ -190,10 +192,9 @@ body {
 				margin-right: 10%;
 
 				.feedback-entry {
-					border: 1px solid grey;
+					border: 1px solid white;
 					width: 100%;
 					padding: 2%;
-					background-color: lightgrey;
 
 					p {
 						padding-left: 10%;
@@ -201,8 +202,6 @@ body {
 					}
 				}
 			}
-
-
 		}
 	}
 }

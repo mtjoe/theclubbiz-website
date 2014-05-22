@@ -74,11 +74,14 @@ class UsersController < ApplicationController
   end
 
   def followEvent
-    
+    EventFollower.create(user_id: current_user.id, event_id: params[:eventId])
+    redirect_to :back
   end
 
   def unfollowEvent
-    
+    follower = EventFollower.find_by(user_id: current_user.id, event_id: params[:eventId])
+    follower.destroy
+    redirect_to :back
   end
 
   private
