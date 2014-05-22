@@ -60,6 +60,7 @@ welcome/index.html.erb
 				<ul style="list-style:none">
 					<% if user_signed_in? %>
 						<li class="side-h2"><%= link_to("Announcements", :state => "announcements") %></li>
+						<li class="side-h2"><%= link_to("Invitations", :state => "invitations") %></li>
 						<li class="side-h1"><%= link_to("My Account", {controller: 'users', action:'show', :id => current_user.id}) %></li>
 						<ul style="list-style:none">
 							<li class="side-h2"><%= link_to("Administered Societies", :state => "adminSoc") %></li>

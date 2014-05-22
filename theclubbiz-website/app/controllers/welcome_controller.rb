@@ -25,7 +25,9 @@ class WelcomeController < ApplicationController
       end
 
       @announcements.flatten!
-      
+    when "invitations"
+      @header = "Invitations"
+      @invitations = []
   	when "adminSoc"
       @header = "Administered Societies"
       @societies = []

@@ -189,19 +189,15 @@
 		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
 		<div class="tab-page-content">
 			<% (SocietyFollower.where(society_id: @society.id)).each do |sf| %>
-				<h3><%= (User.find_by(id: sf.user_id)).first_name %> <%= (User.find_by(id: sf.user_id)).last_name %></h3>
+				<div class="follower-usr-entry">
+					<div class="follower-usr-img-wrapper">
+						<%= image_tag (User.find_by(id: sf.user_id)).photo %>
+					</div>
+					<h3><%= (User.find_by(id: sf.user_id)).first_name %> <%= (User.find_by(id: sf.user_id)).last_name %></h3>
+				</div>
 			<% end %>
 		</div>
 	</div>
 	<!-- END: FOLLOWERS -->
-
-	<!-- NETWORKS --> 
-	<div class="tab-page st5" style='background-color: #F8C471;'>
-		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
-		<div class="tab-page-content">
-			
-		</div>
-	</div>
-	<!-- END: NETWORKS -->
 </div>
 <!-- END: TAB CONTENTS -->
