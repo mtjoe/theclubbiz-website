@@ -1,6 +1,6 @@
 class SocietiesController < ApplicationController
   before_action :set_society, only: [:show, :edit, :update, :destroy, :addFeedback]
-
+  before_filter :authenticate_user!, :except => [:show, :index]
   # GET /societies
   # GET /societies.json
   def index

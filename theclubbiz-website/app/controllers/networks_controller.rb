@@ -1,5 +1,6 @@
 class NetworksController < ApplicationController
   before_action :set_network, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, :except => [:show, :index]
 
   # GET /networks
   # GET /networks.json

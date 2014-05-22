@@ -1,6 +1,6 @@
 class AnnouncementsController < ApplicationController
   before_action :set_announcement, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!, :except => [:show, :index]
   # GET /announcements
   # GET /announcements.json
   def index
@@ -28,7 +28,7 @@ class AnnouncementsController < ApplicationController
 
     respond_to do |format|
       if @announcement.save
-        format.html { redirect_to controller: 'welcome', action: 'index', :state => 'announcements', notice: 'Announcement was successfully created.' }
+        format.html { redirect_to @announcement, notice: 'Announcement was successfully created.' }
         format.json { render action: 'show', status: :created, location: @announcement }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class AnnouncementsController < ApplicationController
   def update
     respond_to do |format|
       if @announcement.update(announcement_params)
-        format.html { redirect_to controller: 'welcome', action: 'index', :state => 'announcements', notice: 'Announcement was successfully updated.' }
+        format.html { redirect_to @announcement, notice: 'Announcement was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
