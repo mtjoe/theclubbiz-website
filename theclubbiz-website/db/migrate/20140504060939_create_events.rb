@@ -5,6 +5,8 @@ class CreateEvents < ActiveRecord::Migration
     	t.string :name
     	t.datetime :start_time
       t.datetime :end_time
+      t.text :description
+      t.text :short_description
     	t.string :location_address_line1
       t.string :location_address_line2
       t.string :location_state

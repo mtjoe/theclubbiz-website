@@ -23,6 +23,8 @@ class Event < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 255 }
   validates :start_time, presence: true
   validates :end_time, presence: true
+  validates :description, presence: true
+  validates :short_description, presence: true
   validates :location_address_line1, length: { maximum: 255 }
   validates :location_address_line2, length: { maximum: 255 }
   validates :location_state, length: { maximum: 255 }
