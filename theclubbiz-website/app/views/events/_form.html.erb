@@ -12,86 +12,90 @@
     </div>
   <% end %>
 
-   <div class="name">
-    <%= f.text_field :name, :placeholder => "Event's Name" %>
+   <div class="name" align="middle">
+    <%= f.text_field :name, :placeholder => "Name", :size => "139.5" %>
   </div>
   <br>
   
-  <div class="category">
+  <div class="category" align="middle">
     <%= f.collection_select(:category_id, Category.find(:all), :id, :name, :prompt => "Category") %>
   </div>
   <br>
-  <div class="image">
-    <p>Image</p>
+  <div class="max_tickets" align="middle">
+     <%= f.select :max_tickets, (0..10000), :prompt => "Max Tickets" %>
+  </div>
+  <br>
+  <div class="ticket_price" align="middle">
+    <%= f.text_field :ticket_price , :placeholder => "Ticket Price", :size => "139.5" %>
+  </div>
+  <br>
+  <div class="image" align="middle">
+    <p><strong>Image</strong></p>
     <%= f.file_field :image1 %>
     <br>
     <%= f.file_field :image2 %>
     <br>
     <%= f.file_field :image3 %>
   </div>
+  
   <br>
-  <div class="description">
+  <div class="start-time" align="middle">
+    <%= f.label :start_time %><br>
+    <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
+  </div>
+
+  <div class="end-time" align="middle">
+    <%= f.label :end_time %><br>
+    <%= f.datetime_select(:end_time, :start_year => Date.today.year, ampm: true) %>
+  </div>
+  <br>
+  <div class="website" align="middle">
+    <%= f.text_field :website, :placeholder => "Website",:size => "139.5" %>
+  </div>
+  <br>
+  <div class="description" align="middle">
     <%= f.label :description %><br>
     <%= f.text_area :description, :rows => 10, :cols => 4, :class => "tinymce", :id => "desc", :placeholder => "Description" %>
 
   </div>
   <br>
-  <div class="short_description">
+  <div class="short_description" align="middle">
     <%= f.label :short_description %><br>
-    <%= f.text_area :short_description, :rows => 10, :cols => 70 %>
+    <%= f.text_area :short_description, :rows => 10, :cols => 163 %>
   </div>
+  
   <br>
-  <div class="start-time">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
-  </div>
-
-  <div class="end-time">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select(:end_time, :start_year => Date.today.year, ampm: true) %>
-  </div>
-  <br>
-  <div class="location_address_line1">
-    <%= f.text_field :location_address_line1, :placeholder => "Location line 1" %>
-  </div>
-  <br>
-  <div class="location_address_line2">
-    <%= f.text_field :location_address_line2, :placeholder => "Location line 2" %>
-  </div>
-  <br>
-  <div class="location_state">
-    <%= f.label :location_state %><br>
+  <p align="middle"><strong>Location</strong></p>
+  <div class="location_state" align="middle">
     <%= f.select :location_state, options_for_select(['NSW', 'QLD', 'VIC', 'SA','TAS','WA']) %>
   </div>
   <br>
-  <div class="location_city">
-    <%= f.text_field :location_city, :placeholder => "City" %>
+  <div class="location_address_line1" align="middle">
+    <%= f.text_field :location_address_line1, :placeholder => "Location line 1",:size => "139.5" %>
   </div>
   <br>
-  <div class="location_postcode">
-    <%= f.text_field :location_postcode, :placeholder => "Postcode" %>
+  <div class="location_address_line2" align="middle">
+    <%= f.text_field :location_address_line2, :placeholder => "Location line 2",:size => "139.5" %>
+  </div>
+  
+  <br>
+  <div class="location_city" align="middle">
+    <%= f.text_field :location_city, :placeholder => "City",:size => "139.5" %>
   </div>
   <br>
-  <div class="website">
-    <%= f.text_field :website, :placeholder => "Website" %>
+  <div class="location_postcode" align="middle">
+    <%= f.text_field :location_postcode, :placeholder => "Postcode",:size => "139.5" %>
   </div>
-  <br>
-  <div class="max_tickets">
-    <%= f.label :max_tickets %><br>
-     <%= f.select :max_tickets, (0..10000) %>
-  </div>
-  <br>
-  <div class="ticket_price">
-    <%= f.label :ticket_price %><br>
-    <%= f.text_field :ticket_price %>
-  </div>
+  
  <br>
  <!-- Check if University admin and Society admin -->
- <p>Do you want to share this event?</p>
-  <input type="radio" name="shared_opt" value="yes" checked>Yes<br>
+ <div align="middle">
+ <p align="middle">Do you want to share this event?</p>
+  <input type="radio" name="shared_opt" value="yes" checked>Yes
   <input type="radio" name="shared_opt" value="no" >No<br><br>
+</div>
   
-  <div class="society_admin">
+  <div class="society_admin" align="middle">
     <% @socAdmin = SocietyAdmin.where(user_id: current_user.id) %>
     <% arr = [] %>
     <% @socAdmin.each do |sa| %>
@@ -100,7 +104,7 @@
     <%= collection_select(:societies, :society_id , Society.find(arr), :id, :name, :prompt => "Society") %>
   </div>
 
-  <div class="network">
+  <div class="network" align="middle">
     <% @socAdmin = SocietyAdmin.where(user_id: current_user.id) %>
     <% arr = [] %>
     <% @socAdmin.each do |sa| %>
@@ -115,7 +119,7 @@
   <br>
   
  <br>
-  <div class="actions">
+  <div class="actions" align="middle">
     <%= f.submit %>
   </div>
 <% end %>
