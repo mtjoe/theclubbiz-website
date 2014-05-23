@@ -164,23 +164,22 @@
 				<p class="image-caption">Logo</p>
 			</div>
 			<% (SocietyEvent.where(society_id: @society.id)).each do |se| %>
-				<% (Gallery.where(event_id: se.event_id)).each do |gallery| %>
-					<% if !((gallery.image1).nil?) %>
+				<% event = Event.find_by(id: se.event_id) %>
+				<% if !((event.image1).nil?) %>
+					<div class="image-entry">
+						<%= image_tag event.image1 %>
+						<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
+					</div>
+					<% if !((event.image2).nil?) %>
 						<div class="image-entry">
-							<%= image_tag gallery.image1 %>
+							<%= image_tag event.image2 %>
 							<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
 						</div>
-						<% if !((gallery.image2).nil?) %>
+						<% if !((event.image3).nil?) %>
 							<div class="image-entry">
-								<%= image_tag gallery.image2 %>
+								<%= image_tag event.image3 %>
 								<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
 							</div>
-							<% if !((gallery.image3).nil?) %>
-								<div class="image-entry">
-									<%= image_tag gallery.image3 %>
-									<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
-								</div>
-							<% end %>
 						<% end %>
 					<% end %>
 				<% end %>

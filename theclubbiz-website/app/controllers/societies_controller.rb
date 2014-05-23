@@ -15,7 +15,8 @@ class SocietiesController < ApplicationController
 
     allEvents = SocietyEvent.where(society_id: @society.id)
 
-    allEvents.each do |event|
+    allEvents.each do |socEvent|
+      event = Event.find_by(id: socEvent.event_id)
       if event.start_time > Time.now
         @upcomingEvents << event
       else
