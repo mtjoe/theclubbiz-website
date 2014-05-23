@@ -1,5 +1,5 @@
 class Society < ActiveRecord::Base
-  mount_uploader :logo, LogoUploader
+  mount_uploader :logo, SocietyLogoUploader
 
   # Many-to-many relationships
 	has_many :SocietyAdmin

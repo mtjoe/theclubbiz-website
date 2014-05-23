@@ -1,14 +1,13 @@
 TheclubbizWebsite::Application.routes.draw do
-  resources :announcements
-
-  resources :networks
 
   post "societies/addFeedback"
   post "events/addFeedback"
+  post "events/declineEvent"
+  post "events/acceptEvent"
   get "users/followSociety"
   get "users/unfollowSociety"
   get "users/followEvent"
-  get "users/unfollowEvent"  
+  get "users/unfollowEvent"
 
   devise_for :users do
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
@@ -17,6 +16,18 @@ TheclubbizWebsite::Application.routes.draw do
   resources :users do
     get :autocomplete_users_email, :on => :collection
   end
+
+  resources :events do
+     get :declineEvent, on: :collection
+  end
+
+  resources :events do
+     get :acceptEvent, on: :collection
+  end
+
+  resources :announcements
+
+  resources :networks
 
   resources :tickets
 

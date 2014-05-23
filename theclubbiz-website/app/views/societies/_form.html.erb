@@ -1,13 +1,15 @@
 <script type="text/javascript">
-  $(document).ready(function(){
-    <% @admin_emails.each do |ae| %>
-      $('#admin').addTag("<%= ae %>");
-    <% end %>
-  });
+  <% if !@admin_emails.nil? %>
+    $(document).ready(function(){
+      <% @admin_emails.each do |ae| %>
+        $('#admin').addTag("<%= ae %>");
+      <% end %>
+    });
+  <% end %>
 </script>
 
 <%= tinymce %>
-<%= form_for(@society) do |f| %>
+<%= form_for(@society, :multipart => true) do |f| %>
 
   <% if @society.errors.any? %>
     <div id="error_explanation">

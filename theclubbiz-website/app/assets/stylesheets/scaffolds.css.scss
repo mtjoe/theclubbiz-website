@@ -257,3 +257,33 @@ $nav_height:100px;
   margin-left: 60px;
 }
 
+// Sign in page
+
+.sign-in-wrapper {
+  border: 3px solid lightgrey;
+  width: 25%;
+  margin-left: 37.5%;
+  margin-top: 30px;
+  padding: 10px 20px;
+  border-radius: 5px;
+
+  #user_email, #user_password {
+    float: none;
+    width: 80%;
+    font-size: 15px;
+    margin: 10px 10%;
+    padding: 5px 10px;
+  }
+
+  .signin-form-btn {
+    width: 45%;
+    margin: 2.5%;
+    display: block;
+  }
+
+  .signin-form-btn.register {
+    float: left;
+  }
+
+}
+

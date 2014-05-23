@@ -10,7 +10,18 @@ class SocietiesController < ApplicationController
   # GET /societies/1
   # GET /societies/1.json
   def show
-    @events = SocietyEvent.where(id: :id)
+    @pastEvents = []
+    @upcomingEvents = []
+
+    allEvents = SocietyEvent.where(society_id: @society.id)
+
+    allEvents.each do |event|
+      if event.start_time > Time.now
+        @upcomingEvents << event
+      else
+        @pastEvents << event
+      end
+    end
       
     # announcements from Society Admins
     @announcements = Announcement.where(society_id: @society.id)

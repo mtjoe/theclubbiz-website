@@ -27,7 +27,9 @@
 	<div class="society-desc">
 		<h1 class="title"><%= @society.name %><a href=<%= @society.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
 		<p class="subtitle"><%= University.find_by(id: @society.university_id) %></p>
-		<%= link_to "Edit Content", {action: 'edit'} %>
+		<% if user_signed_in? && !SocietyAdmin.where(user_id: current_user, society_id: @society.id).nil? %>
+				<%= link_to "Edit Content", {action: 'edit'} %>
+		<% end %>
 		<p><%= (@society.short_description).html_safe %></p>
 
 		<p><b>Email: </b> <%= @society.email %></p>
@@ -79,7 +81,6 @@
 				<% if @announcements.empty? %>
 					<p>This society does not have any announcements</p>
 				<% else %>
-					
 					<% @announcements.each do |a| %>
 						<div class="announce-entry-wrapper">
 							<h4><b><%= (User.find_by(id: a.user_id)).first_name %></b> wrote:</h4>
@@ -96,31 +97,59 @@
 	<div class="tab-page st1" style='background-color: #C4CDCD;'>
 		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
 		<div class="tab-page-content">
-			<h1>Upcoming</h1>
-			<% if @events.empty? %>
-				<p>No events in this category.</p>
-			<% else %>
-				<% @events.each do |s| %>
-					<div class="grid-entry">
-						<div class="grid-entry-img">
-							<%= image_tag s.logo %>
+			<h1>Upcoming Events</h1>
+			<div class="upcoming-eve-wrapper">
+				<% if @upcomingEvents.empty? %>
+					<p>No events in this category.</p>
+				<% else %>
+					<% @upcomingEvents.each do |s| %>
+						<div class="grid-entry">
+							<div class="grid-entry-img">
+								<%= image_tag s.image1 %>
+							</div>
+							<div class="grid-entry-label">
+								<div class="grid-entry-label-hdr">
+									<h2><%= s.name %></h2>
+								</div>
+								<div class="grid-entry-label-content">
+									<%= s.short_description %>
+								</div>
+								<div class="grid-entry-label-btns">
+									<%= link_to("Follow") %>
+									<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
+								</div>
+							</div>
 						</div>
-						<div class="grid-entry-label">
-							<div class="grid-entry-label-hdr">
-								<h2><%= s.name %></h2>
-								<p>University of Melbourne</p><br>
-							</div>
-							<div class="grid-entry-label-content">
-								<%= s.short_description %>
-							</div>
-							<div class="grid-entry-label-btns">
-								<%= link_to("Follow") %>
-								<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
-							</div>
-						</div>
-					</div>
+					<% end %>
 				<% end %>
-			<% end %>
+			</div>
+
+			<h1>Past Events</h1>
+			<div class="past-eve-wrapper">
+				<% if @pastEvents.empty? %>
+					<p>No events in this category.</p>
+				<% else %>
+					<% @pastEvents.each do |s| %>
+						<div class="grid-entry">
+							<div class="grid-entry-img">
+								<%= image_tag s.image1 %>
+							</div>
+							<div class="grid-entry-label">
+								<div class="grid-entry-label-hdr">
+									<h2><%= s.name %></h2>
+								</div>
+								<div class="grid-entry-label-content">
+									<%= s.short_description %>
+								</div>
+								<div class="grid-entry-label-btns">
+									<%= link_to("Follow") %>
+									<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
+								</div>
+							</div>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 	<!-- END: EVENTS -->

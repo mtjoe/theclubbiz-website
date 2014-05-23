@@ -44,13 +44,24 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       else
         if @event.save
+          
+
           if isSociety
-            SocietyEvent.create(society_id: Society.find_by(id: society_id), event_id: @event.id)
+            SocietyEvent.create(society_id: society_id, event_id: @event.id)
           else
-            network = SocietyNetwork.where(id: network_id)
+            network = SocietyNetwork.where(network_id: network_id)
+            admin_soc_ids = []
+            (SocietyAdmin.where(user_id: current_user.id)).each do |sa|
+                admin_soc_ids << sa.society_id
+            end
+
             network.each do |n|
-              SocietyEvent.create(society_id: Society.find_by(id: n.society_id), event_id: @event.id)
-            end   
+              if (admin_soc_ids.include? n.society_id)
+                SocietyEvent.create(society_id: n.society_id, event_id: @event.id)
+              else
+                Invitation.create(society_id: n.society_id, event_id: @event.id)
+              end
+            end
           end      
 
           format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -89,6 +100,17 @@ class EventsController < ApplicationController
 
   def addFeedback
     EventFeedback.create(text: params[:fb], event_id: params[:id],  user_id: current_user.id)
+    redirect_to :back
+  end
+
+  def acceptEvent
+    SocietyEvent.create(society_id:params[:society_id], event_id: params[:event_id])
+    Invitation.find(params[:inv_id]).destroy
+    redirect_to :back
+  end
+
+  def declineEvent
+    Invitation.find_by(id: params[:inv_id]).destroy
     redirect_to :back
   end
 

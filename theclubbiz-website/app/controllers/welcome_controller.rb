@@ -2,6 +2,8 @@ class WelcomeController < ApplicationController
   def index
 
   	case params[:state]
+
+    # Display Announcements
     when "announcements"
       @header = "Announcements"
       @announcements = []
@@ -25,15 +27,39 @@ class WelcomeController < ApplicationController
       end
 
       @announcements.flatten!
+
+    # Display Invitations
     when "invitations"
       @header = "Invitations"
       @invitations = []
+
+      admin_soc_ids = SocietyAdmin.where(user_id: current_user.id)
+      admin_soc_ids.each do |admin_soc_id|
+        (Invitation.where(society_id: admin_soc_id.society_id)).each do |invitation|
+          @invitations << invitation
+        end  
+      end
+      
+    when "myNetworks"
+      @header = "My Networks"
+      @networks = []
+
+      socAdmin = SocietyAdmin.where(user_id: current_user.id)
+      socAdmin.each do |sa|
+        @networks << Society.find_by(id: sa.society_id)
+      end
+
+      @networks.uniq!
+
+    # Display Administered Societies
   	when "adminSoc"
       @header = "Administered Societies"
       @societies = []
       (SocietyAdmin.where(user_id: current_user.id)).each do |sa|
         @societies << Society.find_by(id: sa.society_id)
       end
+
+    # Display Followed Societies
   	when "followedSoc"
       @header = "Followed Societies"
       @societies = []
@@ -43,6 +69,7 @@ class WelcomeController < ApplicationController
         @societies << Society.find_by(id: s.society_id)
       end
 
+    # Display Followed Events
   	when "followedEvent"
       @header = "Followed Event"
       events = EventFollower.where(user_id: current_user.id)
@@ -59,6 +86,7 @@ class WelcomeController < ApplicationController
         end
       end
 
+    # Display Categories for Societies
   	when "socByCategory"
       if params[:catId].nil?
         @header = "Society By Categories"
@@ -71,6 +99,8 @@ class WelcomeController < ApplicationController
           @societies << Society.find_by(id: sc.society_id)
         end
       end
+
+    # Display Universities for Societies
   	when "socByUniversity"
 
       if params[:uniId].nil?
@@ -85,6 +115,7 @@ class WelcomeController < ApplicationController
         end
       end
 
+    # Display All Upcoming Events
   	when "allUpcomingEvents"
   		@header = "Upcoming Events - ALL"
       @upcomingEvents = []

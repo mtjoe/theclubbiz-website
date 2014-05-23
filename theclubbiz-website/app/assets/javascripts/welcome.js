@@ -38,7 +38,7 @@ $(window).load(function() {
     });
 
     $('#grid-list').slimScroll({height: '100%'});
-
+    $('#sidebar').slimScroll({height: '100%'});
 	// Sliding sidebar
     $('#open-sidebar-btn img').click(function(){
 		var d;
