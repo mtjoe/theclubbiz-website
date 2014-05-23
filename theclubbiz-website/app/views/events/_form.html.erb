@@ -16,78 +16,6 @@
     <%= f.text_field :name, :placeholder => "Name", :size => "139.5" %>
   </div>
   <br>
-  
-  <div class="category" align="middle">
-    <%= f.collection_select(:category_id, Category.find(:all), :id, :name, :prompt => "Category") %>
-  </div>
-  <br>
-  <div class="max_tickets" align="middle">
-     <%= f.select :max_tickets, (0..10000), :prompt => "Max Tickets" %>
-  </div>
-  <br>
-  <div class="ticket_price" align="middle">
-    <%= f.text_field :ticket_price , :placeholder => "Ticket Price", :size => "139.5" %>
-  </div>
-  <br>
-  <div class="image" align="middle">
-    <p><strong>Image</strong></p>
-    <%= f.file_field :image1 %>
-    <br>
-    <%= f.file_field :image2 %>
-    <br>
-    <%= f.file_field :image3 %>
-  </div>
-  
-  <br>
-  <div class="start-time" align="middle">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
-  </div>
-
-  <div class="end-time" align="middle">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select(:end_time, :start_year => Date.today.year, ampm: true) %>
-  </div>
-  <br>
-  <div class="website" align="middle">
-    <%= f.text_field :website, :placeholder => "Website",:size => "139.5" %>
-  </div>
-  <br>
-  <div class="description" align="middle">
-    <%= f.label :description %><br>
-    <%= f.text_area :description, :rows => 10, :cols => 4, :class => "tinymce", :id => "desc", :placeholder => "Description" %>
-
-  </div>
-  <br>
-  <div class="short_description" align="middle">
-    <%= f.label :short_description %><br>
-    <%= f.text_area :short_description, :rows => 10, :cols => 163 %>
-  </div>
-  
-  <br>
-  <p align="middle"><strong>Location</strong></p>
-  <div class="location_state" align="middle">
-    <%= f.select :location_state, options_for_select(['NSW', 'QLD', 'VIC', 'SA','TAS','WA']) %>
-  </div>
-  <br>
-  <div class="location_address_line1" align="middle">
-    <%= f.text_field :location_address_line1, :placeholder => "Location line 1",:size => "139.5" %>
-  </div>
-  <br>
-  <div class="location_address_line2" align="middle">
-    <%= f.text_field :location_address_line2, :placeholder => "Location line 2",:size => "139.5" %>
-  </div>
-  
-  <br>
-  <div class="location_city" align="middle">
-    <%= f.text_field :location_city, :placeholder => "City",:size => "139.5" %>
-  </div>
-  <br>
-  <div class="location_postcode" align="middle">
-    <%= f.text_field :location_postcode, :placeholder => "Postcode",:size => "139.5" %>
-  </div>
-  
- <br>
  <!-- Check if University admin and Society admin -->
  <div align="middle">
  <p align="middle">Do you want to share this event?</p>
@@ -113,8 +41,68 @@
         <% arr << sn.network_id %>
       <% end %>
     <% end %>
-    <%= collection_select(:networks, :network_id, Network.find(arr), :id, :name, :prompt => "Network") %>
+    <%= collection_select(:networks, :network_id, Network.find(arr), :id, :name, :prompt => "Network") %> 
+  </div>
+  <br>
+  <div class="category" align="middle">
+    <%= f.collection_select(:category_id, Category.find(:all), :id, :name, :prompt => "Select Category") %>
+  </div>
+  <br>
+  <div class="max_tickets" align="middle">
+     <%= f.select :max_tickets, (0..10000), :prompt => "Max Tickets" %>
+  </div>
+  <br>
+  <div class="ticket_price" align="middle">
+    <%= f.text_field :ticket_price , :placeholder => "Ticket Price", :size => "139.5" %>
+  </div>
+  <br>
+  <div class="image" align="middle">
+    <p><strong>Image</strong></p>
+    <%= f.file_field :image1 %>
+    <br>
+    <%= f.file_field :image2 %>
+    <br>
+    <%= f.file_field :image3 %>
+  </div>
+  
+  <br>
+  <div class="start_end_time" align="middle">
+    <%= f.datetime_select(:start_time, :start_year => Date.today.year, ampm: true) %>
+    to
+    <%= f.datetime_select(:end_time, :start_year => Date.today.year, ampm: true) %>
+  </div>
+  <br>
+  <div class="website" align="middle">
+    <%= f.text_field :website, :placeholder => "Website",:size => "139.5" %>
+  </div>
+  <br>
+  <div class="short_description" align="middle">
+    <%= f.label :short_description %><br>
+    <%= f.text_area :short_description, :rows => 10, :cols => 163 %>
+  </div>
+  <br>
+  <div class="description" align="middle">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, :rows => 10, :cols => 4, :class => "tinymce", :id => "desc", :placeholder => "Description" %>
 
+  </div>
+  
+  
+  <br>
+  <p align="middle"><strong>Location</strong></p>
+  <div class="location_address_line1" align="middle">
+    <%= f.text_field :location_address_line1, :placeholder => "Location line 1",:size => "139.5" %>
+  </div>
+  <br>
+  <div class="location_address_line2" align="middle">
+    <%= f.text_field :location_address_line2, :placeholder => "Location line 2",:size => "139.5" %>
+  </div>
+  
+  <br>
+  <div class="location_city_postcode_state" align="middle">
+    <%= f.text_field :location_city, :placeholder => "City",:size => "58" %>
+    <%= f.select :location_state, options_for_select(['NSW', 'QLD', 'VIC', 'SA','TAS','WA']), {:prompt => "Select State"} %>
+    <%= f.text_field :location_postcode, :placeholder => "Postcode",:size => "58" %>
   </div>
   <br>
   

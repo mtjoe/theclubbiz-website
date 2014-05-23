@@ -287,3 +287,27 @@ $nav_height:100px;
 
 }
 
+#new_user input[type="email"]{
+  padding: 10px !important;
+  border-radius:10px;
+}
+
+#new_user input[type="password"]{
+  padding: 10px !important;
+  border-radius:10px;
+}
+
+#new_user input[type="text"]{
+  padding: 10px !important;
+  border-radius:10px;
+}
+
+input {
+  text-align:center;
+}
+
+input:focus{
+  background-color:black;
+  color:white;
+}
+

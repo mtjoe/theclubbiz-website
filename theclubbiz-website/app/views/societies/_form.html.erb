@@ -24,20 +24,15 @@
   <% end %>
   <br>
   <div class="name" align="middle">
-    <%= f.text_field :name, :placeholder => "Name", :size => "161" %>
+    <%= f.text_field :name, :placeholder => "Name", :size => "139.5" %>
   </div>
   <br>
-  <div class="university" align="middle">
-    <p><strong>University</strong></p>
-    <%= f.collection_select(:university_id, University.find(:all), :id, :name, :prompt => "Please select") %>
+  <p>
+  <div class="university_category" align="middle">
+    <%= f.collection_select(:university_id, University.find(:all), :id, :name, :prompt => "Select University") %>
+    <%= f.collection_select(:category_id, Category.find(:all), :id, :name, :prompt => "Select Category") %>
   </div>
-  <br>
-  <div class="category" align="middle">
-    <p><strong>Category</strong></p>
-    <%= f.collection_select(:category_id, Category.find(:all), :id, :name, :prompt => "Please select") %>
-  </div>
-  <br>
-
+  </p>
   <br>
   <div class="logo" align="middle">
     <%= f.label :logo  %><br>
@@ -60,37 +55,32 @@
   </div>
   <br>
   <div class="website" align="middle">
-    <%= f.text_field :website, :placeholder => "Website" , :size => "161" %>
+    <%= f.text_field :website, :placeholder => "Website" , :size => "139.5" %>
   </div>
   <br>
   <div class="email" align="middle">
-    <%= f.text_field :email , :placeholder => "Email" , :size => "161"%>
+    <%= f.text_field :email , :placeholder => "Email" , :size => "139.5"%>
   </div>
   <br>
   <div class="phone_number" align="middle">
-    <%= f.text_field :phone_number , :placeholder => "Phone Number" , :size => "161"%>
+    <%= f.text_field :phone_number , :placeholder => "Phone Number" , :size => "139.5"%>
   </div>
   <br>
   <p align="middle"><strong>Office</strong></p>
   <div class="office">
-  <div class="office_state" align="middle">
-    <%= f.select :office_state, options_for_select(['NSW', 'QLD', 'VIC', 'SA','TAS','WA'], :prompt => "State") %>
+  <div class="office_address_line1"  align="middle">
+    <%= f.text_field :office_address_line1 , :placeholder => "Address Line 1", :size => "139.5" %>
   </div>
   <br>
-  <div class="office_address_line1">
-    <%= f.text_field :office_address_line1 , :placeholder => "Address Line 1", :size => "161" %>
+  <div class="office_address_line2"  align="middle">
+    <%= f.text_field :office_address_line2 , :placeholder => "Address Line 2" ,:size => "139.5" %>
   </div>
   <br>
-  <div class="office_address_line2">
-    <%= f.text_field :office_address_line2 , :placeholder => "Address Line 2" ,:size => "161" %>
-  </div>
   <br>
-  <div class="office_city">
-    <%= f.text_field :office_city , :placeholder => "City" , :size => "161"%>
-  </div>
-  <br>
-  <div class="office_postcode">
-    <%= f.text_field :office_postcode , :placeholder => "Postcode" , :size => "161"%>
+  <div class="office_postcode_state_city"  align="middle">
+    <%= f.text_field :office_city , :placeholder => "City", :size => "58" %>
+    <%= f.select :office_state, options_for_select(['NSW', 'QLD', 'VIC', 'SA','TAS','WA']), {:prompt => "Select State"} %>
+    <%= f.text_field :office_postcode , :placeholder => "Postcode", :size => "58" %>
   </div>
 </div>
  <br>
