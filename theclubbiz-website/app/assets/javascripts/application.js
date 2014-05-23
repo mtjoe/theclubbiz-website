@@ -21,4 +21,3 @@
 //= require autocomplete-rails
 //= require jquery.tagsinput
 //= require_tree .
-

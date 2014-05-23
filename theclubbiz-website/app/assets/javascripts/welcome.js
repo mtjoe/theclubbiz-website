@@ -37,7 +37,7 @@ $(window).load(function() {
 		responsiveFallback: false
     });
 
-    $('#grid-list').slimScroll({height: '100%'});
+    $('#grid-list').slimScroll({height: '100%', width: '100%'});
     $('#sidebar').slimScroll({height: '100%'});
 	// Sliding sidebar
     $('#open-sidebar-btn img').click(function(){

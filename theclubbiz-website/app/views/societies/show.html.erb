@@ -27,8 +27,10 @@
 	<div class="society-desc">
 		<h1 class="title"><%= @society.name %><a href=<%= @society.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
 		<p class="subtitle"><%= University.find_by(id: @society.university_id) %></p>
-		<% if user_signed_in? && !SocietyAdmin.where(user_id: current_user, society_id: @society.id).nil? %>
+		<% if user_signed_in? %>
+			<% if !(SocietyAdmin.where(user_id: current_user, society_id: @society.id)).empty? %>
 				<%= link_to "Edit Content", {action: 'edit'} %>
+			<% end %>
 		<% end %>
 		<p><%= (@society.short_description).html_safe %></p>
 
@@ -97,55 +99,67 @@
 	<div class="tab-page st1" style='background-color: #C4CDCD;'>
 		<div class="exit"><span class="glyphicon glyphicon-remove"></span></div>
 		<div class="tab-page-content">
-			<h1>Upcoming Events</h1>
 			<div class="upcoming-eve-wrapper">
+				<h1>Upcoming Events</h1>
 				<% if @upcomingEvents.empty? %>
-					<p>No events in this category.</p>
+					<p>No entry in this category.</p>
 				<% else %>
-					<% @upcomingEvents.each do |s| %>
-						<div class="grid-entry">
-							<div class="grid-entry-img">
-								<%= image_tag s.image1 %>
+					<% @upcomingEvents.each do |eve| %>
+						<div class="entry">
+							<div class="img-wrapper">
+								<%= image_tag eve.image1 %>	
 							</div>
-							<div class="grid-entry-label">
-								<div class="grid-entry-label-hdr">
-									<h2><%= s.name %></h2>
-								</div>
-								<div class="grid-entry-label-content">
-									<%= s.short_description %>
-								</div>
-								<div class="grid-entry-label-btns">
-									<%= link_to("Follow") %>
-									<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
-								</div>
+							<div class="entry-title">
+								<%= link_to eve.name, {controller: "events", action: "show", id: eve.id} %></a>
 							</div>
+
+							<% if (EventFollower.find_by(user_id: current_user.id, event_id:eve.id)).nil? %>
+								<div class="entry-follow-wrapper follow">
+									<%= link_to({controller: "users", action: 'followEvent', :eventId => eve.id}) do %>
+										<span class="glyphicon glyphicon-star"></span>
+									<% end %>
+								</div>
+
+							<% else %>
+								<div class="entry-follow-wrapper unfollow">
+									<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => eve.id}) do %>
+										<span class="glyphicon glyphicon-star-empty"></span>
+									<% end %>
+								</div>
+							<% end %>
 						</div>
 					<% end %>
 				<% end %>
 			</div>
 
-			<h1>Past Events</h1>
 			<div class="past-eve-wrapper">
+				<h1>Past Events</h1>
 				<% if @pastEvents.empty? %>
-					<p>No events in this category.</p>
+					<p>No entry in this category.</p>
 				<% else %>
-					<% @pastEvents.each do |s| %>
-						<div class="grid-entry">
-							<div class="grid-entry-img">
-								<%= image_tag s.image1 %>
+					<% @pastEvents.each do |eve| %>
+						<div class="entry">
+							<div class="img-wrapper">
+								<%= image_tag eve.image1 %>	
 							</div>
-							<div class="grid-entry-label">
-								<div class="grid-entry-label-hdr">
-									<h2><%= s.name %></h2>
-								</div>
-								<div class="grid-entry-label-content">
-									<%= s.short_description %>
-								</div>
-								<div class="grid-entry-label-btns">
-									<%= link_to("Follow") %>
-									<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
-								</div>
+							<div class="entry-title">
+								<%= link_to eve.name, {controller: "events", action: "show", id: eve.id} %></a>
 							</div>
+
+							<% if (EventFollower.find_by(user_id: current_user.id, event_id:eve.id)).nil? %>
+								<div class="entry-follow-wrapper follow">
+									<%= link_to({controller: "users", action: 'followEvent', :eventId => eve.id}) do %>
+										<span class="glyphicon glyphicon-star"></span>
+									<% end %>
+								</div>
+
+							<% else %>
+								<div class="entry-follow-wrapper unfollow">
+									<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => eve.id}) do %>
+										<span class="glyphicon glyphicon-star-empty"></span>
+									<% end %>
+								</div>
+							<% end %>
 						</div>
 					<% end %>
 				<% end %>
@@ -165,17 +179,17 @@
 			</div>
 			<% (SocietyEvent.where(society_id: @society.id)).each do |se| %>
 				<% event = Event.find_by(id: se.event_id) %>
-				<% if !((event.image1).nil?) %>
+				<% if (event.image1).present? %>
 					<div class="image-entry">
 						<%= image_tag event.image1 %>
 						<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
 					</div>
-					<% if !((event.image2).nil?) %>
+					<% if (event.image2).present? %>
 						<div class="image-entry">
 							<%= image_tag event.image2 %>
 							<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
 						</div>
-						<% if !((event.image3).nil?) %>
+						<% if (event.image3).present? %>
 							<div class="image-entry">
 								<%= image_tag event.image3 %>
 								<p class="image-caption"><%= (Event.find_by(id: se.event_id)).name %></p>
