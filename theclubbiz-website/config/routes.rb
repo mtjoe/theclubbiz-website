@@ -4,6 +4,7 @@ TheclubbizWebsite::Application.routes.draw do
   post "events/addFeedback"
   post "events/declineEvent"
   post "events/acceptEvent"
+  get "events/showTicket"
   get "users/followSociety"
   get "users/unfollowSociety"
   get "users/followEvent"
@@ -39,6 +40,7 @@ TheclubbizWebsite::Application.routes.draw do
   
   get "welcome/index"
   get "welcome/aboutUs"
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

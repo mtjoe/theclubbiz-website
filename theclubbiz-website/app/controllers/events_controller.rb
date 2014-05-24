@@ -114,6 +114,11 @@ class EventsController < ApplicationController
     redirect_to :back
   end
 
+  def showTicket
+    @eventFollower = EventFollower.find_by(id: params[:event_follower_id])
+    render :layout => false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
