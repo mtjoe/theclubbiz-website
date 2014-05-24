@@ -25,6 +25,7 @@ body {
 				line-height: 400px;
 				vertical-align: middle;
 				text-align: center;
+				overflow:hidden;
 
 				img {
 					max-width: 100%;
@@ -129,7 +130,85 @@ body {
 			width:90%;
 			height:calc(93% - 150px);
 			margin-top: 2%;
-			margin-left: 5%; 
+			margin-left: 5%;  
+
+			.past-eve-wrapper, .upcoming-eve-wrapper {
+			  	width: 50% !important;
+			  	height: 100%;
+			  	float: left;
+			  	overflow:scroll;
+			  	text-align: center;
+
+			  		.entry {
+						position: relative;
+						width: 80%;
+						height: 70px;
+						margin: 20px 10%; 
+						
+						overflow:hidden;
+
+						.img-wrapper {
+							border: 1px solid lightgrey;
+							background-color: white;
+							position:relative;
+							height: 70px;
+							width: 70px;
+							margin-left: 0;
+							line-height: 70px;
+							vertical-align: middle;
+							text-align: center;
+							
+							float: left;
+							z-index: 10;
+
+							img {
+								max-height: 100%;
+								max-width: 100%;
+							}
+						}
+
+						
+						.entry-title {
+							position:absolute;
+							margin-left: 70px; 
+							background-color: lightgrey;
+							width: calc(100% - 70px);
+							height: 70px;
+							float: left;
+							z-index: 10;
+
+							a {
+								line-height: 70px;
+								vertical-align: middle;
+							}
+						}
+
+						.entry-follow-wrapper {
+							position:absolute;
+							margin-left: calc(100% - 70px);
+							width: 70px;
+							height: 70px;
+							float: left;
+							font-size: 50px;
+							text-align: center;
+							z-index: 0;
+
+							a {
+								color: white;
+								line-height: 70px;
+								vertical-align: middle;
+							}
+						}
+						
+
+						.entry-follow-wrapper.follow {
+							background-color: #11A210;
+						}
+						.entry-follow-wrapper.unfollow {
+							background-color: #D95152;
+						}
+					}
+			}
 
 			.announce-entry-wrapper {
 				border: 1px solid white;
@@ -205,12 +284,7 @@ body {
 	}
 }
 
-.past-eve-wrapper, .upcoming-eve-wrapper {
-	border: 1px solid white;
-	width: 100%;
-	height: 35%;
 
-}
 
 select {
 	background-color:#C0C0C0;

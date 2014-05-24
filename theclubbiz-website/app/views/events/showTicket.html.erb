@@ -1,0 +1,20 @@
+<h1>Ticket</h1>
+
+<!-- EVENT DESCRIPTION -->
+<% event =  Event.find_by(id: @eventFollower.event_id) %>
+<% follower =  User.find_by(id: @eventFollower.user_id) %>
+<h1>Event: <%= event.name %></h1>
+<p class="subtitle">Hosted by: 
+	<% (SocietyEvent.where(event_id: event.id)).each do |se| %>
+		<%= (Society.find_by(id: se.society_id)).name %>
+	<% end %>
+</p>
+<p>Start Time: <%= event.start_time %></p>
+<p>End Time: <%= event.end_time %></p>
+
+<p>Name: <%= follower.first_name %> <%= follower.last_name %></p>
+<p>Event Follower ID: <%= @eventFollower.id %></p>
+
+<p>Please print this ticket for admission</p>
+
+<!-- END: EVENT DESCRIPTION -->

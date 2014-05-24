@@ -15,21 +15,34 @@
 			<!-- END: EVENT IMAGE -->
 
 			<!-- (UN)FOLLOW BUTTON -->
+			<% tickets_left = (@event.max_tickets) - (EventFollower.where(event_id: @event.id)).size %>
+			<% isFollowing = false %>
 			<div class="follow-btn-wrapper">
 				<% if !current_user.nil? %>
-					<% if (EventFollower.find_by(user_id: current_user.id, event_id:@event.id)).nil? %>
-						<%= link_to({controller: "users", action: 'followEvent', :eventId => @event.id}) do %>
-							<span class="glyphicon glyphicon-star">Follow</span>
+					<% if tickets_left > 0 %>
+						<% if (EventFollower.find_by(user_id: current_user.id, event_id:@event.id)).nil? %>
+							<%= link_to({controller: "users", action: 'followEvent', :eventId => @event.id}) do %>
+								<span class="glyphicon glyphicon-star">Follow</span>
+							<% end %>
+						<% else %>
+							<% isFollowing = true %>
+							<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => @event.id}) do %>
+								<span class="glyphicon glyphicon-star-empty">Unfollow</span>
+							<% end %>
 						<% end %>
 					<% else %>
-						<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => @event.id}) do %>
-							<span class="glyphicon glyphicon-star-empty">Unfollow</span>
-						<% end %>
+						<a>Sold out</a>
 					<% end %>
 				<% end %>
 			</div>
 			<!-- END: (UN)FOLLOW BUTTON -->
+			<p>Tickets left: <%= tickets_left %> 
+			<% if isFollowing %>
+				<%= link_to "Get your ticket", action: "showTicket", :event_follower_id => (EventFollower.find_by(event_id: @event.id, user_id: current_user.id)), :target => "_blank" %></p>
+			<% end %>
 		</div>
+		
+
 
 		<div class="event-desc">
 			<!-- EVENT DESCRIPTION -->
@@ -39,7 +52,20 @@
 					<%= (Society.find_by(id: se.society_id)).name %>
 				<% end %>
 			</p>
-			<%= link_to "Edit Content", {action: 'edit'} %>
+			<% if user_signed_in? %>
+				<% SocietyEvent.where(event_id: @event.id).each do |se| %>
+					<% if !(SocietyAdmin.find_by(user_id: current_user, society_id: se.society_id)).nil? %>
+						<p><%= link_to "Edit Content", {action: 'edit'} %></p>
+					<% end %>
+				<% end %>
+			<% end %>
+			<p>Ticket Price: $<%= @event.ticket_price %> (Pay at location)</p>
+			<p><%= @event.short_description %></p>
+			<p>Start Time: <%= @event.start_time %></p>
+			<p>End Time: <%= @event.end_time %></p>
+			<h4>Description</h4>
+			<%= (@event.description).html_safe %>
+
 			<!-- END: EVENT DESCRIPTION -->
 		</div>
 	</div>
@@ -72,12 +98,12 @@
 				<%= image_tag @event.image1 %>
 				<p class="image-caption"></p>
 			</div>
-			<% if !((@event.image2).nil?) %>
+			<% if ((@event.image2).present?) %>
 				<div class="image-entry">
 					<%= image_tag @event.image2 %>
 					<p class="image-caption"></p>
 				</div>
-				<% if !((@event.image3).nil?) %>
+				<% if ((@event.image3).present?) %>
 					<div class="image-entry">
 						<%= image_tag @event.image3 %>
 						<p class="image-caption"></p>

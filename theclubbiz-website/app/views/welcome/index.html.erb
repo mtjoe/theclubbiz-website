@@ -202,13 +202,10 @@ welcome/index.html.erb
 												<p>University of Melbourne</p><br>
 											</div>
 											<div class="grid-entry-label-content">
-												<p><%= event.start_time %></p>
-
+												<p><%= event.start_time %> to <%= event.start_time %></p>
+												<p><%= event.short_description %></p>
 											</div>
 											<div class="grid-entry-label-btns">
-												<%= link_to({controller: "users", action: 'followSociety'}, :societyId => event.id) do %>
-													<span class="glyphicon glyphicon-star">Follow</span>
-												<% end %>
 												<%= link_to("Go To Page", {controller: 'events', action: 'show', id: event.id}) %>
 											</div>
 										</div>
@@ -234,13 +231,18 @@ welcome/index.html.erb
 												<p>University of Melbourne</p><br>
 											</div>
 											<div class="grid-entry-label-content">
-												<p><%= s.start_time %></p>
+												<p><%= event.start_time %> to <%= event.start_time %></p>
+												<p><%= event.short_description %></p>
 											</div>
 											<div class="grid-entry-label-btns">
-												<%= link_to({controller: "users", action: 'followSociety'}, :societyId => s.id) do %>
-													<span class="glyphicon glyphicon-star">Follow</span>
+												<% tickets_left = (event.max_tickets) - (EventFollower.where(event_id: event.id)).size %>
+												<% if tickets_left > 0%>
+													<%= link_to({controller: "users", action: 'followSociety'}, :societyId => s.id) do %>
+														<span class="glyphicon glyphicon-star">Follow</span>
+													<% end %>
+												<% else %>
+													<%= link_to("Sold out") %>
 												<% end %>
-
 												<%= link_to("Go To Page", {controller: 'events', action: 'show', id: s.id}) %>
 											</div>
 										</div>
