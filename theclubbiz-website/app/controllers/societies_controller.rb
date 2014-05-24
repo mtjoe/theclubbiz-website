@@ -101,7 +101,6 @@ class SocietiesController < ApplicationController
 
     admin = params[:admin]
     new_admins_id = []
-    new_admins_id << current_user.id
     if !admin.nil?
       admin_array = admin.split(",")
       for i in 0 ... admin_array.size
