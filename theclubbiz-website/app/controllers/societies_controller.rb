@@ -118,6 +118,7 @@ class SocietiesController < ApplicationController
     socAdmin.each do |sa| 
       old_admins_id << sa.user_id 
     end
+    old_admins_id.uniq!
 
     respond_to do |format|
       if !(@society.errors).empty?
@@ -126,8 +127,9 @@ class SocietiesController < ApplicationController
       else
         if (@society.update(society_params))
           new_admins_id.each do |na|
-            if old_admins_id.include?(na)
+            if (old_admins_id.include?(na))
               old_admins_id.delete(na)
+            else
               SocietyAdmin.create(society_id: @society.id, user_id: na)
             end
           end
