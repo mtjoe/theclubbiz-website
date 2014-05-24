@@ -31,6 +31,8 @@ class SocietiesController < ApplicationController
   # GET /societies/new
   def new
     @society = Society.new
+    
+
   end
 
   # GET /societies/1/edit
@@ -40,7 +42,7 @@ class SocietiesController < ApplicationController
     socAdmin.each do |sa| 
       ary << sa.user_id 
     end 
-    @admin = User.find(ary)
+    admin = User.find(ary)
     @admin_emails = []
     @admin.each do |a|
       @admin_emails << a.email
