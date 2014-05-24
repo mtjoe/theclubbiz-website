@@ -287,47 +287,15 @@ body {
 
 select {
 	background-color:#C0C0C0;
-}
-
-input:focus {
-	background-color:black;
-	color:white;
-}
-
-textarea:focus {
-	color:white;
-}
-
-.name , .website, .email, .phone_number {
-	margin:auto;
-	border-style:inset;
-	border-width:4px;
-	width:1008px;
-	border-color:gray;
-}
-
-.office_address_line1, .office_address_line2, .office_city, .office_postcode {
-	margin:auto;
-	border-style:ridge;
-	border-width:4px;
-	width:1008px;
-	border-color:gray;
-}
-
-.actions {
-	margin:auto;
-	border-style:outset;
-	border-width:5px;
-	width:120px;
-	border-color:gray;
+	height:35px;
 }
 
 textarea {
+	border: 1px solid white;
 	margin:auto;
 	border-style:ridge;
-	border-width:4px;
-	width:1008px;
-	border-color:gray;
+	border-width:2px;
+	border-radius:10px;
 	resize:none;
 }
 
@@ -342,11 +310,15 @@ textarea {
 
 #admin_tagsinput {
 	margin:auto;
-	border-style:inset;
-	border-width:5px;
-	width:1010px;
-	border-color:gray;
+	box-shadow: none;
+	border-style:ridge;
+	border-radius:10px;
 	width: 1000px !important;
+}
+
+#new_society input[type="text"]{
+	padding: 10px !important;
+	border-radius:10px;
 }
 
 

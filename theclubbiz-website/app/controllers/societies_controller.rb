@@ -77,7 +77,6 @@ class SocietiesController < ApplicationController
         if (@society.save)
           valid_admins.each do |va|
             SocietyAdmin.create(society_id: @society.id, user_id: va.id)
-            SocietyFollower.create(society_id: @society.id, user_id: va.id)
           end
           format.html { redirect_to @society, notice: 'Society was successfully created.' }
           format.json { render action: 'show', status: :created, location: @society }
@@ -97,17 +96,57 @@ class SocietiesController < ApplicationController
   # PATCH/PUT /societies/1
   # PATCH/PUT /societies/1.json
   def update
+
+    admin = params[:admin]
+    new_admins_id = []
+    new_admins_id << current_user.id
+    if !admin.nil?
+      admin_array = admin.split(",")
+      for i in 0 ... admin_array.size
+        admin_chosen = User.find_by(email: admin_array[i])
+        if admin_chosen.nil?
+          @society.errors[:base] << "The email #{admin_array[i]} is not in the database"
+        else
+          new_admins_id << admin_chosen.id
+        end
+      end
+    end
+    new_admins_id.uniq!
+
+    old_admins_id = []
+    socAdmin = SocietyAdmin.where(society_id: @society.id)
+    socAdmin.each do |sa| 
+      old_admins_id << sa.user_id 
+    end
+
     respond_to do |format|
-      if @society.update(society_params)
-        format.html { redirect_to @society, notice: 'Society was successfully updated.' }
-        format.json { head :no_content }
-      else
+      if !(@society.errors).empty?
         format.html { render action: 'edit' }
         format.json { render json: @society.errors, status: :unprocessable_entity }
+      else
+        if (@society.update(society_params))
+          new_admins_id.each do |na|
+            if old_admins_id.include?(na)
+              old_admins_id.delete(na)
+              SocietyAdmin.create(society_id: @society.id, user_id: na)
+            end
+          end
+          old_admins_id.each do |oa|
+            socAdmin = SocietyAdmin.find_by(society_id: @society.id, user_id: oa)
+            socAdmin.destroy
+          end
+          format.html { redirect_to @society, notice: 'Society was successfully updated.' }
+          format.json { render action: 'show', status: :created, location: @society }
+        else
+          format.html { render action: 'edit' }
+          format.json { render json: @society.errors, status: :unprocessable_entity }
+        end
+        format.html { redirect_to @society, notice: 'Society was successfully Updated.' }
+        format.json { render action: 'show', status: :created, location: @society }
       end
     end
   end
-
+  
   # DELETE /societies/1
   # DELETE /societies/1.json
   def destroy
