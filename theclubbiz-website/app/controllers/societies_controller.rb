@@ -1,11 +1,8 @@
 class SocietiesController < ApplicationController
   before_action :set_society, only: [:show, :edit, :update, :destroy, :addFeedback]
   before_filter :authenticate_user!, :except => [:show, :index]
-  # GET /societies
-  # GET /societies.json
-  def index
-    @societies = Society.all
-  end
+  before_action :isAdmin, only: [:edit]
+
 
   # GET /societies/1
   # GET /societies/1.json
@@ -169,6 +166,14 @@ class SocietiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_society
       @society = Society.find(params[:id])
+    end
+
+    def isAdmin
+      if !current_user.nil? 
+        if (SocietyAdmin.find_by(society_id:@society.id, user_id:current_user.id)).nil?
+          redirect_to "/welcome/adminOnly"
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:show, :index]
+  before_action :isAdmin, only: [:edit]
 
   # GET /events
   # GET /events.json
@@ -128,6 +129,20 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def isAdmin
+      isAdmin = false
+      if !current_user.nil? 
+        (SocietyEvent.where(event_id: @event.id)).each do |se|
+          if !((SocietyAdmin.find_by(society_id:se.society_id, user_id:current_user.id)).nil?)
+            isAdmin = true
+          end
+        end
+      end
+      if !isAdmin
+        redirect_to "/welcome/adminOnly"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

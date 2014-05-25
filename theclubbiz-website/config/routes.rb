@@ -10,6 +10,7 @@ TheclubbizWebsite::Application.routes.draw do
   get "users/unfollowSociety"
   get "users/followEvent"
   get "users/unfollowEvent"
+  get "welcome/adminOnly"
 
   devise_for :users do
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session

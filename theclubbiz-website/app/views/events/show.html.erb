@@ -19,19 +19,23 @@
 			<% isFollowing = false %>
 			<div class="follow-btn-wrapper">
 				<% if !current_user.nil? %>
-					<% if tickets_left > 0 %>
-						<% if (EventFollower.find_by(user_id: current_user.id, event_id:@event.id)).nil? %>
-							<%= link_to({controller: "users", action: 'followEvent', :eventId => @event.id}) do %>
-								<span class="glyphicon glyphicon-star">Follow</span>
+					<% if @event.start_time > Time.now %>
+						<% if tickets_left > 0 %>
+							<% if (EventFollower.find_by(user_id: current_user.id, event_id:@event.id)).nil? %>
+								<%= link_to({controller: "users", action: 'followEvent', :eventId => @event.id}) do %>
+									<span class="glyphicon glyphicon-star">Follow</span>
+								<% end %>
+							<% else %>
+								<% isFollowing = true %>
+								<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => @event.id}) do %>
+									<span class="glyphicon glyphicon-star-empty">Unfollow</span>
+								<% end %>
 							<% end %>
 						<% else %>
-							<% isFollowing = true %>
-							<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => @event.id}) do %>
-								<span class="glyphicon glyphicon-star-empty">Unfollow</span>
-							<% end %>
+							<a>Sold out</a>
 						<% end %>
 					<% else %>
-						<a>Sold out</a>
+						<a>Past event</a>
 					<% end %>
 				<% end %>
 			</div>
