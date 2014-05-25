@@ -174,7 +174,7 @@ class SocietiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def society_params
       params.require(:society).permit(:name, :logo, :description, :short_description, :website, 
-        :university, :office_address_line1, :office_address_line2,
+        :university_id, :category_id, :office_address_line1, :office_address_line2,
         :office_state, :office_city, :office_postcode, :email, :phone_number)
     end
 end
