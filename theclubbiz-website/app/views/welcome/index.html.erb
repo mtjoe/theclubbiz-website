@@ -140,6 +140,25 @@ welcome/index.html.erb
 							<% end %>
 						<% end %>
 						<!-- END: LISTING INVITATIONS-->
+
+						<!-- LISTING INVITATIONS-->
+						<% if !@networks.nil? %>
+							<% if @networks.empty? %>
+								<p>You have no networks</p>
+							<% else %>
+								<% @networks.each do |network| %>
+									<div class="networks-entry-wrapper">
+										<%= network.name %>
+										<ul>
+										<% (SocietyNetwork.where(network_id:network.id)).each do |sn| %>
+											<li><%= (Society.find_by(id: sn.society_id)).name %><li>
+										<% end %>
+										</ul>
+									</div>
+								<% end %>
+							<% end %>
+						<% end %>
+						<!-- END: LISTING INVITATIONS-->
 						
 						<!-- LISTING SOCIETIES-->
 						<% if !@societies.nil? %>

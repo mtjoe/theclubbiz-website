@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
     query = params[:search]
     @header = "Search query: #{query}"
 
-    if query = ""
+    if query.nil?
       @societies = []
       @upcomingEvents = []
       @pastEvents = []
@@ -91,10 +91,12 @@ class WelcomeController < ApplicationController
       end
 
       societies.each do |society|
-        @networks << Network.find(SocietyNetwork.find())
+        (SocietyNetwork.where(society_id: society.id)).each do |sn|
+          @networks << Network.find_by(id: sn.network_id)
+        end
       end
 
-      @networks.uniq!
+      @networks.uniq!.flatten!
 
     # Display Administered Societies
   	when "adminSoc"
@@ -113,6 +115,22 @@ class WelcomeController < ApplicationController
       societies.each do |s|
         @societies << Society.find_by(id: s.society_id)
       end
+
+    when "eventsOfFollowedSoc"
+      @header = "Events of Followed Societies"
+      @upcomingEvents = []
+      @pastEvents = []
+      (SocietyFollower.where(user_id: current_user.id)).each do |sf|
+        (SocietyEvent.where(society_id: sf.society_id)).each do |se|
+          event = (Event.find_by(id: se.event_id))
+          if event.start_time > Time.now
+            @upcomingEvents << event
+          else
+            @pastEvents << event
+          end
+        end
+      end
+
 
     # Display Followed Events
   	when "followedEvent"
