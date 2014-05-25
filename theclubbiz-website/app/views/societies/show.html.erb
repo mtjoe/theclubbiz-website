@@ -26,7 +26,7 @@
 
 	<div class="society-desc">
 		<h1 class="title"><%= @society.name %><a href=<%= @society.website %>>  <span class="glyphicon glyphicon-new-window"></span></a></h1>
-		<p class="subtitle"><%= University.find_by(id: @society.university_id) %></p>
+		<p class="subtitle"><%= (University.find_by(id: @society.university_id)).name %></p>
 		<% if user_signed_in? %>
 			<% if !(SocietyAdmin.where(user_id: current_user, society_id: @society.id)).empty? %>
 				<%= link_to "Edit Content", {action: 'edit'} %>

@@ -41,7 +41,7 @@ class SocietiesController < ApplicationController
     end 
     admin = User.find(ary)
     @admin_emails = []
-    @admin.each do |a|
+    admin.each do |a|
       @admin_emails << a.email
     end
   end
