@@ -145,20 +145,21 @@
 							<div class="entry-title">
 								<%= link_to eve.name, {controller: "events", action: "show", id: eve.id} %></a>
 							</div>
+							<% if !current_user.nil? %>
+								<% if (EventFollower.find_by(user_id: current_user.id, event_id:eve.id)).nil? %>
+									<div class="entry-follow-wrapper follow">
+										<%= link_to({controller: "users", action: 'followEvent', :eventId => eve.id}) do %>
+											<span class="glyphicon glyphicon-star"></span>
+										<% end %>
+									</div>
 
-							<% if (EventFollower.find_by(user_id: current_user.id, event_id:eve.id)).nil? %>
-								<div class="entry-follow-wrapper follow">
-									<%= link_to({controller: "users", action: 'followEvent', :eventId => eve.id}) do %>
-										<span class="glyphicon glyphicon-star"></span>
-									<% end %>
-								</div>
-
-							<% else %>
-								<div class="entry-follow-wrapper unfollow">
-									<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => eve.id}) do %>
-										<span class="glyphicon glyphicon-star-empty"></span>
-									<% end %>
-								</div>
+								<% else %>
+									<div class="entry-follow-wrapper unfollow">
+										<%= link_to({controller: "users", action: 'unfollowEvent', :eventId => eve.id}) do %>
+											<span class="glyphicon glyphicon-star-empty"></span>
+										<% end %>
+									</div>
+								<% end %>
 							<% end %>
 						</div>
 					<% end %>

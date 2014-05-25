@@ -1,0 +1,38 @@
+<% eventFollowers = EventFollower.where(event_id: @event.id) %>
+<% societyEvents = SocietyEvent.where(event_id: @event.id) %>
+
+<h1>Report for event: <%= @event.name %></h1>
+<p class="subtitle">Hosted by: 
+	<% (SocietyEvent.where(event_id: @event.id)).each do |se| %>
+		<%= (Society.find_by(id: se.society_id)).name %>
+	<% end %>
+</p>
+<p>Total number of followers: <%= eventFollowers.size %></p>
+<table border="1">
+	<tr>
+		<th>Ticket ID</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Is Follower of a society in network</th>
+	</tr>
+	<% eventFollowers.each do |ef| %>
+		<% user = User.find_by(ef.user_id) %>
+		<% isFollower = false %>
+		<% societyEvents.each do |se| %>
+			<% if !(SocietyFollower.find_by(society_id: se.society_id, user_id: user.id)).nil? %>
+				<% isFollower = true %>
+			<% end %>
+		<% end %>
+		<tr>
+			<td><%= ef.id %></td>
+			<td><%= user.first_name %> <%= user.last_name %></td>
+			<td><%= user.email %></td>
+			<% if isFollower %>
+				<td>Yes</td>
+			<% else %>
+				<td></td>
+			<% end %>
+			
+		</tr>
+	<% end %>
+</table>

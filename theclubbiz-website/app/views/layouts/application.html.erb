@@ -26,7 +26,7 @@
 			<li><%= link_to 'About Us', controller: '/welcome', action: 'aboutUs' %></li>
 		</ul>
 		<div id="nav-search-container">
-			<%= form_tag controller: '/welcome', :method => 'get' do %>
+			<%= form_tag controller: '/welcome', :state => 'search' do %>
 				<%= text_field_tag :search, params[:search], id: "nav-search-field" %>
 				<%= button_tag(type: "button", id: "nav-search-btn") do %>
 					<span class="glyphicon glyphicon-search"></span>

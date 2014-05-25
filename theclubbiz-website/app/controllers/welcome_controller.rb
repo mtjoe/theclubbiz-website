@@ -3,6 +3,46 @@ class WelcomeController < ApplicationController
 
   	case params[:state]
 
+  when "search"
+    query = params[:search]
+    @header = "Search query: #{query}"
+
+    if query = ""
+      @societies = []
+      @upcomingEvents = []
+      @pastEvents = []
+      @categories = []
+      @universities = []
+    else
+      # Find societies
+      @societies = Society.where("name like ?", "%#{query}%")
+      @societies << Society.where("email like ?", "%#{query}%")
+      @societies << Society.where("description like ?", "%#{query}%")
+      @societies << Society.where("short_description like ?", "%#{query}%")
+
+      @societies.flatten!.uniq!
+
+      # Find events
+      events = Event.where("name like ?", "%#{query}%")
+      events << Event.where("description like ?", "%#{query}%")
+      events << Event.where("short_description like ?", "%#{query}%")
+
+      events.flatten!.uniq!
+
+      @upcomingEvents = []
+      @pastEvents = []
+      events.each do |e|
+        if e.start_time > Time.now
+          @upcomingEvents << e
+        else
+          @pastEvents << e
+        end
+      end
+
+      @universities = University.where("name like ?", "%#{query}%")
+      @categories = Category.where("name like ?", "%#{query}%")
+    end
+
     # Display Announcements
     when "announcements"
       @header = "Announcements"
@@ -98,11 +138,7 @@ class WelcomeController < ApplicationController
         @categories = Category.all
       else
         @header = "Society By Category: #{(Category.find_by(id: params[:catId])).name}"
-        @societies = []
-        soc_cat = SocietyCategory.where(category_id: params[:catId])
-        soc_cat.each do |sc|
-          @societies << Society.find_by(id: sc.society_id)
-        end
+        @societies = Society.where(category_id: params[:catId])
       end
 
     # Display Universities for Societies
@@ -113,11 +149,7 @@ class WelcomeController < ApplicationController
         @universities = University.all
       else
         @header = "Society By University: #{(University.find_by(id: params[:uniId])).name}"
-        @societies = []
-        soc_uni = SocietyUniversity.where(university_id: params[:uniId])
-        soc_uni.each do |su|
-          @societies << Society.find_by(id: su.society_id)
-        end
+        @societies = Society.where(university_id: params[:uniId])
       end
 
     # Display All Upcoming Events
@@ -162,13 +194,22 @@ class WelcomeController < ApplicationController
         @universities = University.all
       else
         @header = "Events By University: #{(University.find_by(id: params[:uniId])).name}"
-        @events = []
-        soc_uni = SocietyUniversity.where(university_id: params[:uniId])
-        soc_uni.each do |su|
-          (SocietyEvent.where(society_id: su.society_id)).each do |se|
-            @events << Event.find_by(id: su.event_id)
+        societies = Society.where(university_id: params[:uniId])
+        @upcomingEvents = []
+        @pastEvents = []
+        societies.each do |s|
+          (SocietyEvent.where(society_id: s.id)).each do |se|
+            (Event.where(id: se.event_id)).each do |e|
+              if e.start_time > Time.now
+                @upcomingEvents << e
+              else
+                @pastEvents << e
+              end
+            end
           end
         end
+
+        
       end
   	else
   		@header = "Societies - ALL"

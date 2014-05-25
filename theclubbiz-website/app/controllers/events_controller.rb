@@ -119,6 +119,11 @@ class EventsController < ApplicationController
     render :layout => false
   end
 
+  def getReport
+    @event = Event.find_by(id: params[:event_id])
+    render :layout => false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

@@ -132,3 +132,8 @@
 		}
 	}
 }
+
+.grid-entry:nth-last-of-type(1), .university-entry:nth-last-of-type(1), .category-entry:nth-last-of-type(1) {
+	float:none !important;
+}
+

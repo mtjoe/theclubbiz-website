@@ -55,7 +55,11 @@
 			<% if user_signed_in? %>
 				<% SocietyEvent.where(event_id: @event.id).each do |se| %>
 					<% if !(SocietyAdmin.find_by(user_id: current_user, society_id: se.society_id)).nil? %>
-						<p><%= link_to "Edit Content", {action: 'edit'} %></p>
+						<% if @event.start_time > Time.now %>
+							<p><%= link_to "Edit Content", {action: 'edit'} %></p>
+						<% else %>
+							<p><%= link_to "Get Report", {action: 'getReport', :event_id => @event.id} %></p>
+						<% end %>
 					<% end %>
 				<% end %>
 			<% end %>

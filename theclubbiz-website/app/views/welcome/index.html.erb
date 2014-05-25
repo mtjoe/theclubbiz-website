@@ -143,9 +143,13 @@ welcome/index.html.erb
 						
 						<!-- LISTING SOCIETIES-->
 						<% if !@societies.nil? %>
+							<% if params[:state] == "search" %>
+								<h1>Societies</h1>
+							<% end %>
 							<% if @societies.empty? %>
 								<p>No societies in this category.</p>
 							<% else %>
+								<div class="grid-entry-wrapper">
 								<% @societies.each do |s| %>
 									<div class="grid-entry">
 										<div class="grid-entry-img">
@@ -182,15 +186,21 @@ welcome/index.html.erb
 										</div>
 									</div>
 								<% end %>
+								</div>
 							<% end %>
+
 						<% end %>
 						<!-- END: LISTING SOCIETIES-->
 						
 						<!-- LISTING PAST EVENTS-->
 						<% if !@pastEvents.nil? %>
+							<% if params[:state] == "search" %>
+								<h1>Past Events</h1>
+							<% end %>
 							<% if @pastEvents.empty? %>
 								<p>No events in this category.</p>
 							<% else %>
+								<div class="grid-entry-wrapper">
 								<% @pastEvents.each do |event| %>
 									<div class="grid-entry">
 										<div class="grid-entry-img">
@@ -202,7 +212,7 @@ welcome/index.html.erb
 												<p>University of Melbourne</p><br>
 											</div>
 											<div class="grid-entry-label-content">
-												<p><%= event.start_time %> to <%= event.start_time %></p>
+												<p><%= event.start_time %> to <%= event.end_time %></p>
 												<p><%= event.short_description %></p>
 											</div>
 											<div class="grid-entry-label-btns">
@@ -211,15 +221,20 @@ welcome/index.html.erb
 										</div>
 									</div>
 								<% end %>
+								</div>
 							<% end %>
 						<% end %>
 						<!-- END: LISTING PAST EVENTS-->
 
 						<!-- LISTING UPCOMING EVENTS-->
 						<% if !@upcomingEvents.nil? %>
+							<% if params[:state] == "search" %>
+								<h1>Upcoming Events</h1>
+							<% end %>
 							<% if @upcomingEvents.empty? %>
 								<p>No events in this category.</p>
 							<% else %>
+								<div class="grid-entry-wrapper">
 								<% @upcomingEvents.each do |s| %>
 									<div class="grid-entry">
 										<div class="grid-entry-img">
@@ -231,11 +246,11 @@ welcome/index.html.erb
 												<p>University of Melbourne</p><br>
 											</div>
 											<div class="grid-entry-label-content">
-												<p><%= event.start_time %> to <%= event.start_time %></p>
-												<p><%= event.short_description %></p>
+												<p><%= s.start_time %> to <%= s.start_time %></p>
+												<p><%= s.short_description %></p>
 											</div>
 											<div class="grid-entry-label-btns">
-												<% tickets_left = (event.max_tickets) - (EventFollower.where(event_id: event.id)).size %>
+												<% tickets_left = (s.max_tickets) - (EventFollower.where(event_id: s.id)).size %>
 												<% if tickets_left > 0%>
 													<%= link_to({controller: "users", action: 'followSociety'}, :societyId => s.id) do %>
 														<span class="glyphicon glyphicon-star">Follow</span>
@@ -248,12 +263,16 @@ welcome/index.html.erb
 										</div>
 									</div>
 								<% end %>
+							</div>
 							<% end %>
 						<% end %>
 						<!-- END: LISTING UPCOMING EVENTS-->
 
 						<!-- LISTING CATEGORIES -->
 						<% if !@categories.nil? %>
+							<% if params[:state] == "search" %>
+								<h1>Categories</h1>
+							<% end %>
 							<% @categories.each do |cat| %>
 								<%= link_to cat.name,{ :state => params[:state], :catId => cat.id }, class: "category-entry" %>
 							<% end %>
@@ -262,6 +281,9 @@ welcome/index.html.erb
 
 						<!-- LISTING UNIVERSITIES -->
 						<% if !@universities.nil? %>
+							<% if params[:state] == "search" %>
+								<h1>Universities</h1>
+							<% end %>
 							<% @universities.each do |uni| %>
 								<%= link_to({ :state => params[:state], :uniId => uni.id }, class: "university-entry") do %>
 									<% image_tag uni.logo %>

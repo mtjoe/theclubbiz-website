@@ -5,6 +5,7 @@ TheclubbizWebsite::Application.routes.draw do
   post "events/declineEvent"
   post "events/acceptEvent"
   get "events/showTicket"
+  get "events/getReport"
   get "users/followSociety"
   get "users/unfollowSociety"
   get "users/followEvent"
@@ -39,6 +40,7 @@ TheclubbizWebsite::Application.routes.draw do
   resources :users
   
   get "welcome/index"
+  post "welcome/index"
   get "welcome/aboutUs"
   
 
