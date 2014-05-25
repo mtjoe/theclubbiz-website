@@ -37,16 +37,21 @@ class WelcomeController < ApplicationController
       admin_soc_ids.each do |admin_soc_id|
         (Invitation.where(society_id: admin_soc_id.society_id)).each do |invitation|
           @invitations << invitation
-        end  
+        end
       end
       
     when "myNetworks"
       @header = "My Networks"
+      societies = []
       @networks = []
 
       socAdmin = SocietyAdmin.where(user_id: current_user.id)
       socAdmin.each do |sa|
-        @networks << Society.find_by(id: sa.society_id)
+        societies << Society.find_by(id: sa.society_id)
+      end
+
+      societies.each do |society|
+        @networks << Network.find(SocietyNetwork.find())
       end
 
       @networks.uniq!
